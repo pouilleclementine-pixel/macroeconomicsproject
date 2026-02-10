@@ -357,8 +357,8 @@
 
   .timeline {
     position: relative;
-    padding-left: 2.25rem;
-    margin: 1.75rem 0;
+    padding-left: 3rem;
+    margin: 2.5rem 0;
   }
 
   .timeline::before {
@@ -367,39 +367,42 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 2px;
+    width: 3px;
     background: linear-gradient(to bottom, var(--red), var(--gold));
   }
 
   .timeline-item {
     position: relative;
-    margin-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
   }
 
   .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.6rem;
-    top: 0.3rem;
-    width: 10px;
-    height: 10px;
+    left: -3.4rem;
+    top: 0.35rem;
+    width: 14px;
+    height: 14px;
     background: var(--red);
     border-radius: 50%;
-    border: 2px solid var(--cream);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--red);
   }
 
   .timeline-year {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--red);
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
   }
 
   .timeline-text {
-    font-size: 0.88rem;
+    font-size: 1.05rem;
     color: var(--slate);
-    line-height: 1.5;
+    line-height: 1.65;
   }
 
   .pull-quote {
@@ -1481,7 +1484,7 @@
       </div>
       <div class="timeline-item">
         <div class="timeline-year">2001</div>
-        <div class="timeline-text"><a href="https://www.braumillerlaw.com/doi-moi-reforms-modernizing-nietnams-trade-economy/" target="_blank" style="color:var(--slate);text-decoration:underline;">US-Vietnam Bilateral Trade Agreement</a>. Tariffs collapse from ~40% to 3-4%. Textile exports surge 10x in five years.</div>
+        <div class="timeline-text"><a href="https://everycrsreport.com/reports/RL31470.html" target="_blank" style="color:var(--slate);text-decoration:underline;">US-Vietnam Bilateral Trade Agreement</a>. Tariffs collapse from ~40% to ~3%. U.S.-bound textile exports surge 67x in five years.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-year">2007</div>
@@ -1507,7 +1510,7 @@
 <section class="interstitial" id="interstitial1">
   <div class="interstitial-content">
     <p class="interstitial-stat">Samsung alone accounts for <em><a href="https://theinvestor.vn/korean-chaebol-samsungs-revenue-makes-up-13-of-vietnams-gdp-in-2024-d16297.html" target="_blank" style="color:var(--gold);text-decoration:none;">13.12%</a></em> of Vietnam's GDP.</p>
-    <p class="interstitial-context">That's like one foreign company generating the entire GDP of Croatia.</p>
+    <p class="interstitial-context">A single Korean conglomerate generates more than Vietnam's entire agricultural sector—and half of all its exports.</p>
   </div>
 </section>
 
@@ -1518,7 +1521,7 @@
     <h2>The FDI Engine</h2>
   </div>
   <div class="reveal reveal-delay-1">
-    <p class="lead dropcap">Vietnam's growth story is textbook capital deepening. Massive foreign capital inflows drove rapid GDP growth. But the Solow model predicts diminishing returns without productivity gains. Vietnam's <a href="https://thevietnamese.org/2025/10/chasing-the-2045-dream-what-are-the-bottlenecks-holding-viet-nam-back/" target="_blank" style="color:var(--red);text-decoration:none;">rising ICOR from 7.6 (2016-2020) to 8.5 (2021-2024)</a> signals exactly this pattern.</p>
+    <p class="lead dropcap">Vietnam's growth story is textbook capital deepening. Massive foreign capital inflows drove rapid GDP growth. But the Solow model predicts diminishing returns without productivity gains. Vietnam's <a href="https://vietnamnews.vn/opinion/1636743/accelerating-public-investment-necessary.html" target="_blank" style="color:var(--red);text-decoration:none;">rising ICOR—the Incremental Capital-Output Ratio, measuring how many dollars of investment it takes to generate one dollar of GDP growth—from 7.04 (2016-2020) to ~8.0 (2021-2024)</a> signals exactly this pattern: each new unit of growth now costs more to produce.</p>
   </div>
 
   <div class="reveal">
@@ -1531,7 +1534,7 @@
   <div class="reveal">
     <div class="equation-box">
       <div class="equation">GDP Growth = TFP + &alpha;&times;Labor + (1-&alpha;)&times;Capital</div>
-      <div class="explanation">Vietnam's growth is overwhelmingly capital (K). <a href="https://thevietnamese.org/2025/10/chasing-the-2045-dream-what-are-the-bottlenecks-holding-viet-nam-back/" target="_blank" style="color:#777;text-decoration:underline;">R&D spending at 0.4% of GDP</a> signals minimal TFP contribution. This is the vulnerability.</div>
+      <div class="explanation">Vietnam's growth is overwhelmingly capital (K). <a href="https://data.worldbank.org/indicator/GB.XPD.RSDV.GD.ZS?locations=VN" target="_blank" style="color:#777;text-decoration:underline;">R&D spending at 0.43% of GDP</a> signals minimal TFP contribution. This is the vulnerability.</div>
     </div>
   </div>
 
@@ -1608,7 +1611,7 @@
         <g id="icrGroup2" opacity="0">
           <rect x="175" y="95" width="100" height="32" rx="2" fill="white" stroke="var(--warning)" stroke-width="1"/>
           <text x="225" y="110" text-anchor="middle" class="solow-label" style="font-size:8px;fill:var(--warning)">Declining efficiency</text>
-          <text x="225" y="122" text-anchor="middle" class="solow-label" style="font-size:10px;fill:var(--warning);font-weight:600">ICOR: 7.6→8.5</text>
+          <text x="225" y="122" text-anchor="middle" class="solow-label" style="font-size:10px;fill:var(--warning);font-weight:600">ICOR: 7.04→8.0</text>
         </g>
 
         <!-- Key insight callout - positioned in empty space on right -->
@@ -1664,8 +1667,8 @@
         </tr>
         <tr>
           <td>Exports</td>
-          <td class="highlight">$54.4B</td>
-          <td>~11% of total Vietnamese exports</td>
+          <td class="highlight"><a href="https://theinvestor.vn/korean-chaebol-samsungs-revenue-makes-up-13-of-vietnams-gdp-in-2024-d16297.html" target="_blank" style="color:var(--dark);text-decoration:underline;">$54.4B</a></td>
+          <td>~13.4% of total Vietnamese exports</td>
         </tr>
         <tr>
           <td>Global production share</td>
@@ -1732,7 +1735,7 @@
         <p>$502.8B registered capital, $322.5B disbursed. <a href="https://www.vietnam-briefing.com/news/vietnam-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--slate);text-decoration:underline;">Record $25.35B in 2024</a>.</p>
       </div>
       <div class="comparison-card warning">
-        <span class="stat-number"><a href="https://www.ilo.org/media/346061/download" target="_blank" style="color:var(--warning);text-decoration:none;">72-77%</a></span>
+        <span class="stat-number"><a href="https://state.gov/reports/2025-investment-climate-statements/vietnam" target="_blank" style="color:var(--warning);text-decoration:none;">71-74%</a></span>
         <h3>FDI Share of Exports</h3>
         <p><a href="https://vietnamnet.vn/en/vietnam-s-record-exports-and-the-hidden-fragility-of-its-economy-2474047.html" target="_blank" style="color:var(--slate);text-decoration:underline;">Domestic firms run a trade deficit</a>. The paradox of borrowed capacity.</p>
       </div>
@@ -1743,7 +1746,7 @@
 <!-- INTERSTITIAL 2: FDI Export Share -->
 <section class="interstitial" id="interstitial2">
   <div class="interstitial-content">
-    <p class="interstitial-stat"><em><a href="https://www.ilo.org/media/346061/download" target="_blank" style="color:var(--gold);text-decoration:none;">72-77%</a></em> of Vietnam's exports come from foreign-owned firms.</p>
+    <p class="interstitial-stat"><em><a href="https://state.gov/reports/2025-investment-climate-statements/vietnam" target="_blank" style="color:var(--gold);text-decoration:none;">71-74%</a></em> of Vietnam's exports come from foreign-owned firms.</p>
     <p class="interstitial-context">Domestic companies collectively run a trade deficit.</p>
   </div>
 </section>
@@ -2104,7 +2107,7 @@
     <h2>Vietnam's Race Against Time</h2>
   </div>
   <div class="reveal reveal-delay-1">
-    <p class="lead dropcap">The three-stage demographic dividend framework illuminates Vietnam's position. Vietnam sits squarely in Stage 2—the dividend window—when fertility has fallen but the population hasn't yet aged. Fertility is at 1.91 (below replacement of 2.1). Working-age share is 68%. The <a href="https://www.vietnam.vn/en/viet-nam-buoc-vao-thoi-ky-dan-so-gia-trong-it-nam-toi" target="_blank" style="color:var(--red);text-decoration:none;">window closes around 2036</a>, three years earlier than prior forecasts.</p>
+    <p class="lead dropcap">The three-stage demographic dividend framework illuminates Vietnam's position. Vietnam sits squarely in Stage 2—the dividend window—when fertility has fallen but the population hasn't yet aged. Fertility is at 1.91 (below replacement of 2.1). Working-age share is <a href="https://tradingeconomics.com/vietnam/population-ages-15-64-percent-of-total-wb-data.html" target="_blank" style="color:var(--slate);text-decoration:none;">67.7%</a>. The <a href="https://www.vietnam.vn/en/viet-nam-buoc-vao-thoi-ky-dan-so-gia-trong-it-nam-toi" target="_blank" style="color:var(--red);text-decoration:none;">window closes around 2036</a>, three years earlier than prior forecasts.</p>
   </div>
 
   <div class="reveal">
@@ -2197,7 +2200,7 @@
       <div class="comparison-card warning">
         <span class="stat-number">27.2%</span>
         <h3>Workers With Degrees</h3>
-        <p>~76% in informal sector. Only <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:var(--slate);text-decoration:underline;">~1,400 microchip engineers</a> vs. 50,000 target.</p>
+        <p><a href="https://www.ilo.org/publications/research-report-informal-employment-viet-nam-through-gender-lens" target="_blank" style="color:var(--slate);text-decoration:none;">~65-68%</a> in informal sector. Only <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:var(--slate);text-decoration:underline;">~1,400 microchip engineers</a> vs. 50,000 target.</p>
       </div>
       <div class="comparison-card">
         <span class="stat-number">25-40%</span>
@@ -2222,8 +2225,8 @@
 <!-- INTERSTITIAL 4: Middle Income Trap -->
 <section class="interstitial" id="interstitial4">
   <div class="interstitial-content">
-    <p class="interstitial-stat">Only <em><a href="https://tapchimoitruong.vn/news-13/%E2%80%9Cmiddle-income-trap%E2%80%9D--environmental-perspective-and-implications-for-vietnam-32073" target="_blank" style="color:var(--gold);text-decoration:none;">34 of 108</a></em> middle-income countries have ever made it to high-income status.</p>
-    <p class="interstitial-context">The odds are roughly 1 in 3. Most get stuck.</p>
+    <p class="interstitial-stat">Only <em><a href="https://www.worldbank.org/en/news/press-release/2024/07/22/-middle-income-trap-hinders-progress-in-108-developing-countries" target="_blank" style="color:var(--gold);text-decoration:none;">34 of ~142</a></em> middle-income countries have ever made it to high-income status.</p>
+    <p class="interstitial-context">The odds are roughly 1 in 4. 108 remain stuck today.</p>
   </div>
 </section>
 
@@ -2461,15 +2464,15 @@
         <p>Down from $109B (2022). Only ~2.3 months import cover. Below IMF 3-month threshold.</p>
       </div>
       <div class="comparison-card">
-        <span class="stat-number">3.4%</span>
+        <span class="stat-number">3.31%</span>
         <h3>Inflation (2025)</h3>
-        <p>From 700%+ (mid-1980s) to 18.6% (2011) to 3.4% today. Hard-won stability.</p>
+        <p>From <a href="https://worlddata.info/asia/vietnam/inflation-rates.php" target="_blank" style="color:var(--slate);text-decoration:none;">700%+ (1986)</a> to 18.6% (2011) to <a href="https://en.vietnamplus.vn/vietnams-2025-cpi-rises-331-within-national-assemblys-target-post335417.vnp" target="_blank" style="color:var(--slate);text-decoration:none;">3.31%</a> today. Hard-won stability.</p>
       </div>
     </div>
   </div>
 
   <div class="reveal">
-    <p>The State Bank of Vietnam is modernizing monetary policy. SBV removes credit quotas starting 2026, moving from quantity-based money supply control to a price-based system. This shift reflects modern central banking practice: controlling money creation through interest rates rather than direct quantity targets. The 15% credit growth cap for 2025 represents the old regime; 2026 marks the transition.</p>
+    <p>The State Bank of Vietnam is modernizing monetary policy. <a href="https://en.vietnamplus.vn/banking-industry-to-remove-credit-quota-policy-from-2026-post324345.vnp" target="_blank" style="color:var(--slate);text-decoration:none;">SBV removes credit quotas starting 2026</a>, moving from quantity-based money supply control to a price-based system. This shift reflects modern central banking practice: controlling money creation through interest rates rather than direct quantity targets. The <a href="https://sbv.gov.vn/en/w/credit-growth-projected-at-16-in-2025" target="_blank" style="color:var(--slate);text-decoration:none;">16% credit growth cap for 2025</a> represents the old regime; 2026 marks the transition with a target of 15%.</p>
   </div>
 
   <div class="reveal">
@@ -2540,7 +2543,7 @@
   <div class="reveal">
     <div class="chart-container">
       <div class="chart-title">Middle-Income Trap: The Odds</div>
-      <div class="chart-subtitle">Historical transition rates | Source: <a href="https://tapchimoitruong.vn/news-13/%E2%80%9Cmiddle-income-trap%E2%80%9D--environmental-perspective-and-implications-for-vietnam-32073" target="_blank" style="color:#999;text-decoration:underline;">TapChiMoiTruong</a>, <a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/gni-per-capita" target="_blank" style="color:#999;text-decoration:underline;">MacroTrends</a></div>
+      <div class="chart-subtitle">Historical transition rates | Source: <a href="https://www.worldbank.org/en/publication/wdr2024" target="_blank" style="color:#999;text-decoration:underline;">World Bank WDR 2024</a>, <a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/gni-per-capita" target="_blank" style="color:#999;text-decoration:underline;">MacroTrends</a></div>
       <table class="data-table">
         <tr>
           <th>Metric</th>
@@ -2549,8 +2552,8 @@
         </tr>
         <tr>
           <td>Countries that transitioned</td>
-          <td class="highlight"><a href="https://tapchimoitruong.vn/news-13/%E2%80%9Cmiddle-income-trap%E2%80%9D--environmental-perspective-and-implications-for-vietnam-32073" target="_blank" style="color:var(--dark);text-decoration:underline;">34 of 108</a></td>
-          <td>Since 1990s. ~31% success rate.</td>
+          <td class="highlight"><a href="https://www.worldbank.org/en/news/press-release/2024/07/22/-middle-income-trap-hinders-progress-in-108-developing-countries" target="_blank" style="color:var(--dark);text-decoration:underline;">34 of ~142</a></td>
+          <td>Since 1990s. ~24% success rate. 108 remain stuck.</td>
         </tr>
         <tr>
           <td>Vietnam GNI per capita</td>
@@ -2559,7 +2562,7 @@
         </tr>
         <tr>
           <td>R&D spending</td>
-          <td class="warning">0.4% of GDP</td>
+          <td class="warning"><a href="https://data.worldbank.org/indicator/GB.XPD.RSDV.GD.ZS?locations=VN" target="_blank" style="color:var(--warning);text-decoration:underline;">0.43% of GDP</a></td>
           <td>vs. Korea 4.8%, Taiwan 3.5%, Thailand 1.3%</td>
         </tr>
         <tr>
@@ -2586,7 +2589,7 @@
   <div class="reveal">
     <div class="insight-box">
       <h4>The Core Tension</h4>
-      <p>Vietnam has 10-12 years before its demographic dividend ends. <a href="https://thediplomat.com/2026/01/vietnams-economy-grew-by-more-than-8-percent-in-2025-government-says/" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">GDP growth hit 8.02% in 2025</a>, the strongest since 2011. But the ICOR is rising, R&D is minimal, and 72-77% of exports come from foreign firms. The <a href="https://irpj.euclid.int/articles/vietnams-economic-transformation-successes-challenges-and-strategies-for-sustainable-growth/" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Asian Tigers at similar income levels</a> already had Samsung and Hyundai. Vietnam must build domestic capabilities while the window remains open.</p>
+      <p>Vietnam has 10-12 years before its demographic dividend ends. <a href="https://thediplomat.com/2026/01/vietnams-economy-grew-by-more-than-8-percent-in-2025-government-says/" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">GDP growth hit 8.02% in 2025</a>, the strongest since 2011. But the ICOR is rising, R&D is minimal, and 71-74% of exports come from foreign firms. The <a href="https://irpj.euclid.int/articles/vietnams-economic-transformation-successes-challenges-and-strategies-for-sustainable-growth/" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Asian Tigers at similar income levels</a> already had Samsung and Hyundai. Vietnam must build domestic capabilities while the window remains open.</p>
     </div>
   </div>
 </section>
