@@ -1573,9 +1573,9 @@
               stroke-dasharray="600" stroke-dashoffset="600"/>
 
         <!-- TFP shift curve (what happens with technology/productivity gains) -->
-        <path d="M 320 65 Q 400 38, 480 25" class="solow-curve-tfp" id="tfpCurve"
+        <path d="M 340 82 Q 410 55, 480 40" class="solow-curve-tfp" id="tfpCurve"
               stroke-dasharray="250" stroke-dashoffset="250"/>
-        <text x="485" y="25" class="solow-label" style="font-size:8px;fill:var(--accent-green);font-weight:500" text-anchor="start">TFP shift</text>
+        <text x="485" y="40" class="solow-label" style="font-size:8px;fill:var(--accent-green);font-weight:500" text-anchor="start">TFP shift</text>
 
         <!-- Vertical dashed lines connecting time periods to curve -->
         <line x1="140" y1="240" x2="140" y2="185" stroke="#ddd" stroke-dasharray="3 3" class="time-connector" opacity="0"/>
@@ -1593,30 +1593,30 @@
 
         <!-- Vietnam label box - positioned to not overlap -->
         <g id="vietnamLabelGroup" opacity="0">
-          <rect x="115" y="195" width="65" height="28" rx="3" fill="white" stroke="var(--red)" stroke-width="1"/>
-          <text x="147" y="208" text-anchor="middle" class="solow-label" style="font-size:9px;fill:var(--dark);font-weight:600" id="vietnamLabel">Vietnam</text>
-          <text x="147" y="218" text-anchor="middle" class="solow-label" style="font-size:7px;fill:#666" id="eraLabel">2000</text>
+          <rect x="350" y="55" width="55" height="32" rx="3" fill="white" stroke="var(--red)" stroke-width="1.5"/>
+          <text x="377" y="70" text-anchor="middle" class="solow-label" style="font-size:10px;fill:var(--dark);font-weight:600" id="vietnamLabel">Vietnam</text>
+          <text x="377" y="82" text-anchor="middle" class="solow-label" style="font-size:8px;fill:#666" id="eraLabel">2024</text>
         </g>
 
         <!-- ICOR annotations - repositioned to avoid overlap -->
         <g id="icrGroup1" opacity="0">
-          <rect x="95" y="145" width="70" height="28" rx="2" fill="white" stroke="var(--accent-green)" stroke-width="1"/>
-          <text x="130" y="158" text-anchor="middle" class="solow-label" style="font-size:7px;fill:var(--accent-green)">Efficient growth</text>
-          <text x="130" y="169" text-anchor="middle" class="solow-label" style="font-size:9px;fill:var(--accent-green);font-weight:600">ICOR: 5.2</text>
+          <rect x="90" y="145" width="80" height="32" rx="2" fill="white" stroke="var(--accent-green)" stroke-width="1"/>
+          <text x="130" y="160" text-anchor="middle" class="solow-label" style="font-size:8px;fill:var(--accent-green)">Efficient growth</text>
+          <text x="130" y="172" text-anchor="middle" class="solow-label" style="font-size:10px;fill:var(--accent-green);font-weight:600">ICOR: 5.2</text>
         </g>
 
         <g id="icrGroup2" opacity="0">
-          <rect x="185" y="80" width="80" height="28" rx="2" fill="white" stroke="var(--warning)" stroke-width="1"/>
-          <text x="225" y="93" text-anchor="middle" class="solow-label" style="font-size:7px;fill:var(--warning)">Declining efficiency</text>
-          <text x="225" y="104" text-anchor="middle" class="solow-label" style="font-size:9px;fill:var(--warning);font-weight:600">ICOR: 7.6→8.5</text>
+          <rect x="175" y="95" width="100" height="32" rx="2" fill="white" stroke="var(--warning)" stroke-width="1"/>
+          <text x="225" y="110" text-anchor="middle" class="solow-label" style="font-size:8px;fill:var(--warning)">Declining efficiency</text>
+          <text x="225" y="122" text-anchor="middle" class="solow-label" style="font-size:10px;fill:var(--warning);font-weight:600">ICOR: 7.6→8.5</text>
         </g>
 
         <!-- Key insight callout - positioned in empty space on right -->
         <g id="insightCallout" opacity="0">
-          <rect x="365" y="120" width="110" height="45" rx="3" fill="var(--dark)"/>
-          <text x="420" y="136" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:7px;fill:var(--gold)">THE SOLOW TRAP</text>
-          <text x="420" y="150" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:8px;fill:white">More capital → less</text>
-          <text x="420" y="161" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:8px;fill:white">growth per $ invested</text>
+          <rect x="355" y="135" width="120" height="50" rx="3" fill="var(--dark)"/>
+          <text x="415" y="152" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:8px;fill:var(--gold)">THE SOLOW TRAP</text>
+          <text x="415" y="166" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:9px;fill:white">More capital → less</text>
+          <text x="415" y="179" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:9px;fill:white">growth per $ invested</text>
         </g>
       </svg>
 
