@@ -1,0 +1,3347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tiger Unleashed: Vietnam's Export Economy Through a Macroeconomic Lens</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #DA251D;
+    --gold: #F2C94C;
+    --dark: #1A1A1A;
+    --cream: #FAF7F2;
+    --slate: #4A4A4A;
+    --light-gray: #E8E4DF;
+    --accent-green: #2D6A4F;
+    --accent-blue: #1B4965;
+    --warning: #E67E22;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+    font-size: 18px;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--dark);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(218,37,29,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(242,201,76,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-star {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeInDown 1s ease 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.5s forwards;
+  }
+
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    color: rgba(250,247,242,0.5);
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.8s forwards;
+  }
+
+  .hero-hook {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin-top: 1.5rem;
+    color: rgba(250,247,242,0.7);
+    opacity: 0;
+    animation: fadeInUp 1s ease 1s forwards;
+    line-height: 1.6;
+  }
+
+  .hero-framework {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(242,201,76,0.3);
+    border-radius: 3px;
+    color: var(--gold);
+    opacity: 0;
+    animation: fadeInUp 1s ease 1.2s forwards;
+  }
+
+  .hero-scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(250,247,242,0.35);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .hero-scroll-cue::after {
+    content: '';
+    font-size: 1.2rem;
+  }
+
+  .section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-wide {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-full {
+    width: 100%;
+    padding: 5rem 2rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .reveal-delay-4 { transition-delay: 0.6s; }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    margin-bottom: 1.1rem;
+    color: var(--slate);
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--dark);
+  }
+
+  .chapter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  .framework-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .framework-badge.gold {
+    background: var(--gold);
+    color: var(--dark);
+  }
+
+  .dropcap::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 0.8;
+    margin-right: 0.1em;
+    color: var(--red);
+  }
+
+  .stat-banner {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.6);
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  .chart-container {
+    margin: 2rem 0;
+    padding: 1.75rem;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border: 1px solid var(--light-gray);
+  }
+
+  .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .chart-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #999;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+  }
+
+  .bar-chart .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.65rem;
+  }
+
+  .bar-label {
+    width: 85px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--slate);
+    text-align: right;
+    padding-right: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 26px;
+    background: var(--light-gray);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+  }
+
+  .bar-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    margin-left: 0.4rem;
+  }
+
+  .bar-value-outside {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--slate);
+    margin-left: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2.25rem;
+    margin: 1.75rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--red), var(--gold));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.6rem;
+    top: 0.3rem;
+    width: 10px;
+    height: 10px;
+    background: var(--red);
+    border-radius: 50%;
+    border: 2px solid var(--cream);
+  }
+
+  .timeline-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--red);
+    margin-bottom: 0.15rem;
+  }
+
+  .timeline-text {
+    font-size: 0.88rem;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--red);
+    padding: 1.25rem 1.75rem;
+    margin: 2rem 0;
+    background: white;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .pull-quote cite {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-style: normal;
+    color: #999;
+    letter-spacing: 0.05em;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin: 1.75rem 0;
+  }
+
+  .comparison-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--light-gray);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .comparison-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .comparison-card .stat-number {
+    color: var(--red);
+    font-size: 1.9rem;
+  }
+
+  .comparison-card.warning .stat-number {
+    color: var(--warning);
+  }
+
+  .comparison-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .comparison-card p {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+
+  .donut-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 1.75rem 0;
+  }
+
+  .donut-chart {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+  }
+
+  .donut-legend {
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .legend-label {
+    font-size: 0.85rem;
+    color: var(--slate);
+  }
+
+  .legend-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .insight-box {
+    background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+    color: var(--cream);
+    padding: 1.75rem;
+    border-radius: 4px;
+    margin: 2rem 0;
+    border-left: 4px solid var(--gold);
+  }
+
+  .insight-box h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .insight-box p {
+    color: rgba(250,247,242,0.85);
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  .divider {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .divider::before {
+    content: '';
+    color: var(--red);
+    font-size: 1.25rem;
+  }
+
+  .dual-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 700px) {
+    .dual-column { grid-template-columns: 1fr; }
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+
+  .data-table th, .data-table td {
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .data-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 500;
+  }
+
+  .data-table td {
+    color: var(--slate);
+  }
+
+  .data-table .highlight {
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .data-table .red { color: var(--red); }
+  .data-table .warning { color: var(--warning); }
+
+  .footer {
+    background: var(--dark);
+    color: rgba(250,247,242,0.5);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    line-height: 2;
+  }
+
+  .footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .sources-section {
+    background: #f5f3ee;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 4px;
+  }
+
+  .sources-section h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.75rem;
+  }
+
+  .sources-section h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .sources-section p {
+    font-size: 0.72rem;
+    line-height: 1.9;
+    color: #777;
+    margin-bottom: 0;
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  .equation-box {
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-left: 4px solid var(--red);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+  }
+
+  .equation-box .equation {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .equation-box .explanation {
+    font-size: 0.75rem;
+    color: #777;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(242,201,76,0.3); }
+    50% { box-shadow: 0 0 40px rgba(242,201,76,0.6); }
+  }
+
+  @keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes fadeInUpInterstitial {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes dropBounce {
+    0% { transform: translateY(-50px); opacity: 0; }
+    60% { transform: translateY(5px); opacity: 1; }
+    80% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes countPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  .count-up {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Sticky Export Counter */
+  .sticky-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 14px 20px;
+    border-radius: 8px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    border: 1px solid rgba(242, 201, 76, 0.3);
+    min-width: 180px;
+  }
+
+  .sticky-counter.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sticky-counter.pulsing {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .sticky-counter-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sticky-counter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250, 247, 242, 0.5);
+  }
+
+  .sticky-counter-era {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .sticky-counter-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .sticky-counter-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sticky-counter-context {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.65rem;
+    color: rgba(250, 247, 242, 0.4);
+    font-style: italic;
+  }
+
+  .sticky-counter-question {
+    color: var(--gold);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .sticky-counter.pulsing .sticky-counter-question {
+    opacity: 1;
+  }
+
+  .sticky-counter-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5rem;
+    color: rgba(250, 247, 242, 0.35);
+    text-align: right;
+    margin-top: 2px;
+  }
+
+  /* Section Navigation Dots */
+  .section-nav {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .section-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(26, 26, 26, 0.2);
+    border: 2px solid var(--dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .section-dot::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--dark);
+    color: var(--cream);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .section-dot:hover::before {
+    opacity: 1;
+  }
+
+  .section-dot:hover {
+    transform: scale(1.3);
+  }
+
+  .section-dot.active {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  /* Interstitial Shock Stats */
+  .interstitial {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--dark);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .interstitial::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(218,37,29,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .interstitial-content {
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .interstitial-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .interstitial-stat {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .interstitial-stat em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .interstitial-context {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem;
+    color: rgba(250, 247, 242, 0.5);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Parallax Star Background */
+  .parallax-star {
+    position: absolute;
+    font-size: 40rem;
+    color: var(--gold);
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+  }
+
+  .parallax-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(26, 26, 26, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Sankey Flow Diagram */
+  .sankey-container {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--light-gray);
+    overflow-x: auto;
+  }
+
+  .sankey-svg {
+    width: 100%;
+    min-width: 700px;
+    height: 400px;
+  }
+
+  .sankey-path {
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .sankey-path-import {
+    stroke: var(--gold);
+    opacity: 0.7;
+  }
+
+  .sankey-path-export {
+    stroke: var(--red);
+    opacity: 0.7;
+  }
+
+  .sankey-node {
+    fill: var(--cream);
+    stroke: var(--dark);
+    stroke-width: 2;
+  }
+
+  .sankey-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    fill: var(--slate);
+  }
+
+  .sankey-center-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--dark);
+  }
+
+  .sankey-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    fill: var(--slate);
+  }
+
+  /* Solow Curve */
+  .solow-container {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .solow-svg {
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .solow-axis {
+    stroke: var(--slate);
+    stroke-width: 1;
+  }
+
+  .solow-curve {
+    fill: none;
+    stroke: var(--dark);
+    stroke-width: 3;
+  }
+
+  .solow-curve-ghost {
+    fill: none;
+    stroke: #999;
+    stroke-width: 2;
+    stroke-dasharray: 5 5;
+    opacity: 0.5;
+  }
+
+  .solow-curve-tfp {
+    fill: none;
+    stroke: var(--accent-green);
+    stroke-width: 2;
+    stroke-dasharray: 8 4;
+  }
+
+  .solow-dot {
+    fill: var(--red);
+    stroke: white;
+    stroke-width: 2;
+  }
+
+  .solow-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    fill: var(--slate);
+  }
+
+  .solow-axis-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    fill: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Demographic Ring */
+  .demo-ring-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .demo-ring-svg {
+    width: 220px;
+    height: 220px;
+  }
+
+  .demo-ring-track {
+    fill: none;
+    stroke: var(--light-gray);
+    stroke-width: 20;
+  }
+
+  .demo-ring-fill {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 20;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    stroke-dasharray: 0 440;
+    transition: stroke-dasharray 1.5s ease-out;
+  }
+
+  .demo-ring-center {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    fill: var(--dark);
+  }
+
+  .demo-ring-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    fill: var(--slate);
+  }
+
+  .demo-ring-info {
+    max-width: 280px;
+  }
+
+  .demo-ring-info p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .demo-ring-ticks {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    fill: var(--slate);
+  }
+
+  /* Vietnam Map */
+  .vietnam-map-container {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--light-gray);
+    position: relative;
+  }
+
+  .vietnam-map-svg {
+    width: 100%;
+    max-width: 320px;
+    height: 480px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .map-pin {
+    cursor: pointer;
+    opacity: 0;
+    transform-origin: center bottom;
+  }
+
+  .map-pin.visible {
+    animation: dropBounce 0.6s ease forwards;
+  }
+
+  .map-pin-marker {
+    fill: var(--red);
+    stroke: white;
+    stroke-width: 2;
+    transition: transform 0.2s ease, r 0.2s ease;
+  }
+
+  .map-pin:hover .map-pin-marker {
+    transform: scale(1.2);
+  }
+
+  .map-pin-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    fill: var(--gold);
+    font-weight: 500;
+  }
+
+  .pulse-ring {
+    animation: pulseRing 2s ease-out infinite;
+  }
+
+  @keyframes pulseRing {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2); }
+  }
+
+  .map-legend-item {
+    transition: background 0.2s ease;
+    border-radius: 4px;
+    margin: 0 -0.25rem;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+
+  .map-legend-item:hover {
+    background: rgba(218,37,29,0.05);
+  }
+
+  .map-tooltip {
+    position: absolute;
+    background: var(--dark);
+    color: var(--cream);
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    max-width: 220px;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .map-tooltip.visible {
+    opacity: 1;
+  }
+
+  .map-tooltip-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  /* Racing Bar Chart */
+  .racing-bar-container {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .racing-bar-chart {
+    position: relative;
+  }
+
+  .racing-bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .racing-bar-label {
+    width: 90px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--slate);
+    text-align: right;
+    padding-right: 1rem;
+    flex-shrink: 0;
+  }
+
+  .racing-bar-track {
+    flex: 1;
+    height: 32px;
+    background: var(--light-gray);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .racing-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+  }
+
+  .racing-bar-fill.vietnam {
+    background: linear-gradient(90deg, var(--red), #E74C3C);
+  }
+
+  .racing-bar-fill.other {
+    background: #999;
+  }
+
+  .racing-bar-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: white;
+  }
+
+  .racing-bar-start {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--dark);
+    opacity: 0.3;
+  }
+
+  .racing-bar-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #999;
+    margin-left: 0.5rem;
+    white-space: nowrap;
+  }
+
+  /* Chart Tooltips */
+  .chart-tooltip {
+    position: absolute;
+    background: var(--dark);
+    color: var(--cream);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    max-width: 200px;
+  }
+
+  .chart-tooltip.visible {
+    opacity: 1;
+  }
+
+  .chart-tooltip-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+
+  .chart-tooltip-source {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(250, 247, 242, 0.5);
+  }
+
+  .bar-row {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .legend-item {
+    position: relative;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .sticky-counter {
+      top: 10px;
+      right: 10px;
+      padding: 10px 14px;
+      min-width: 150px;
+    }
+    .sticky-counter-value {
+      font-size: 1.2rem;
+    }
+    .sticky-counter-subtitle {
+      display: none;
+    }
+    .sticky-counter-label {
+      font-size: 0.5rem;
+    }
+    .sticky-counter-era {
+      font-size: 0.5rem;
+    }
+    .section-nav {
+      right: 8px;
+    }
+    .section-dot {
+      width: 8px;
+      height: 8px;
+    }
+    .interstitial-stat {
+      font-size: 1.5rem;
+    }
+    .sankey-container {
+      padding: 1rem;
+    }
+    .demo-ring-container {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .stat-row { gap: 1.5rem; }
+    .donut-section { flex-direction: column; align-items: center; }
+    .section, .section-wide { padding: 3.5rem 1.5rem; }
+    body { font-size: 16px; }
+    .bar-label { width: 65px; font-size: 0.62rem; }
+    .comparison-grid { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Sticky Export Counter -->
+<div class="sticky-counter" id="stickyCounter">
+  <div class="sticky-counter-header">
+    <span class="sticky-counter-label">Total Exports</span>
+    <span class="sticky-counter-era" id="counterEra">1990</span>
+  </div>
+  <div class="sticky-counter-main">
+    <span class="sticky-counter-value" id="counterValue">$2.4B</span>
+    <span class="sticky-counter-question">?</span>
+  </div>
+  <div class="sticky-counter-subtitle" id="counterSubtitle">Watch this number grow as you scroll through Vietnam's economic history</div>
+</div>
+
+<!-- Section Navigation Dots -->
+<nav class="section-nav" id="sectionNav">
+  <div class="section-dot" data-section="0" data-tooltip="Introduction"></div>
+  <div class="section-dot" data-section="1" data-tooltip="Đổi Mới"></div>
+  <div class="section-dot" data-section="2" data-tooltip="FDI Engine"></div>
+  <div class="section-dot" data-section="3" data-tooltip="Export Composition"></div>
+  <div class="section-dot" data-section="4" data-tooltip="Demographics"></div>
+  <div class="section-dot" data-section="5" data-tooltip="Challenges"></div>
+</nav>
+
+<!-- SECTION 1: HERO + HOOK -->
+<section class="hero" data-section-index="0">
+  <div class="parallax-star" id="parallaxStar">&#9733;</div>
+  <div class="parallax-dots" id="parallaxDots"></div>
+  <div class="hero-star">&#9733;</div>
+  <h1>The <em>Tiger</em> Unleashed</h1>
+  <div class="hero-subtitle">Vietnam's <a href="https://www.vietnam-briefing.com/news/vietnam-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--gold);text-decoration:none;">$475 Billion</a> Export Economy Through a Macroeconomic Lens</div>
+  <div class="hero-hook">A macroeconomic analysis through the lens of growth theory, institutional economics, and trade policy</div>
+  <div class="hero-scroll-cue">Scroll to explore</div>
+</section>
+
+<section class="stat-banner">
+  <div class="stat-row">
+    <div class="stat-item reveal">
+      <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/vietnam-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--gold);text-decoration:none;">$475B</a></span>
+      <span class="stat-label">Total exports 2025</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <span class="stat-number"><a href="https://data.worldbank.org/country/viet-nam" target="_blank" style="color:var(--gold);text-decoration:none;">200&times;</a></span>
+      <span class="stat-label">Export growth since 1990</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <span class="stat-number count-up" data-target="187"><a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/trade-gdp-ratio" target="_blank" style="color:var(--gold);text-decoration:none;">0</a></span>
+      <span class="stat-label">Trade-to-GDP ratio (%)</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <span class="stat-number"><a href="https://www.trade.gov/country-commercial-guides/vietnam-trade-agreements" target="_blank" style="color:var(--gold);text-decoration:none;">17</a></span>
+      <span class="stat-label">Active FTAs</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: INSTITUTIONS AS THE FUNDAMENTAL CAUSE -->
+<section class="section" data-section-index="1" data-export-value="14.5">
+  <div class="reveal">
+    <span class="chapter-label">I. Institutions as the Fundamental Cause</span>
+    <h2>The Doi Moi Story</h2>
+  </div>
+  <div class="reveal reveal-delay-1">
+    <p class="lead dropcap">Consider a natural experiment: same country, same culture, same people. In 1985, Vietnam's <a href="https://en.wikipedia.org/wiki/Economy_of_Vietnam" target="_blank" style="color:var(--red);text-decoration:none;">inflation exceeded 700%</a>, GDP per capita sat at roughly $200, and <a href="https://www.imf.org/-/media/Files/Publications/WP/2020/English/wpiea2020031-print-pdf.ashx" target="_blank" style="color:var(--red);text-decoration:none;">Soviet aid of $4 million per day</a> kept the economy afloat. Then came institutional reform. Thirty-five years later: exports 200-fold higher, <a href="https://databankfiles.worldbank.org/public/ddpext_download/poverty/33EF03BB-9722-4AE2-ABC7-AA2972D68AFE/Global_POVEQ_VNM.pdf" target="_blank" style="color:var(--red);text-decoration:none;">poverty from 58% to under 4%</a>, GDP per capita at <a href="https://vietnamnet.vn/en/vietnam-s-economy-takes-off-enters-upper-middle-income-bracket-2483165.html" target="_blank" style="color:var(--red);text-decoration:none;">$5,026</a>. The variable that changed? Institutions.</p>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <p>This aligns with the Acemoglu, Johnson, and Robinson institutional framework (2024 Nobel laureates). Just as North Korea and South Korea diverged through institutions alone, Vietnam's <a href="https://en.wikipedia.org/wiki/%C4%90%E1%BB%95i_M%E1%BB%9Bi" target="_blank" style="color:var(--red);text-decoration:none;">Đổi Mới ("renovation")</a> in 1986 marks the institutional inflection point that converted extractive structures into inclusive ones. Property rights emerged. Markets replaced central planning. The result was not gradual improvement but exponential transformation.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1986</div>
+        <div class="timeline-text"><a href="https://en.wikipedia.org/wiki/%C4%90%E1%BB%95i_M%E1%BB%9Bi" target="_blank" style="color:var(--slate);text-decoration:underline;">Doi Moi</a> launches at 6th Party Congress. Market mechanisms enter planned economy. Inflation brought from 700%+ to single digits.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1995</div>
+        <div class="timeline-text">ASEAN membership. Integration into regional trade networks begins.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2001</div>
+        <div class="timeline-text"><a href="https://www.braumillerlaw.com/doi-moi-reforms-modernizing-nietnams-trade-economy/" target="_blank" style="color:var(--slate);text-decoration:underline;">US-Vietnam Bilateral Trade Agreement</a>. Tariffs collapse from ~40% to 3-4%. Textile exports surge 10x in five years.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2007</div>
+        <div class="timeline-text"><a href="https://www.wto.org/english/thewto_e/acc_e/a1_vietnam_e.htm" target="_blank" style="color:var(--slate);text-decoration:underline;">WTO accession</a> after 12 years of negotiations. Full entry into global trading system.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018-19</div>
+        <div class="timeline-text"><a href="https://www.trade.gov/country-commercial-guides/vietnam-trade-agreements" target="_blank" style="color:var(--slate);text-decoration:underline;">CPTPP</a> and <a href="https://ec.europa.eu/eurostat/statistics-explained/SEPDF/cache/71515.pdf" target="_blank" style="color:var(--slate);text-decoration:underline;">EVFTA</a> ratified. 99% tariff elimination with EU. Access to 53 countries covering 87% of world GDP.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-text"><a href="https://www.mufgresearch.com/fx/vietnam-doi-moi-20-the-most-ambitious-structural-reforms-since-1986-21-august-2025/" target="_blank" style="color:var(--slate);text-decoration:underline;">Doi Moi 2.0</a> announced. Consolidate 63 to 34 provinces, reduce bureaucracy 30%. Institutional reform continues.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p>Vietnam's <a href="https://tradingeconomics.com/vietnam/tariff-rate-applied-simple-mean-all-products-percent-wb-data.html" target="_blank" style="color:var(--slate);text-decoration:underline;">average tariff fell from over 23% in the mid-1990s to approximately 1.1% today</a>. This institutional opening created the conditions for the FDI surge that followed.</p>
+  </div>
+</section>
+
+<!-- INTERSTITIAL 1: Samsung GDP -->
+<section class="interstitial" id="interstitial1">
+  <div class="interstitial-content">
+    <p class="interstitial-stat">Samsung alone accounts for <em><a href="https://theinvestor.vn/korean-chaebol-samsungs-revenue-makes-up-13-of-vietnams-gdp-in-2024-d16297.html" target="_blank" style="color:var(--gold);text-decoration:none;">13.12%</a></em> of Vietnam's GDP.</p>
+    <p class="interstitial-context">That's like one foreign company generating the entire GDP of Croatia.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: CAPITAL DEEPENING AND THE SOLOW PREDICTION -->
+<section class="section" data-section-index="2" data-export-value="150">
+  <div class="reveal">
+    <span class="chapter-label">II. Capital Deepening and the Solow Prediction</span>
+    <h2>The FDI Engine</h2>
+  </div>
+  <div class="reveal reveal-delay-1">
+    <p class="lead dropcap">Vietnam's growth story is textbook capital deepening. Massive foreign capital inflows drove rapid GDP growth. But the Solow model predicts diminishing returns without productivity gains. Vietnam's <a href="https://thevietnamese.org/2025/10/chasing-the-2045-dream-what-are-the-bottlenecks-holding-viet-nam-back/" target="_blank" style="color:var(--red);text-decoration:none;">rising ICOR from 7.6 (2016-2020) to 8.5 (2021-2024)</a> signals exactly this pattern.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="insight-box">
+      <h4>The Soviet Parallel</h4>
+      <p>The USSR grew rapidly through capital accumulation until return on capital fell from 30% (1950) to 0% (1990). Without TFP growth, the trajectory plateaued. Vietnam's ICOR trend echoes this pattern. Each additional unit of GDP now requires more investment than before.</p>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="equation-box">
+      <div class="equation">GDP Growth = TFP + &alpha;&times;Labor + (1-&alpha;)&times;Capital</div>
+      <div class="explanation">Vietnam's growth is overwhelmingly capital (K). <a href="https://thevietnamese.org/2025/10/chasing-the-2045-dream-what-are-the-bottlenecks-holding-viet-nam-back/" target="_blank" style="color:#777;text-decoration:underline;">R&D spending at 0.4% of GDP</a> signals minimal TFP contribution. This is the vulnerability.</div>
+    </div>
+  </div>
+
+  <!-- Solow Curve Visualization -->
+  <div class="reveal">
+    <div class="solow-container">
+      <div class="chart-title">Solow Model: Diminishing Returns to Capital</div>
+      <div class="chart-subtitle">Vietnam's growth trajectory along the production function | Source: <a href="https://thevietnamese.org/2025/10/chasing-the-2045-dream-what-are-the-bottlenecks-holding-viet-nam-back/" target="_blank" style="color:#999;text-decoration:underline;">The Vietnamese Magazine</a></div>
+      <svg class="solow-svg" viewBox="0 0 520 310" id="solowChart">
+        <!-- Grid lines for better readability -->
+        <g class="grid-lines" opacity="0.1">
+          <line x1="80" y1="70" x2="480" y2="70" stroke="#999" stroke-dasharray="2 4"/>
+          <line x1="80" y1="120" x2="480" y2="120" stroke="#999" stroke-dasharray="2 4"/>
+          <line x1="80" y1="170" x2="480" y2="170" stroke="#999" stroke-dasharray="2 4"/>
+        </g>
+
+        <!-- Axes -->
+        <line x1="80" y1="240" x2="480" y2="240" class="solow-axis"/>
+        <line x1="80" y1="240" x2="80" y2="40" class="solow-axis"/>
+        <!-- Arrow heads -->
+        <polygon points="480,240 472,236 472,244" fill="var(--slate)"/>
+        <polygon points="80,40 76,48 84,48" fill="var(--slate)"/>
+
+        <!-- Axis labels -->
+        <text x="280" y="275" text-anchor="middle" class="solow-axis-label">Capital per Worker (K/L)</text>
+        <text x="30" y="140" text-anchor="middle" class="solow-axis-label" transform="rotate(-90 30 140)">Output per Worker (Y/L)</text>
+
+        <!-- Shaded region showing diminishing returns zone -->
+        <path d="M 320 85 Q 400 65, 480 55 L 480 240 L 320 240 Z" fill="rgba(230,126,34,0.06)" id="diminishingZone"/>
+        <text x="400" y="220" class="solow-label" style="font-size:7px;fill:var(--warning);opacity:0.6">Diminishing</text>
+        <text x="400" y="230" class="solow-label" style="font-size:7px;fill:var(--warning);opacity:0.6">returns zone</text>
+
+        <!-- USSR ghost trajectory (flattened early - cautionary tale) -->
+        <path d="M 100 210 Q 180 120, 260 90 Q 340 75, 420 72 L 480 72" class="solow-curve-ghost" id="ussrCurve"/>
+        <text x="485" y="72" class="solow-label" style="font-size:8px;fill:#999" text-anchor="start">USSR</text>
+
+        <!-- Main production function curve y = A·k^α -->
+        <path d="M 100 220 Q 200 130, 300 90 Q 400 62, 480 50" class="solow-curve" id="solowCurve"
+              stroke-dasharray="600" stroke-dashoffset="600"/>
+
+        <!-- TFP shift curve (what happens with technology/productivity gains) -->
+        <path d="M 320 65 Q 400 38, 480 25" class="solow-curve-tfp" id="tfpCurve"
+              stroke-dasharray="250" stroke-dashoffset="250"/>
+        <text x="485" y="25" class="solow-label" style="font-size:8px;fill:var(--accent-green);font-weight:500" text-anchor="start">TFP shift</text>
+
+        <!-- Vertical dashed lines connecting time periods to curve -->
+        <line x1="140" y1="240" x2="140" y2="185" stroke="#ddd" stroke-dasharray="3 3" class="time-connector" opacity="0"/>
+        <line x1="230" y1="240" x2="230" y2="115" stroke="#ddd" stroke-dasharray="3 3" class="time-connector" opacity="0"/>
+        <line x1="340" y1="240" x2="340" y2="82" stroke="#ddd" stroke-dasharray="3 3" class="time-connector" opacity="0"/>
+
+        <!-- Time period labels on x-axis -->
+        <text x="140" y="255" text-anchor="middle" class="solow-label" style="font-size:9px">2000</text>
+        <text x="230" y="255" text-anchor="middle" class="solow-label" style="font-size:9px">2010</text>
+        <text x="340" y="255" text-anchor="middle" class="solow-label" style="font-size:9px">2024</text>
+        <text x="450" y="255" text-anchor="middle" class="solow-label" style="font-size:9px;fill:#aaa">2035?</text>
+
+        <!-- Vietnam dot (animated along curve) -->
+        <circle cx="100" cy="220" r="10" class="solow-dot" id="vietnamDot"/>
+
+        <!-- Vietnam label box - positioned to not overlap -->
+        <g id="vietnamLabelGroup" opacity="0">
+          <rect x="115" y="195" width="65" height="28" rx="3" fill="white" stroke="var(--red)" stroke-width="1"/>
+          <text x="147" y="208" text-anchor="middle" class="solow-label" style="font-size:9px;fill:var(--dark);font-weight:600" id="vietnamLabel">Vietnam</text>
+          <text x="147" y="218" text-anchor="middle" class="solow-label" style="font-size:7px;fill:#666" id="eraLabel">2000</text>
+        </g>
+
+        <!-- ICOR annotations - repositioned to avoid overlap -->
+        <g id="icrGroup1" opacity="0">
+          <rect x="95" y="145" width="70" height="28" rx="2" fill="white" stroke="var(--accent-green)" stroke-width="1"/>
+          <text x="130" y="158" text-anchor="middle" class="solow-label" style="font-size:7px;fill:var(--accent-green)">Efficient growth</text>
+          <text x="130" y="169" text-anchor="middle" class="solow-label" style="font-size:9px;fill:var(--accent-green);font-weight:600">ICOR: 5.2</text>
+        </g>
+
+        <g id="icrGroup2" opacity="0">
+          <rect x="185" y="80" width="80" height="28" rx="2" fill="white" stroke="var(--warning)" stroke-width="1"/>
+          <text x="225" y="93" text-anchor="middle" class="solow-label" style="font-size:7px;fill:var(--warning)">Declining efficiency</text>
+          <text x="225" y="104" text-anchor="middle" class="solow-label" style="font-size:9px;fill:var(--warning);font-weight:600">ICOR: 7.6→8.5</text>
+        </g>
+
+        <!-- Key insight callout - positioned in empty space on right -->
+        <g id="insightCallout" opacity="0">
+          <rect x="365" y="120" width="110" height="45" rx="3" fill="var(--dark)"/>
+          <text x="420" y="136" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:7px;fill:var(--gold)">THE SOLOW TRAP</text>
+          <text x="420" y="150" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:8px;fill:white">More capital → less</text>
+          <text x="420" y="161" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:8px;fill:white">growth per $ invested</text>
+        </g>
+      </svg>
+
+      <!-- Legend below chart -->
+      <div style="display:flex;flex-wrap:wrap;gap:1.25rem;justify-content:center;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--light-gray)">
+        <div style="display:flex;align-items:center;gap:0.35rem">
+          <div style="width:18px;height:3px;background:var(--dark)"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--slate)">Production function</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.35rem">
+          <div style="width:18px;height:2px;background:var(--accent-green);border-style:dashed"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--slate)">TFP growth path</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.35rem">
+          <div style="width:18px;height:2px;background:#999;opacity:0.5"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--slate)">USSR (stagnation)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.35rem">
+          <div style="width:10px;height:10px;background:var(--red);border-radius:50%"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--slate)">Vietnam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">The Samsung Effect: One Company's Footprint</div>
+      <div class="chart-subtitle">Samsung Vietnam operations, 2024 | Source: <a href="https://theinvestor.vn/korean-chaebol-samsungs-revenue-makes-up-13-of-vietnams-gdp-in-2024-d16297.html" target="_blank" style="color:#999;text-decoration:underline;">The Investor</a></div>
+      <table class="data-table">
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Context</th>
+        </tr>
+        <tr>
+          <td>Total investment</td>
+          <td class="highlight"><a href="https://www.vietnam-briefing.com/news/samsungs-us1-8-billion-investment-to-boost-vietnams-oled-manufacturing-capacity.html/" target="_blank" style="color:var(--dark);text-decoration:underline;">$23.2B</a></td>
+          <td>6 factories + R&D center</td>
+        </tr>
+        <tr>
+          <td>Annual revenue</td>
+          <td class="highlight"><a href="https://theinvestor.vn/korean-chaebol-samsungs-revenue-makes-up-13-of-vietnams-gdp-in-2024-d16297.html" target="_blank" style="color:var(--dark);text-decoration:underline;">$62.5B</a></td>
+          <td class="red">13.12% of Vietnam's GDP</td>
+        </tr>
+        <tr>
+          <td>Exports</td>
+          <td class="highlight">$54.4B</td>
+          <td>~11% of total Vietnamese exports</td>
+        </tr>
+        <tr>
+          <td>Global production share</td>
+          <td class="highlight"><a href="https://www.vietnamexportdata.com/blogs/vietnam-smartphone-export-data-2024-25-top-mobile-brands" target="_blank" style="color:var(--dark);text-decoration:underline;">50%</a></td>
+          <td>Of all Samsung smartphones worldwide</td>
+        </tr>
+        <tr>
+          <td>Milestone</td>
+          <td class="highlight">2 billionth handset</td>
+          <td>Expected by June 2025</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p>Samsung anchors a broader ecosystem. <a href="https://theinvestor.vn/intel-urged-to-expand-chip-packaging-testing-operations-in-vietnam-d17920.html" target="_blank" style="color:var(--slate);text-decoration:underline;">Intel operates a $1.5B facility</a> (largest globally) with $100B+ cumulative exports. Apple has expanded to <a href="https://www.vietnam-briefing.com/news/apple-manufacturers-vietnam.html/" target="_blank" style="color:var(--slate);text-decoration:underline;">35 supplier facilities</a> (doubled from 18 in 2016), assembling ~65% of AirPods and ~20% of iPads in Vietnam. <a href="https://theinvestor.vn/vietnam-maintains-position-as-biggest-nike-supplier-d6501.html" target="_blank" style="color:var(--slate);text-decoration:underline;">Nike sources 51% of global footwear</a> through 162 factories and 493,000 workers.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">FDI Stock by Source Country</div>
+      <div class="chart-subtitle">Cumulative registered capital, USD billions | Source: <a href="https://www.mekongcapital.com/foreign-direct-investment-in-vietnam/" target="_blank" style="color:#999;text-decoration:underline;">Mekong Capital</a></div>
+      <div class="bar-chart" id="fdiChart">
+        <div class="bar-row">
+          <span class="bar-label"><a href="https://www.mekongcapital.com/foreign-direct-investment-in-vietnam/" target="_blank" style="color:var(--slate);text-decoration:none;">S. Korea</a></span>
+          <div class="bar-track"><div class="bar-fill" data-width="100" style="background:var(--red)"><span class="bar-value">$92B</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Singapore</span>
+          <div class="bar-track"><div class="bar-fill" data-width="91" style="background:var(--accent-blue)"><span class="bar-value">$84B</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Japan</span>
+          <div class="bar-track"><div class="bar-fill" data-width="46" style="background:var(--accent-green)"><span class="bar-value">$42B</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Taiwan</span>
+          <div class="bar-track"><div class="bar-fill" data-width="35" style="background:#E74C3C"><span class="bar-value">$32B</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">China</span>
+          <div class="bar-track"><div class="bar-fill" data-width="25" style="background:var(--gold)"><span class="bar-value">Rising fast</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="comparison-grid">
+      <div class="comparison-card">
+        <span class="stat-number"><a href="https://vietnam.incorp.asia/vietnam-labor-cost/" target="_blank" style="color:var(--red);text-decoration:none;">$250-400</a></span>
+        <h3>Monthly Manufacturing Wage</h3>
+        <p>Vs. China $500-800. The cost advantage persists.</p>
+      </div>
+      <div class="comparison-card">
+        <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/vietnam-manufacturing-tracker.html/" target="_blank" style="color:var(--red);text-decoration:none;">433</a></span>
+        <h3>Industrial Zones</h3>
+        <p>Ready infrastructure with <a href="https://www.state.gov/reports/2019-investment-climate-statements/vietnam/" target="_blank" style="color:var(--slate);text-decoration:underline;">tax holidays</a> (4yr exemption + 10-15yr preferential rates).</p>
+      </div>
+      <div class="comparison-card">
+        <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/vietnam-economy-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--red);text-decoration:none;">42,002</a></span>
+        <h3>Active FDI Projects</h3>
+        <p>$502.8B registered capital, $322.5B disbursed. <a href="https://www.vietnam-briefing.com/news/vietnam-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--slate);text-decoration:underline;">Record $25.35B in 2024</a>.</p>
+      </div>
+      <div class="comparison-card warning">
+        <span class="stat-number"><a href="https://www.ilo.org/media/346061/download" target="_blank" style="color:var(--warning);text-decoration:none;">72-77%</a></span>
+        <h3>FDI Share of Exports</h3>
+        <p><a href="https://vietnamnet.vn/en/vietnam-s-record-exports-and-the-hidden-fragility-of-its-economy-2474047.html" target="_blank" style="color:var(--slate);text-decoration:underline;">Domestic firms run a trade deficit</a>. The paradox of borrowed capacity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERSTITIAL 2: FDI Export Share -->
+<section class="interstitial" id="interstitial2">
+  <div class="interstitial-content">
+    <p class="interstitial-stat"><em><a href="https://www.ilo.org/media/346061/download" target="_blank" style="color:var(--gold);text-decoration:none;">72-77%</a></em> of Vietnam's exports come from foreign-owned firms.</p>
+    <p class="interstitial-context">Domestic companies collectively run a trade deficit.</p>
+  </div>
+</section>
+
+<!-- SECTION 4: THE EXPENDITURE IDENTITY PARADOX -->
+<section class="section-wide" data-section-index="3" data-export-value="336">
+  <div class="reveal">
+    <span class="chapter-label">III. The Expenditure Identity Paradox</span>
+    <h2>What Vietnam Actually Exports</h2>
+  </div>
+  <div class="reveal reveal-delay-1">
+    <p class="lead dropcap" style="max-width:720px;">Vietnam's NX looks spectacular at $475B exports. But in the expenditure identity (Y = C + I + G + NX), imports are subtracted because consumption, investment, and government spending include both domestic and imported goods. Vietnam's <a href="https://www.researchgate.net/publication/392818115_The_paradox_of_FDI_in_Vietnam" target="_blank" style="color:var(--red);text-decoration:none;">import intensity is 51%</a>, meaning more than half the value of each export dollar was imported as components.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="insight-box">
+      <h4>The Screwdriver Economy</h4>
+      <p>Here is the counterintuitive finding: <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">foreign value-added in Vietnamese exports ROSE from 36% (2005) to 48% (2020)</a>. Despite exports growing spectacularly, Vietnam captures LESS of each dollar proportionally. The country assembles; it does not create.</p>
+    </div>
+  </div>
+
+  <!-- Sankey Flow Diagram -->
+  <div class="reveal">
+    <div class="sankey-container">
+      <div class="chart-title">The Pass-Through Economy: Trade Flow Visualization</div>
+      <div class="chart-subtitle">Vietnam as assembly hub — imports from suppliers, exports to consumers (2024) | Source: <a href="https://www.nso.gov.vn/en/highlight/2025/02/socio-economic-situation-in-the-fourth-quarter-and-2024/" target="_blank" style="color:#999;text-decoration:underline;">GSO Vietnam</a></div>
+      <svg class="sankey-svg" viewBox="0 0 900 340" id="sankeyChart">
+        <defs>
+          <!-- Gradient for import flows -->
+          <linearGradient id="importGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#F2C94C;stop-opacity:0.85"/>
+            <stop offset="100%" style="stop-color:#F2C94C;stop-opacity:0.4"/>
+          </linearGradient>
+          <!-- Gradient for export flows -->
+          <linearGradient id="exportGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#DA251D;stop-opacity:0.4"/>
+            <stop offset="100%" style="stop-color:#DA251D;stop-opacity:0.85"/>
+          </linearGradient>
+          <!-- Drop shadow for center node -->
+          <filter id="nodeShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+
+        <!-- Column headers -->
+        <text x="70" y="20" class="sankey-label" style="font-size:9px;fill:#999;text-transform:uppercase;letter-spacing:0.1em">Suppliers</text>
+        <text x="450" y="20" text-anchor="middle" class="sankey-label" style="font-size:9px;fill:#999;text-transform:uppercase;letter-spacing:0.1em">Assembly</text>
+        <text x="830" y="20" text-anchor="end" class="sankey-label" style="font-size:9px;fill:#999;text-transform:uppercase;letter-spacing:0.1em">Markets</text>
+
+        <!-- Total indicators -->
+        <g id="totalImports" opacity="0">
+          <rect x="25" y="28" width="80" height="20" rx="3" fill="var(--gold)" opacity="0.2"/>
+          <text x="65" y="42" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--dark);font-weight:600">$230B in</text>
+        </g>
+        <g id="totalExports" opacity="0">
+          <rect x="795" y="28" width="80" height="20" rx="3" fill="var(--red)" opacity="0.2"/>
+          <text x="835" y="42" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--dark);font-weight:600">$343B out</text>
+        </g>
+
+        <!-- LEFT SIDE: Imports flowing IN -->
+        <!-- China (largest supplier) -->
+        <g class="import-group" id="importGroup1">
+          <path d="M 110 75 C 220 75, 300 100, 355 100" class="sankey-path" stroke="url(#importGrad)"
+                stroke-width="40" id="sankeyImport1" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="25" y="53" width="80" height="42" rx="3" fill="white" stroke="var(--gold)" stroke-width="1.5"/>
+          <text x="65" y="70" class="sankey-label" text-anchor="middle" style="font-weight:600">China</text>
+          <text x="65" y="87" class="sankey-value" text-anchor="middle" style="font-size:11px;fill:var(--dark)">$144B</text>
+        </g>
+
+        <!-- South Korea -->
+        <g class="import-group" id="importGroup2">
+          <path d="M 110 130 C 220 130, 300 130, 355 130" class="sankey-path" stroke="url(#importGrad)"
+                stroke-width="16" id="sankeyImport2" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="25" y="112" width="80" height="36" rx="3" fill="white" stroke="var(--gold)" stroke-width="1"/>
+          <text x="65" y="128" class="sankey-label" text-anchor="middle">S. Korea</text>
+          <text x="65" y="142" class="sankey-value" text-anchor="middle">$31.6B</text>
+        </g>
+
+        <!-- Japan -->
+        <g class="import-group" id="importGroup3">
+          <path d="M 110 175 C 220 175, 300 155, 355 155" class="sankey-path" stroke="url(#importGrad)"
+                stroke-width="11" id="sankeyImport3" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="25" y="157" width="80" height="36" rx="3" fill="white" stroke="var(--gold)" stroke-width="1"/>
+          <text x="65" y="173" class="sankey-label" text-anchor="middle">Japan</text>
+          <text x="65" y="187" class="sankey-value" text-anchor="middle">$21B</text>
+        </g>
+
+        <!-- Taiwan -->
+        <g class="import-group" id="importGroup4">
+          <path d="M 110 220 C 220 220, 300 175, 355 175" class="sankey-path" stroke="url(#importGrad)"
+                stroke-width="9" id="sankeyImport4" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="25" y="202" width="80" height="36" rx="3" fill="white" stroke="var(--gold)" stroke-width="1"/>
+          <text x="65" y="218" class="sankey-label" text-anchor="middle">Taiwan</text>
+          <text x="65" y="232" class="sankey-value" text-anchor="middle">$18B</text>
+        </g>
+
+        <!-- ASEAN -->
+        <g class="import-group" id="importGroup5">
+          <path d="M 110 265 C 220 265, 300 192, 355 192" class="sankey-path" stroke="url(#importGrad)"
+                stroke-width="8" id="sankeyImport5" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="25" y="247" width="80" height="36" rx="3" fill="white" stroke="var(--gold)" stroke-width="1"/>
+          <text x="65" y="263" class="sankey-label" text-anchor="middle">ASEAN</text>
+          <text x="65" y="277" class="sankey-value" text-anchor="middle">$15B</text>
+        </g>
+
+        <!-- CENTER: Vietnam Assembly Node -->
+        <g id="vietnamNodeGroup">
+          <rect x="355" y="70" width="190" height="150" rx="8" fill="var(--cream)" stroke="var(--dark)" stroke-width="2.5" filter="url(#nodeShadow)"/>
+
+          <!-- Vietnam flag star -->
+          <text x="450" y="105" text-anchor="middle" style="font-size:20px">★</text>
+
+          <text x="450" y="132" text-anchor="middle" style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;fill:var(--dark)">Vietnam</text>
+          <text x="450" y="152" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--slate);text-transform:uppercase;letter-spacing:0.05em">Assembly Hub</text>
+
+          <!-- Value added indicator -->
+          <line x1="380" y1="168" x2="520" y2="168" stroke="var(--light-gray)" stroke-width="1"/>
+          <rect x="390" y="176" width="120" height="22" rx="3" fill="var(--warning)" opacity="0.15"/>
+          <text x="450" y="192" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:11px;fill:var(--warning);font-weight:600">DVA: only 49%</text>
+        </g>
+
+        <!-- RIGHT SIDE: Exports flowing OUT - starting from right edge of center box -->
+        <!-- USA (largest market) -->
+        <g class="export-group" id="exportGroup1">
+          <path d="M 545 100 C 620 100, 700 75, 790 75" class="sankey-path" stroke="url(#exportGrad)"
+                stroke-width="44" id="sankeyExport1" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="795" y="53" width="80" height="42" rx="3" fill="white" stroke="var(--red)" stroke-width="1.5"/>
+          <text x="835" y="70" class="sankey-label" text-anchor="middle" style="font-weight:600">USA</text>
+          <text x="835" y="87" class="sankey-value" text-anchor="middle" style="font-size:11px;fill:var(--dark)">$153B</text>
+        </g>
+
+        <!-- EU -->
+        <g class="export-group" id="exportGroup2">
+          <path d="M 545 130 C 620 130, 700 130, 790 130" class="sankey-path" stroke="url(#exportGrad)"
+                stroke-width="20" id="sankeyExport2" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="795" y="112" width="80" height="36" rx="3" fill="white" stroke="var(--red)" stroke-width="1"/>
+          <text x="835" y="128" class="sankey-label" text-anchor="middle">EU</text>
+          <text x="835" y="142" class="sankey-value" text-anchor="middle">$72.9B</text>
+        </g>
+
+        <!-- China (exports) -->
+        <g class="export-group" id="exportGroup3">
+          <path d="M 545 155 C 620 155, 700 175, 790 175" class="sankey-path" stroke="url(#exportGrad)"
+                stroke-width="18" id="sankeyExport3" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="795" y="157" width="80" height="36" rx="3" fill="white" stroke="var(--red)" stroke-width="1"/>
+          <text x="835" y="173" class="sankey-label" text-anchor="middle">China</text>
+          <text x="835" y="187" class="sankey-value" text-anchor="middle">$64.5B</text>
+        </g>
+
+        <!-- Japan (exports) -->
+        <g class="export-group" id="exportGroup4">
+          <path d="M 545 175 C 620 175, 700 220, 790 220" class="sankey-path" stroke="url(#exportGrad)"
+                stroke-width="9" id="sankeyExport4" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="795" y="202" width="80" height="36" rx="3" fill="white" stroke="var(--red)" stroke-width="1"/>
+          <text x="835" y="218" class="sankey-label" text-anchor="middle">Japan</text>
+          <text x="835" y="232" class="sankey-value" text-anchor="middle">$27B</text>
+        </g>
+
+        <!-- ASEAN (exports) -->
+        <g class="export-group" id="exportGroup5">
+          <path d="M 545 192 C 620 192, 700 265, 790 265" class="sankey-path" stroke="url(#exportGrad)"
+                stroke-width="8" id="sankeyExport5" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <rect x="795" y="247" width="80" height="36" rx="3" fill="white" stroke="var(--red)" stroke-width="1"/>
+          <text x="835" y="263" class="sankey-label" text-anchor="middle">ASEAN</text>
+          <text x="835" y="277" class="sankey-value" text-anchor="middle">$25B</text>
+        </g>
+
+        <!-- Trade surplus indicator - below center box -->
+        <g id="surplusIndicator" opacity="0">
+          <rect x="380" y="230" width="140" height="26" rx="4" fill="var(--accent-green)" opacity="0.1" stroke="var(--accent-green)" stroke-width="1"/>
+          <text x="450" y="248" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--accent-green);font-weight:600">Trade Surplus: +$113B</text>
+        </g>
+
+        <!-- Legend and insight row at bottom -->
+        <g transform="translate(0, 295)">
+          <!-- Key insight callout -->
+          <g id="sankeyInsight" opacity="0">
+            <rect x="25" y="0" width="140" height="32" rx="4" fill="var(--dark)"/>
+            <text x="95" y="14" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:7px;fill:var(--gold);text-transform:uppercase;letter-spacing:0.05em">The Question</text>
+            <text x="95" y="26" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:9px;fill:white">Who captures the value?</text>
+          </g>
+
+          <!-- Legend -->
+          <rect x="220" y="8" width="12" height="10" rx="2" fill="var(--gold)" opacity="0.7"/>
+          <text x="238" y="17" class="sankey-value" style="font-size:9px">Imports (components)</text>
+          <rect x="380" y="8" width="12" height="10" rx="2" fill="var(--red)" opacity="0.7"/>
+          <text x="398" y="17" class="sankey-value" style="font-size:9px">Exports (finished goods)</text>
+          <rect x="555" y="8" width="12" height="10" rx="2" fill="var(--warning)" opacity="0.3"/>
+          <text x="573" y="17" class="sankey-value" style="font-size:9px">Domestic value added (49%)</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">Foreign Value-Added in Exports</div>
+      <div class="chart-subtitle">Import intensity as % of export value. Higher = less domestic value capture. | Source: <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:#999;text-decoration:underline;">OECD</a></div>
+      <div class="bar-chart" id="fvaChart">
+        <div class="bar-row">
+          <span class="bar-label">Vietnam</span>
+          <div class="bar-track"><div class="bar-fill" data-width="100" style="background:var(--warning)"><span class="bar-value">51%</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Malaysia</span>
+          <div class="bar-track"><div class="bar-fill" data-width="69" style="background:var(--accent-blue)"><span class="bar-value">35%</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Thailand</span>
+          <div class="bar-track"><div class="bar-fill" data-width="69" style="background:var(--accent-blue)"><span class="bar-value">35%</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">India</span>
+          <div class="bar-track"><div class="bar-fill" data-width="39" style="background:var(--accent-green)"><span class="bar-value">20%</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Indonesia</span>
+          <div class="bar-track"><div class="bar-fill" data-width="29" style="background:var(--accent-green)"><span class="bar-value">15%</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">Export Composition by Sector, 2025</div>
+      <div class="chart-subtitle">Share of $475B total merchandise exports | Source: <a href="https://www.nso.gov.vn/en/highlight/2025/02/socio-economic-situation-in-the-fourth-quarter-and-2024/" target="_blank" style="color:#999;text-decoration:underline;">GSO Vietnam</a></div>
+      <div class="donut-section">
+        <svg class="donut-chart" viewBox="0 0 200 200" id="donutChart">
+          <circle cx="100" cy="100" r="75" fill="none" stroke="var(--light-gray)" stroke-width="30"/>
+          <circle cx="100" cy="100" r="75" fill="none" stroke="var(--red)" stroke-width="30"
+            stroke-dasharray="0 471" class="donut-segment" data-target="155.4"
+            transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="75" fill="none" stroke="var(--accent-green)" stroke-width="30"
+            stroke-dasharray="0 471" class="donut-segment" data-target="75.4" data-offset="155.4"
+            transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="75" fill="none" stroke="#E74C3C" stroke-width="30"
+            stroke-dasharray="0 471" class="donut-segment" data-target="75.4" data-offset="230.8"
+            transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="75" fill="none" stroke="var(--accent-blue)" stroke-width="30"
+            stroke-dasharray="0 471" class="donut-segment" data-target="61.2" data-offset="306.2"
+            transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="75" fill="none" stroke="#999" stroke-width="30"
+            stroke-dasharray="0 471" class="donut-segment" data-target="103.6" data-offset="367.4"
+            transform="rotate(-90 100 100)"/>
+          <text x="100" y="95" text-anchor="middle" font-family="Playfair Display, serif" font-size="20" font-weight="900" fill="var(--dark)">$475B</text>
+          <text x="100" y="112" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#999">TOTAL 2025</text>
+        </svg>
+        <div class="donut-legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background:var(--red)"></div>
+            <span class="legend-label"><a href="https://www.vietnamexportdata.com/blogs/vietnam-electronics-exports-2025-data-report" target="_blank" style="color:var(--slate);text-decoration:none;">Electronics & phones</a></span>
+            <span class="legend-value">$126.5B (33%)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background:var(--accent-green)"></div>
+            <span class="legend-label"><a href="https://www.nso.gov.vn/en/highlight/2025/02/socio-economic-situation-in-the-fourth-quarter-and-2024/" target="_blank" style="color:var(--slate);text-decoration:none;">Agri/forestry/fishery</a></span>
+            <span class="legend-value">$62.5B (16%)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background:#E74C3C"></div>
+            <span class="legend-label"><a href="https://www.worldstopexports.com/vietnams-top-10-exports/" target="_blank" style="color:var(--slate);text-decoration:none;">Textiles & footwear</a></span>
+            <span class="legend-value">~$61B (16%)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background:var(--accent-blue)"></div>
+            <span class="legend-label">Machinery & equipment</span>
+            <span class="legend-value">~$49B (13%)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background:#999"></div>
+            <span class="legend-label">Other</span>
+            <span class="legend-value">~$88B (22%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">Top Export Destinations, 2025</div>
+      <div class="chart-subtitle">Exports in USD billions | Source: <a href="https://www.nso.gov.vn/en/highlight/2025/02/socio-economic-situation-in-the-fourth-quarter-and-2024/" target="_blank" style="color:#999;text-decoration:underline;">GSO Vietnam</a>, <a href="https://www.cnbc.com/2025/04/08/vietnam-emerged-as-a-trade-winner-trump-new-tariffs-may-disrupt-that.html" target="_blank" style="color:#999;text-decoration:underline;">CNBC</a></div>
+      <div class="bar-chart" id="partnersChart">
+        <div class="bar-row">
+          <span class="bar-label"><a href="https://www.cnbc.com/2025/04/08/vietnam-emerged-as-a-trade-winner-trump-new-tariffs-may-disrupt-that.html" target="_blank" style="color:var(--slate);text-decoration:none;">USA</a></span>
+          <div class="bar-track"><div class="bar-fill" data-width="100" style="background:var(--red)"><span class="bar-value">$153.2B (~30%)</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">China</span>
+          <div class="bar-track"><div class="bar-fill" data-width="42" style="background:var(--accent-blue)"><span class="bar-value">$64.5B</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">EU</span>
+          <div class="bar-track"><div class="bar-fill" data-width="36" style="background:var(--accent-green)"><span class="bar-value">$55B</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">S. Korea</span>
+          <div class="bar-track"><div class="bar-fill" data-width="20" style="background:#E74C3C"><span class="bar-value">$30B</span></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Japan</span>
+          <div class="bar-track"><div class="bar-fill" data-width="18" style="background:var(--gold)"><span class="bar-value">$27B</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">The Dual Deficit Pattern</div>
+      <div class="chart-subtitle">Vietnam imports components from East Asia, assembles, re-exports to West | Source: <a href="https://www.cnbc.com/2025/04/12/vietnam-reciprocal-tariffs-reflect-trade-deficit-and-ties-to-china.html" target="_blank" style="color:#999;text-decoration:underline;">CNBC</a></div>
+      <table class="data-table">
+        <tr>
+          <th>Trade Partner</th>
+          <th>Balance</th>
+          <th>Interpretation</th>
+        </tr>
+        <tr>
+          <td>United States</td>
+          <td class="highlight" style="color:var(--accent-green)"><a href="https://www.cnbc.com/2025/04/08/vietnam-emerged-as-a-trade-winner-trump-new-tariffs-may-disrupt-that.html" target="_blank" style="color:var(--accent-green);text-decoration:underline;">+$123.5B surplus</a></td>
+          <td>Final goods destination</td>
+        </tr>
+        <tr>
+          <td>China</td>
+          <td class="highlight warning"><a href="https://www.cnbc.com/2025/04/12/vietnam-reciprocal-tariffs-reflect-trade-deficit-and-ties-to-china.html" target="_blank" style="color:var(--warning);text-decoration:underline;">-$115.6B deficit (widened 40%)</a></td>
+          <td>Component supplier</td>
+        </tr>
+        <tr>
+          <td>South Korea</td>
+          <td class="warning">-$31.6B deficit</td>
+          <td>Electronics parts, Samsung ecosystem</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="pull-quote">
+      <p>"<a href="https://voxchina.org/show-3-392.html" target="_blank" style="color:var(--dark);text-decoration:underline;">Vietnam compensated for nearly half of China's lost US market share</a> between 2017 and 2022."</p>
+      <cite>Alfaro & Chor, Harvard Business School (2023)</cite>
+    </div>
+  </div>
+</section>
+
+<!-- INTERSTITIAL 3: Demographic Window -->
+<section class="interstitial" id="interstitial3">
+  <div class="interstitial-content">
+    <p class="interstitial-stat">Vietnam's demographic dividend closes in <em><a href="https://www.vietnam.vn/en/viet-nam-buoc-vao-thoi-ky-dan-so-gia-trong-it-nam-toi" target="_blank" style="color:var(--gold);text-decoration:none;">~2036</a></em>.</p>
+    <p class="interstitial-context">At 7% growth (Rule of 70), that's time for roughly one more doubling.</p>
+  </div>
+</section>
+
+<!-- SECTION 5: THE DEMOGRAPHIC DIVIDEND AND THE CLOSING WINDOW -->
+<section class="section" data-section-index="4" data-export-value="475">
+  <div class="reveal">
+    <span class="chapter-label">IV. The Demographic Dividend and the Closing Window</span>
+    <h2>Vietnam's Race Against Time</h2>
+  </div>
+  <div class="reveal reveal-delay-1">
+    <p class="lead dropcap">The three-stage demographic dividend framework illuminates Vietnam's position. Vietnam sits squarely in Stage 2—the dividend window—when fertility has fallen but the population hasn't yet aged. Fertility is at 1.91 (below replacement of 2.1). Working-age share is 68%. The <a href="https://www.vietnam.vn/en/viet-nam-buoc-vao-thoi-ky-dan-so-gia-trong-it-nam-toi" target="_blank" style="color:var(--red);text-decoration:none;">window closes around 2036</a>, three years earlier than prior forecasts.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">The Three Stages of Demographic Dividend</div>
+      <div class="chart-subtitle">Where Vietnam sits in the lifecycle | Source: <a href="https://www.vietnam.vn/en/viet-nam-buoc-vao-thoi-ky-dan-so-gia-trong-it-nam-toi" target="_blank" style="color:#999;text-decoration:underline;">Vietnam.vn</a></div>
+      <table class="data-table">
+        <tr>
+          <th>Stage</th>
+          <th>Characteristics</th>
+          <th>Vietnam</th>
+        </tr>
+        <tr>
+          <td>Stage 1 (Pre-1990s)</td>
+          <td>High fertility, many young dependents</td>
+          <td>Past</td>
+        </tr>
+        <tr>
+          <td class="highlight">Stage 2 (NOW)</td>
+          <td class="highlight">Falling fertility, large working-age share</td>
+          <td class="highlight red">DIVIDEND WINDOW OPEN</td>
+        </tr>
+        <tr>
+          <td>Stage 3 (~2036+)</td>
+          <td>Aging population, growing elderly dependents</td>
+          <td class="warning">Window CLOSES</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="equation-box">
+      <div class="equation">Rule of 70: At 7% growth, the economy doubles every 10 years</div>
+      <div class="explanation">Vietnam has roughly 10-12 years of demographic dividend remaining. Can it double GDP again before the window shuts?</div>
+    </div>
+  </div>
+
+  <!-- Demographic Countdown Ring -->
+  <div class="reveal">
+    <div class="demo-ring-container" id="demoRingContainer">
+      <svg class="demo-ring-svg" viewBox="0 0 200 200" id="demoRingSvg">
+        <!-- Track (empty ring) -->
+        <circle cx="100" cy="100" r="70" class="demo-ring-track"/>
+
+        <!-- Fill (animated) -->
+        <circle cx="100" cy="100" r="70" class="demo-ring-fill" id="demoRingFill"/>
+
+        <!-- Center text -->
+        <text x="100" y="95" text-anchor="middle" class="demo-ring-center">~10 years</text>
+        <text x="100" y="115" text-anchor="middle" class="demo-ring-subtitle">of demographic dividend</text>
+        <text x="100" y="130" text-anchor="middle" class="demo-ring-subtitle">remaining</text>
+
+        <!-- Tick marks -->
+        <g class="demo-ring-ticks">
+          <!-- 2025 (now) - at ~0% -->
+          <line x1="100" y1="22" x2="100" y2="30" stroke="var(--dark)" stroke-width="2"/>
+          <text x="100" y="16" text-anchor="middle">2025</text>
+
+          <!-- 2036 (dividend ends) - at ~70% around ring -->
+          <line x1="165" y1="135" x2="158" y2="130" stroke="var(--gold)" stroke-width="2"/>
+          <text x="178" y="145" text-anchor="start" fill="var(--gold)">2036</text>
+
+          <!-- 2038 (peak) - at ~80% -->
+          <line x1="145" y1="165" x2="140" y2="158" stroke="var(--slate)" stroke-width="1"/>
+          <text x="155" y="175" text-anchor="start">2038</text>
+        </g>
+      </svg>
+
+      <div class="demo-ring-info">
+        <p><strong>The window is closing.</strong> Vietnam's working-age population will peak in 2038, but the dividend window effectively closes by 2036 as dependency ratios begin rising.</p>
+        <p style="color:var(--warning);font-family:'JetBrains Mono',monospace;font-size:0.8rem;">Fertility rate: 1.91 (below replacement 2.1)</p>
+        <p style="font-size:0.85rem;color:var(--slate);">Working-age share peaks at 69.5% then declines. Median age rising from 34 today to 42 by 2050.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="comparison-grid">
+      <div class="comparison-card">
+        <span class="stat-number"><a href="https://www.populationpyramids.org/vietnam" target="_blank" style="color:var(--red);text-decoration:none;">100M+</a></span>
+        <h3>Population</h3>
+        <p>Median age ~34. Labor force 52M+. Working-age peaks 2038 at 69.5M.</p>
+      </div>
+      <div class="comparison-card">
+        <span class="stat-number">1.91</span>
+        <h3>Fertility Rate</h3>
+        <p>Below replacement level of 2.1. The demographic transition is underway.</p>
+      </div>
+      <div class="comparison-card warning">
+        <span class="stat-number">27.2%</span>
+        <h3>Workers With Degrees</h3>
+        <p>~76% in informal sector. Only <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:var(--slate);text-decoration:underline;">~1,400 microchip engineers</a> vs. 50,000 target.</p>
+      </div>
+      <div class="comparison-card">
+        <span class="stat-number">25-40%</span>
+        <h3>Dividend Contribution</h3>
+        <p>Share of East Asian Tiger growth attributable to demographics (Bloom & Williamson).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p>The agricultural reallocation channel offers insight into TFP growth. Employment shifted from ~50% (2008) to 26.9% (2024) in agriculture. <a href="https://www.statista.com/statistics/444882/urbanization-in-vietnam/" target="_blank" style="color:var(--slate);text-decoration:underline;">Urbanization accelerated from 25% (1999) to ~40% today</a>. This structural transformation—workers moving from lower-productivity agriculture to higher-productivity manufacturing—is a classic driver of productivity gains. But this channel is running out of room. The remaining agricultural workers are harder to relocate, and the easy gains are behind us.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="insight-box">
+      <h4>The Skills Constraint</h4>
+      <p>Vietnam has approximately <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">1,400 chip engineers and 5,000 chip design graduates total</a>. Strategy 1018 targets 50,000 semiconductor engineers by 2030. Without this human capital upgrade, the country cannot move up the value chain before the demographic window closes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERSTITIAL 4: Middle Income Trap -->
+<section class="interstitial" id="interstitial4">
+  <div class="interstitial-content">
+    <p class="interstitial-stat">Only <em><a href="https://tapchimoitruong.vn/news-13/%E2%80%9Cmiddle-income-trap%E2%80%9D--environmental-perspective-and-implications-for-vietnam-32073" target="_blank" style="color:var(--gold);text-decoration:none;">34 of 108</a></em> middle-income countries have ever made it to high-income status.</p>
+    <p class="interstitial-context">The odds are roughly 1 in 3. Most get stuck.</p>
+  </div>
+</section>
+
+<!-- Vietnam Industrial Map -->
+<section class="section-wide">
+  <div class="reveal">
+    <span class="chapter-label">FDI Geographic Distribution</span>
+    <h2>The Industrial Clusters</h2>
+  </div>
+  <div class="reveal">
+    <div class="vietnam-map-container" id="vietnamMapContainer">
+      <div class="chart-title">Vietnam's FDI Hotspots</div>
+      <div class="chart-subtitle">Major foreign investment clusters and key facilities | Source: <a href="https://www.vietnam-briefing.com/news/vietnam-manufacturing-tracker.html/" target="_blank" style="color:#999;text-decoration:underline;">Vietnam Briefing</a></div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;justify-content:center">
+        <!-- Map Column -->
+        <div style="flex:0 0 auto;position:relative">
+          <svg class="vietnam-map-svg" viewBox="0 0 1000 1000" id="vietnamMap" style="height:480px;max-width:320px">
+            <defs>
+              <!-- Glow effect for pins -->
+              <filter id="pinGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              <!-- Pulse animation -->
+              <radialGradient id="pulseGradient">
+                <stop offset="0%" style="stop-color:#DA251D;stop-opacity:0.4"/>
+                <stop offset="100%" style="stop-color:#DA251D;stop-opacity:0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Vietnam map from SVG file -->
+            <image href="vn.svg" x="0" y="0" width="1000" height="1000" style="opacity:0.85"/>
+
+            <!-- Region highlight boxes -->
+            <rect x="540" y="95" width="180" height="130" rx="8" fill="rgba(218,37,29,0.08)" stroke="rgba(218,37,29,0.2)" stroke-width="2" stroke-dasharray="6 4"/>
+            <rect x="520" y="765" width="200" height="150" rx="8" fill="rgba(218,37,29,0.08)" stroke="rgba(218,37,29,0.2)" stroke-width="2" stroke-dasharray="6 4"/>
+
+            <!-- Region labels -->
+            <text x="630" y="85" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:14px;fill:#666;text-transform:uppercase;letter-spacing:0.1em">Red River Delta</text>
+            <text x="620" y="935" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:14px;fill:#666;text-transform:uppercase;letter-spacing:0.1em">Southeast Region</text>
+
+            <!-- Map Pins - Northern Cluster -->
+            <g class="map-pin" id="pin1" data-city="Bac Ninh" data-detail="Samsung HQ — $23.2B invested, 50% of global Samsung phones produced here">
+              <circle cx="645" cy="155" r="30" fill="url(#pulseGradient)" class="pulse-ring"/>
+              <circle cx="645" cy="155" r="18" class="map-pin-marker" filter="url(#pinGlow)"/>
+              <text x="645" y="161" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">1</text>
+            </g>
+
+            <g class="map-pin" id="pin2" data-city="Thai Nguyen" data-detail="Samsung complex — Display manufacturing, component production">
+              <circle cx="580" cy="120" r="14" class="map-pin-marker"/>
+              <text x="580" y="125" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">2</text>
+            </g>
+
+            <g class="map-pin" id="pin3" data-city="Hai Phong" data-detail="LG Display $5.65B + Lach Huyen deep-water port — Gateway for exports">
+              <circle cx="700" cy="180" r="16" class="map-pin-marker"/>
+              <text x="700" y="186" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">3</text>
+            </g>
+
+            <g class="map-pin" id="pin4" data-city="Hanoi" data-detail="Foxconn, Luxshare — Apple supplier hub, AirPods & MacBook assembly">
+              <circle cx="610" cy="170" r="14" class="map-pin-marker"/>
+              <text x="610" y="176" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">4</text>
+            </g>
+
+            <!-- Map Pins - Southern Cluster -->
+            <g class="map-pin" id="pin5" data-city="Ho Chi Minh City" data-detail="Intel $1.5B — World's largest chip assembly & test facility">
+              <circle cx="595" cy="855" r="30" fill="url(#pulseGradient)" class="pulse-ring"/>
+              <circle cx="595" cy="855" r="18" class="map-pin-marker" filter="url(#pinGlow)"/>
+              <text x="595" y="861" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">5</text>
+            </g>
+
+            <g class="map-pin" id="pin6" data-city="Binh Duong" data-detail="'The new Dongguan' — 4,000+ factories, global furniture hub">
+              <circle cx="630" cy="815" r="14" class="map-pin-marker"/>
+              <text x="630" y="821" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">6</text>
+            </g>
+
+            <g class="map-pin" id="pin7" data-city="Dong Nai" data-detail="Industrial zone cluster — 32 IZs, $40B cumulative FDI">
+              <circle cx="670" cy="840" r="14" class="map-pin-marker"/>
+              <text x="670" y="846" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">7</text>
+            </g>
+
+            <!-- Connecting line showing North-South corridor -->
+            <path d="M 620 220 Q 500 500, 600 780" stroke="var(--gold)" stroke-width="4" stroke-dasharray="12 8" fill="none" opacity="0.5"/>
+            <text x="480" y="500" style="font-family:'JetBrains Mono',monospace;font-size:12px;fill:var(--gold);opacity:0.8" transform="rotate(-70 480 500)">1,600km corridor</text>
+          </svg>
+        </div>
+
+        <!-- Legend Column -->
+        <div style="flex:1;min-width:250px;max-width:320px">
+          <div style="background:var(--cream);border-radius:4px;padding:1rem;border:1px solid var(--light-gray)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#999;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">FDI Hotspots</div>
+
+            <!-- Northern cluster -->
+            <div style="margin-bottom:1rem">
+              <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;color:var(--dark);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem">
+                <span style="background:rgba(218,37,29,0.1);padding:0.15rem 0.4rem;border-radius:2px;font-size:0.7rem;color:var(--red)">NORTH</span>
+                Red River Delta
+              </div>
+              <div class="map-legend-item" data-pin="pin1" style="display:flex;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid var(--light-gray);cursor:pointer">
+                <span style="background:var(--red);color:white;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;flex-shrink:0">1</span>
+                <div>
+                  <div style="font-weight:600;font-size:0.8rem">Bac Ninh</div>
+                  <div style="font-size:0.7rem;color:var(--slate)">Samsung HQ — 50% global phones</div>
+                </div>
+              </div>
+              <div class="map-legend-item" data-pin="pin2" style="display:flex;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid var(--light-gray);cursor:pointer">
+                <span style="background:var(--red);color:white;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;flex-shrink:0">2</span>
+                <div>
+                  <div style="font-weight:600;font-size:0.8rem">Thai Nguyen</div>
+                  <div style="font-size:0.7rem;color:var(--slate)">Samsung display manufacturing</div>
+                </div>
+              </div>
+              <div class="map-legend-item" data-pin="pin3" style="display:flex;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid var(--light-gray);cursor:pointer">
+                <span style="background:var(--red);color:white;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;flex-shrink:0">3</span>
+                <div>
+                  <div style="font-weight:600;font-size:0.8rem">Hai Phong</div>
+                  <div style="font-size:0.7rem;color:var(--slate)">LG $5.65B + deep-water port</div>
+                </div>
+              </div>
+              <div class="map-legend-item" data-pin="pin4" style="display:flex;gap:0.5rem;padding:0.4rem 0;cursor:pointer">
+                <span style="background:var(--red);color:white;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;flex-shrink:0">4</span>
+                <div>
+                  <div style="font-weight:600;font-size:0.8rem">Hanoi</div>
+                  <div style="font-size:0.7rem;color:var(--slate)">Foxconn, Luxshare — Apple hub</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Southern cluster -->
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;color:var(--dark);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem">
+                <span style="background:rgba(218,37,29,0.1);padding:0.15rem 0.4rem;border-radius:2px;font-size:0.7rem;color:var(--red)">SOUTH</span>
+                Southeast Region
+              </div>
+              <div class="map-legend-item" data-pin="pin5" style="display:flex;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid var(--light-gray);cursor:pointer">
+                <span style="background:var(--red);color:white;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;flex-shrink:0">5</span>
+                <div>
+                  <div style="font-weight:600;font-size:0.8rem">Ho Chi Minh City</div>
+                  <div style="font-size:0.7rem;color:var(--slate)">Intel $1.5B — largest global facility</div>
+                </div>
+              </div>
+              <div class="map-legend-item" data-pin="pin6" style="display:flex;gap:0.5rem;padding:0.4rem 0;border-bottom:1px solid var(--light-gray);cursor:pointer">
+                <span style="background:var(--red);color:white;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;flex-shrink:0">6</span>
+                <div>
+                  <div style="font-weight:600;font-size:0.8rem">Binh Duong</div>
+                  <div style="font-size:0.7rem;color:var(--slate)">'New Dongguan' — 4,000+ factories</div>
+                </div>
+              </div>
+              <div class="map-legend-item" data-pin="pin7" style="display:flex;gap:0.5rem;padding:0.4rem 0;cursor:pointer">
+                <span style="background:var(--red);color:white;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;flex-shrink:0">7</span>
+                <div>
+                  <div style="font-weight:600;font-size:0.8rem">Dong Nai</div>
+                  <div style="font-size:0.7rem;color:var(--slate)">32 industrial zones, $40B FDI</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key insight -->
+            <div style="margin-top:1rem;padding:0.75rem;background:var(--dark);border-radius:4px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.25rem">Key Pattern</div>
+              <div style="font-size:0.75rem;color:var(--cream);line-height:1.4">Two mega-clusters connected by Highway 1 — electronics in the north, diversified manufacturing in the south.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-tooltip" id="mapTooltip">
+        <div class="map-tooltip-title" id="tooltipTitle"></div>
+        <div id="tooltipDetail"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: APPLYING THE THREE CAVEATS -->
+<section class="section" data-section-index="5" data-export-value="475">
+  <div class="reveal">
+    <span class="chapter-label">V. Trade Policy Analysis</span>
+    <h2>Tariffs, Risks, and the Road Ahead</h2>
+  </div>
+  <div class="reveal reveal-delay-1">
+    <p class="lead dropcap">Before advocating for tariffs, rigorous analysis requires asking three critical questions. Applying this framework to the US-Vietnam trade relationship reveals complex dynamics:</p>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">Three Critical Questions for Tariff Analysis</div>
+      <div class="chart-subtitle">A framework for evaluating trade policy | Source: <a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:#999;text-decoration:underline;">Vietnam Briefing</a>, <a href="https://voxchina.org/show-3-392.html" target="_blank" style="color:#999;text-decoration:underline;">VoxChina</a></div>
+      <table class="data-table">
+        <tr>
+          <th style="width:30%">Question</th>
+          <th>Application to Vietnam</th>
+        </tr>
+        <tr>
+          <td class="highlight">"What is the actual problem?"</td>
+          <td>US runs a $123.5B trade deficit with Vietnam. Concerns about transshipment of Chinese goods: <a href="https://voxchina.org/show-3-392.html" target="_blank" style="color:var(--slate);text-decoration:underline;">~16.5% of exports to US involve rerouting</a>; <a href="https://www.cnbc.com/2025/04/22/vietnam-clamps-down-on-fraud-on-us-exports-document-shows.html" target="_blank" style="color:var(--slate);text-decoration:underline;">1.8M tons mislabeled aluminum discovered 2019</a>.</td>
+        </tr>
+        <tr>
+          <td class="highlight">"Is reducing imports the right solution?"</td>
+          <td>Vietnam's exports to US contain ~51% imported inputs (much from China). Tariffs on Vietnam may not solve the China problem; they just redirect the assembly location again.</td>
+        </tr>
+        <tr>
+          <td class="highlight">"Are tariffs the best tool?"</td>
+          <td><a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:var(--slate);text-decoration:underline;">46% reciprocal tariff</a> (<a href="https://www.dhl.com/discover/en-vn/logistics-advice/import-export-advice/us-tariffs-on-vietnam-exporters-guide" target="_blank" style="color:var(--slate);text-decoration:underline;">negotiated to 20%</a>) risks disrupting supply chains for US companies (Apple, Nike, Intel) that chose Vietnam precisely to diversify from China. The tariff hits US firms' own supply chains.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="insight-box">
+      <h4>Aggregate Supply Analysis</h4>
+      <p>For Vietnam, the 46% tariff functions as a negative aggregate supply shock. It raises the cost of accessing its largest export market. This creates stagflationary pressure: output falls, costs rise. The AS curve shifts left, reducing equilibrium output while putting upward pressure on prices.</p>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="comparison-grid">
+      <div class="comparison-card">
+        <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:var(--red);text-decoration:none;">46% &rarr; 20%</a></span>
+        <h3>US Tariff Shock</h3>
+        <p>Initial tariff negotiated down. 40% on transshipped goods. Risk persists.</p>
+      </div>
+      <div class="comparison-card">
+        <span class="stat-number"><a href="https://oxfordbusinessgroup.com/reports/vietnam/2017-report/economy/remaining-flexible-the-central-bank-is-steadily-moving-to-a-currency-basket-peg" target="_blank" style="color:var(--red);text-decoration:none;">&plusmn;5%</a></span>
+        <h3>Exchange Rate Band</h3>
+        <p>Managed float at ~26,400 VND/USD. Gradual depreciation 1-3%/year since late 1990s.</p>
+      </div>
+      <div class="comparison-card warning">
+        <span class="stat-number"><a href="https://fulcrum.sg/exchange-rate-stability-in-vietnam-navigating-the-conflicting-policy-demands/" target="_blank" style="color:var(--warning);text-decoration:none;">$70-81B</a></span>
+        <h3>FX Reserves (2025)</h3>
+        <p>Down from $109B (2022). Only ~2.3 months import cover. Below IMF 3-month threshold.</p>
+      </div>
+      <div class="comparison-card">
+        <span class="stat-number">3.4%</span>
+        <h3>Inflation (2025)</h3>
+        <p>From 700%+ (mid-1980s) to 18.6% (2011) to 3.4% today. Hard-won stability.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p>The State Bank of Vietnam is modernizing monetary policy. SBV removes credit quotas starting 2026, moving from quantity-based money supply control to a price-based system. This shift reflects modern central banking practice: controlling money creation through interest rates rather than direct quantity targets. The 15% credit growth cap for 2025 represents the old regime; 2026 marks the transition.</p>
+  </div>
+
+  <div class="reveal">
+    <h3>The Upgrading Strategy</h3>
+    <p><a href="https://b-company.jp/electronics-manufacturing-vietnam-is-ready-to-elevate-the-value-chain-through-localization/" target="_blank" style="color:var(--slate);text-decoration:underline;">Strategy 1018</a> (formula: C = SET + 1, for Chips, Specialization, Electronics, Talent + Vietnam) targets semiconductor leadership. VinFast represents the domestic champion attempt: ~197,000 EVs delivered in 2025 (+102% YoY), ~26.7% domestic market share, ~60% localization rate with a target of 80%+ by 2026.</p>
+  </div>
+
+  <!-- Racing Bar Chart: Export Growth Comparison -->
+  <div class="reveal">
+    <div class="racing-bar-container" id="racingBarContainer">
+      <div class="chart-title">The Race: Export Growth 2000 → 2025</div>
+      <div class="chart-subtitle">Vietnam started smallest, finished largest. Values in USD billions. | Source: <a href="https://data.worldbank.org/country/viet-nam" target="_blank" style="color:#999;text-decoration:underline;">World Bank</a></div>
+      <div class="racing-bar-chart">
+        <div class="racing-bar-row">
+          <span class="racing-bar-label">Vietnam</span>
+          <div class="racing-bar-track">
+            <div class="racing-bar-start" style="left: 3%"></div>
+            <div class="racing-bar-fill vietnam" data-start="3" data-end="100" data-value="$475B">
+              <span class="racing-bar-value">$475B</span>
+            </div>
+          </div>
+          <span class="racing-bar-year">32× growth</span>
+        </div>
+        <div class="racing-bar-row">
+          <span class="racing-bar-label">Malaysia</span>
+          <div class="racing-bar-track">
+            <div class="racing-bar-start" style="left: 21%"></div>
+            <div class="racing-bar-fill other" data-start="21" data-end="67" data-value="$320B">
+              <span class="racing-bar-value">$320B</span>
+            </div>
+          </div>
+          <span class="racing-bar-year">3.3× growth</span>
+        </div>
+        <div class="racing-bar-row">
+          <span class="racing-bar-label">Thailand</span>
+          <div class="racing-bar-track">
+            <div class="racing-bar-start" style="left: 15%"></div>
+            <div class="racing-bar-fill other" data-start="15" data-end="61" data-value="$290B">
+              <span class="racing-bar-value">$290B</span>
+            </div>
+          </div>
+          <span class="racing-bar-year">4.2× growth</span>
+        </div>
+        <div class="racing-bar-row">
+          <span class="racing-bar-label">Indonesia</span>
+          <div class="racing-bar-track">
+            <div class="racing-bar-start" style="left: 13%"></div>
+            <div class="racing-bar-fill other" data-start="13" data-end="59" data-value="$280B">
+              <span class="racing-bar-value">$280B</span>
+            </div>
+          </div>
+          <span class="racing-bar-year">4.5× growth</span>
+        </div>
+        <div class="racing-bar-row">
+          <span class="racing-bar-label">Bangladesh</span>
+          <div class="racing-bar-track">
+            <div class="racing-bar-start" style="left: 1.3%"></div>
+            <div class="racing-bar-fill other" data-start="1.3" data-end="12.6" data-value="$60B">
+              <span class="racing-bar-value">$60B</span>
+            </div>
+          </div>
+          <span class="racing-bar-year">10× growth</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-container">
+      <div class="chart-title">Middle-Income Trap: The Odds</div>
+      <div class="chart-subtitle">Historical transition rates | Source: <a href="https://tapchimoitruong.vn/news-13/%E2%80%9Cmiddle-income-trap%E2%80%9D--environmental-perspective-and-implications-for-vietnam-32073" target="_blank" style="color:#999;text-decoration:underline;">TapChiMoiTruong</a>, <a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/gni-per-capita" target="_blank" style="color:#999;text-decoration:underline;">MacroTrends</a></div>
+      <table class="data-table">
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Implication</th>
+        </tr>
+        <tr>
+          <td>Countries that transitioned</td>
+          <td class="highlight"><a href="https://tapchimoitruong.vn/news-13/%E2%80%9Cmiddle-income-trap%E2%80%9D--environmental-perspective-and-implications-for-vietnam-32073" target="_blank" style="color:var(--dark);text-decoration:underline;">34 of 108</a></td>
+          <td>Since 1990s. ~31% success rate.</td>
+        </tr>
+        <tr>
+          <td>Vietnam GNI per capita</td>
+          <td class="highlight"><a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/gni-per-capita" target="_blank" style="color:var(--dark);text-decoration:underline;">~$4,490 (2024)</a></td>
+          <td>Upper-middle threshold: $4,496</td>
+        </tr>
+        <tr>
+          <td>R&D spending</td>
+          <td class="warning">0.4% of GDP</td>
+          <td>vs. Korea 4.8%, Taiwan 3.5%, Thailand 1.3%</td>
+        </tr>
+        <tr>
+          <td>Logistics costs</td>
+          <td class="warning"><a href="https://vir.com.vn/double-digit-gdp-growth-within-reach-with-shift-to-higher-value-expansion-144084.html" target="_blank" style="color:var(--warning);text-decoration:underline;">16-17% of GDP</a></td>
+          <td>vs. 8-10% in developed economies</td>
+        </tr>
+        <tr>
+          <td>Government debt</td>
+          <td class="highlight" style="color:var(--accent-green)"><a href="https://www.ceicdata.com/en/indicator/vietnam/government-debt--of-nominal-gdp" target="_blank" style="color:var(--accent-green);text-decoration:underline;">31.8% of GDP</a></td>
+          <td>Down from 52.7% peak (2016). Fiscal space exists.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="pull-quote">
+      <p>"Can Vietnam shift from capital deepening (diminishing returns) to TFP-driven growth (sustainable) before the demographic window closes?"</p>
+      <cite>The central question through a Solow lens</cite>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="insight-box">
+      <h4>The Core Tension</h4>
+      <p>Vietnam has 10-12 years before its demographic dividend ends. <a href="https://thediplomat.com/2026/01/vietnams-economy-grew-by-more-than-8-percent-in-2025-government-says/" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">GDP growth hit 8.02% in 2025</a>, the strongest since 2011. But the ICOR is rising, R&D is minimal, and 72-77% of exports come from foreign firms. The <a href="https://irpj.euclid.int/articles/vietnams-economic-transformation-successes-challenges-and-strategies-for-sustainable-growth/" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Asian Tigers at similar income levels</a> already had Samsung and Hyundai. Vietnam must build domestic capabilities while the window remains open.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="section" style="padding-top: 1rem;">
+  <div class="reveal">
+    <div class="sources-section">
+      <h4>Sources</h4>
+
+      <h5>Institutional & Multilateral Organizations</h5>
+      <p>
+        <a href="https://www.imf.org/-/media/Files/Publications/WP/2020/English/wpiea2020031-print-pdf.ashx" target="_blank" style="color:#777;">IMF. Vietnam's Development Success Story and the Unfinished SDG Agenda</a>.<br>
+        <a href="https://www.worldbank.org/en/country/vietnam/overview.print" target="_blank" style="color:#777;">World Bank. Vietnam Overview</a>.<br>
+        <a href="https://data.worldbank.org/country/viet-nam" target="_blank" style="color:#777;">World Bank Open Data. Vietnam Country Data</a>.<br>
+        <a href="https://databankfiles.worldbank.org/public/ddpext_download/poverty/33EF03BB-9722-4AE2-ABC7-AA2972D68AFE/Global_POVEQ_VNM.pdf" target="_blank" style="color:#777;">World Bank. Global Poverty & Equity Data: Vietnam</a>.<br>
+        <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:#777;">OECD. Harnessing Trade and Investment Flows to Boost Productivity</a>.<br>
+        <a href="https://www.wto.org/english/thewto_e/acc_e/a1_vietnam_e.htm" target="_blank" style="color:#777;">WTO. Accessions: Viet Nam</a>.<br>
+        <a href="https://www.ilo.org/media/346061/download" target="_blank" style="color:#777;">ILO. Export and FDI-Driven Industrialization</a>.
+      </p>
+
+      <h5>Government & Official Sources</h5>
+      <p>
+        <a href="https://www.nso.gov.vn/en/highlight/2025/02/socio-economic-situation-in-the-fourth-quarter-and-2024/" target="_blank" style="color:#777;">General Statistics Office of Vietnam (GSO). Socio-Economic Situation Q4 2024</a>.<br>
+        <a href="https://www.state.gov/reports/2019-investment-climate-statements/vietnam/" target="_blank" style="color:#777;">U.S. Department of State. 2019 Investment Climate Statements: Vietnam</a>.<br>
+        <a href="https://www.trade.gov/country-commercial-guides/vietnam-trade-agreements" target="_blank" style="color:#777;">International Trade Administration. Vietnam Trade Agreements</a>.
+      </p>
+
+      <h5>Major News & Analysis</h5>
+      <p>
+        <a href="https://thediplomat.com/2026/01/vietnams-economy-grew-by-more-than-8-percent-in-2025-government-says/" target="_blank" style="color:#777;">The Diplomat. Vietnam's Economy Grew By More Than 8 Percent in 2025</a>.<br>
+        <a href="https://www.cnbc.com/2025/04/08/vietnam-emerged-as-a-trade-winner-trump-new-tariffs-may-disrupt-that.html" target="_blank" style="color:#777;">CNBC. Vietnam Has Been a Big Beneficiary of Global Trade</a>.<br>
+        <a href="https://www.cnbc.com/2025/04/12/vietnam-reciprocal-tariffs-reflect-trade-deficit-and-ties-to-china.html" target="_blank" style="color:#777;">CNBC. Vietnam Reciprocal Tariffs Reflect Trade Deficit and Ties to China</a>.<br>
+        <a href="https://e.vnexpress.net/news/business/economy/vietnam-stands-on-the-shoulders-of-giants-fails-to-grow-4682307.html" target="_blank" style="color:#777;">VnExpress. Vietnam Stands on the Shoulders of Giants, Fails to Grow</a>.
+      </p>
+
+      <h5>Vietnamese Media</h5>
+      <p>
+        <a href="https://vietnamnet.vn/en/vietnam-s-economy-takes-off-enters-upper-middle-income-bracket-2483165.html" target="_blank" style="color:#777;">VietnamNet. Vietnam's Economy Takes Off, Enters Upper-Middle Income Bracket</a>.<br>
+        <a href="https://vietnamnet.vn/en/vietnam-s-record-exports-and-the-hidden-fragility-of-its-economy-2474047.html" target="_blank" style="color:#777;">VietnamNet. Vietnam's Record Exports and the Hidden Fragility of Its Economy</a>.<br>
+        <a href="https://theinvestor.vn/korean-chaebol-samsungs-revenue-makes-up-13-of-vietnams-gdp-in-2024-d16297.html" target="_blank" style="color:#777;">The Investor. Samsung's Revenue Makes Up 13% of Vietnam's GDP</a>.<br>
+        <a href="https://theinvestor.vn/intel-urged-to-expand-chip-packaging-testing-operations-in-vietnam-d17920.html" target="_blank" style="color:#777;">The Investor. Intel Urged to Expand Chip Operations in Vietnam</a>.
+      </p>
+
+      <h5>Vietnam Briefing (Dezan Shira & Associates)</h5>
+      <p>
+        <a href="https://www.vietnam-briefing.com/doing-business-guide/vietnam/why-vietnam/economic-indicators-and-vietnam-s-gdp-fdi-and-trade-trends" target="_blank" style="color:#777;">Vietnam Briefing. Economic Indicators, FDI, and Trade Trends</a>.<br>
+        <a href="https://www.vietnam-briefing.com/news/apple-manufacturers-vietnam.html/" target="_blank" style="color:#777;">Vietnam Briefing. Apple Suppliers in Vietnam</a>.<br>
+        <a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:#777;">Vietnam Briefing. Impact of Tariffs by President Trump</a>.
+      </p>
+
+      <h5>Data & Statistics</h5>
+      <p>
+        <a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/trade-gdp-ratio" target="_blank" style="color:#777;">MacroTrends. Vietnam Trade to GDP Ratio</a>.<br>
+        <a href="https://tradingeconomics.com/vietnam/gdp-growth-annual" target="_blank" style="color:#777;">Trading Economics. Vietnam GDP Annual Growth Rate</a>.<br>
+        <a href="https://www.ceicdata.com/en/indicator/vietnam/government-debt--of-nominal-gdp" target="_blank" style="color:#777;">CEIC Data. Vietnam Government Debt: % of GDP</a>.<br>
+        <a href="https://ec.europa.eu/eurostat/statistics-explained/SEPDF/cache/71515.pdf" target="_blank" style="color:#777;">Eurostat. ASEAN-EU International Trade in Goods Statistics</a>.
+      </p>
+
+      <h5>Academic & Research</h5>
+      <p>
+        <a href="https://en.wikipedia.org/wiki/%C4%90%E1%BB%95i_M%E1%BB%9Bi" target="_blank" style="color:#777;">Wikipedia. Đổi Mới</a>.<br>
+        <a href="https://voxchina.org/show-3-392.html" target="_blank" style="color:#777;">VoxChina. Exports in Disguise: Trade Rerouting During the US-China Trade War</a>.<br>
+        <a href="https://www.researchgate.net/publication/392818115_The_paradox_of_FDI_in_Vietnam" target="_blank" style="color:#777;">ResearchGate. The Paradox of FDI in Vietnam</a>.<br>
+        <a href="https://ideas.repec.org/p/ags/pugtwp/333169.html" target="_blank" style="color:#777;">Economic and Distributional Impacts of the EVFTA and CPTPP in Vietnam</a>.
+      </p>
+
+      <h5>Think Tanks & Policy Analysis</h5>
+      <p>
+        <a href="https://www.mufgresearch.com/fx/vietnam-doi-moi-20-the-most-ambitious-structural-reforms-since-1986-21-august-2025/" target="_blank" style="color:#777;">MUFG Research. Vietnam: Doi Moi 2.0</a>.<br>
+        <a href="https://www.policycenter.ma/opinion/vietnam-currency-manipulator-implications-developing-countries-%E2%80%93-comments-us-treasury-report" target="_blank" style="color:#777;">Policy Center for the New South. Is Vietnam a Currency Manipulator?</a>.<br>
+        <a href="https://thevietnamese.org/2025/10/chasing-the-2045-dream-what-are-the-bottlenecks-holding-viet-nam-back/" target="_blank" style="color:#777;">The Vietnamese Magazine. Chasing the 2045 Dream</a>.
+      </p>
+
+      <h5>Supply Chain & Manufacturing</h5>
+      <p>
+        <a href="https://www.z2data.com/insights/everything-you-need-to-know-about-china-plus-one" target="_blank" style="color:#777;">Z2Data. Everything You Need to Know About China Plus One</a>.<br>
+        <a href="https://vietnam.incorp.asia/vietnam-labor-cost/" target="_blank" style="color:#777;">InCorp Vietnam. How Vietnam Labor Costs Attract Foreign Companies</a>.<br>
+        <a href="https://www.vietnamexportdata.com/blogs/vietnam-electronics-exports-2025-data-report" target="_blank" style="color:#777;">Vietnam Export Data. Electronics Exports 2025</a>.
+      </p>
+
+          </div>
+  </div>
+</section>
+
+<footer class="footer">
+  The Tiger Unleashed: Vietnam's Export Economy Through a Macroeconomic Lens<br>
+  A Macroeconomics Group Project &mdash; HEC Paris &mdash; February 2026<br>
+  Data as of January 2025
+</footer>
+
+<script>
+  // ==========================================
+  // PROGRESS BAR
+  // ==========================================
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+
+  // ==========================================
+  // REVEAL ANIMATIONS
+  // ==========================================
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // ==========================================
+  // INTERSTITIAL ANIMATIONS
+  // ==========================================
+  const interstitials = document.querySelectorAll('.interstitial-content');
+  const interstitialObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  interstitials.forEach(el => interstitialObserver.observe(el));
+
+  // ==========================================
+  // COUNT-UP ANIMATIONS
+  // ==========================================
+  const counters = document.querySelectorAll('.count-up');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        if (!target || el.dataset.animated) return;
+        el.dataset.animated = 'true';
+        let current = 0;
+        const duration = 1500;
+        const step = target / (duration / 16);
+        const tick = () => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target;
+            return;
+          }
+          el.textContent = Math.floor(current);
+          requestAnimationFrame(tick);
+        };
+        tick();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => counterObserver.observe(el));
+
+  // ==========================================
+  // BAR CHART ANIMATIONS
+  // ==========================================
+  const barCharts = document.querySelectorAll('.bar-chart');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        const bars = entry.target.querySelectorAll('.bar-fill');
+        bars.forEach((bar, i) => {
+          setTimeout(() => {
+            bar.style.width = bar.dataset.width + '%';
+          }, i * 100);
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  barCharts.forEach(el => barObserver.observe(el));
+
+  // ==========================================
+  // DONUT CHART ANIMATION
+  // ==========================================
+  const donutChart = document.getElementById('donutChart');
+  const donutObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        const segments = entry.target.querySelectorAll('.donut-segment');
+        segments.forEach((seg, i) => {
+          const target = parseFloat(seg.dataset.target);
+          const offset = parseFloat(seg.dataset.offset) || 0;
+          setTimeout(() => {
+            seg.style.transition = 'stroke-dasharray 1s ease';
+            seg.style.strokeDasharray = `${target} ${471 - target}`;
+            seg.style.strokeDashoffset = `-${offset}`;
+          }, i * 150);
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  if (donutChart) donutObserver.observe(donutChart);
+
+  // ==========================================
+  // STICKY EXPORT COUNTER
+  // ==========================================
+  const stickyCounter = document.getElementById('stickyCounter');
+  const counterValue = document.getElementById('counterValue');
+  const counterEra = document.getElementById('counterEra');
+  const counterSubtitle = document.getElementById('counterSubtitle');
+  let currentExportValue = 2.4;
+  let targetExportValue = 2.4;
+
+  // Each section shows Vietnam's exports at different points in history
+  const exportSections = [
+    { index: 1, start: 2.4, end: 14.5, era: '1990 → 2000', subtitle: 'Đổi Mới era: Opening to the world' },
+    { index: 2, start: 14.5, end: 150, era: '2000 → 2015', subtitle: 'FDI boom: Samsung & global supply chains' },
+    { index: 3, start: 150, end: 336, era: '2015 → 2023', subtitle: 'Trade war beneficiary: China+1 strategy' },
+    { index: 4, start: 336, end: 475, era: '2023 → 2025', subtitle: 'Present day: Record exports' },
+    { index: 5, start: 475, end: 475, era: '2025+', subtitle: 'The question: Can growth continue?', pulsing: true }
+  ];
+
+  function formatExportValue(val) {
+    if (val >= 1000) return '$' + (val / 1000).toFixed(1) + 'T';
+    if (val >= 100) return '$' + Math.round(val) + 'B';
+    if (val >= 10) return '$' + val.toFixed(1) + 'B';
+    return '$' + val.toFixed(1) + 'B';
+  }
+
+  function animateCounter(from, to, duration = 1000) {
+    const startTime = performance.now();
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      currentExportValue = from + (to - from) * easeProgress;
+      counterValue.textContent = formatExportValue(currentExportValue);
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }
+
+  // Show counter after scrolling past hero
+  const heroSection = document.querySelector('.hero');
+  const counterShowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        stickyCounter.classList.add('visible');
+      } else {
+        stickyCounter.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  counterShowObserver.observe(heroSection);
+
+  // Update counter based on section
+  const sectionElements = document.querySelectorAll('[data-section-index]');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionIndex = parseInt(entry.target.dataset.sectionIndex);
+        const sectionData = exportSections.find(s => s.index === sectionIndex);
+        if (sectionData) {
+          // Update era and subtitle
+          counterEra.textContent = sectionData.era;
+          counterSubtitle.textContent = sectionData.subtitle;
+
+          if (sectionData.pulsing) {
+            stickyCounter.classList.add('pulsing');
+          } else {
+            stickyCounter.classList.remove('pulsing');
+          }
+          if (targetExportValue !== sectionData.end) {
+            animateCounter(currentExportValue, sectionData.end, 1500);
+            targetExportValue = sectionData.end;
+          }
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sectionElements.forEach(el => sectionObserver.observe(el));
+
+  // ==========================================
+  // SECTION NAVIGATION DOTS
+  // ==========================================
+  const sectionDots = document.querySelectorAll('.section-dot');
+  const allSections = document.querySelectorAll('[data-section-index]');
+
+  sectionDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const sectionIndex = parseInt(dot.dataset.section);
+      const targetSection = document.querySelector(`[data-section-index="${sectionIndex}"]`);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  const dotObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionIndex = entry.target.dataset.sectionIndex;
+        sectionDots.forEach(dot => {
+          dot.classList.toggle('active', dot.dataset.section === sectionIndex);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  allSections.forEach(section => dotObserver.observe(section));
+
+  // ==========================================
+  // PARALLAX EFFECTS
+  // ==========================================
+  const parallaxStar = document.getElementById('parallaxStar');
+  const parallaxDots = document.getElementById('parallaxDots');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (parallaxStar) {
+      parallaxStar.style.transform = `translate(-50%, calc(-50% + ${scrollY * 0.3}px))`;
+    }
+    if (parallaxDots) {
+      parallaxDots.style.backgroundPosition = `${scrollY * 0.05}px ${scrollY * 0.08}px`;
+    }
+  });
+
+  // ==========================================
+  // SOLOW CURVE ANIMATION
+  // ==========================================
+  const solowChart = document.getElementById('solowChart');
+  if (solowChart) {
+    const solowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+
+          // Animate main curve
+          const solowCurve = document.getElementById('solowCurve');
+          solowCurve.style.transition = 'stroke-dashoffset 2.5s ease-out';
+          solowCurve.style.strokeDashoffset = '0';
+
+          // Show time connector lines
+          const connectors = document.querySelectorAll('.time-connector');
+          connectors.forEach((conn, i) => {
+            setTimeout(() => {
+              conn.style.transition = 'opacity 0.5s ease-out';
+              conn.style.opacity = '0.5';
+            }, 800 + i * 600);
+          });
+
+          // Animate TFP shift curve
+          setTimeout(() => {
+            const tfpCurve = document.getElementById('tfpCurve');
+            tfpCurve.style.transition = 'stroke-dashoffset 1.2s ease-out';
+            tfpCurve.style.strokeDashoffset = '0';
+          }, 2800);
+
+          // Animate Vietnam dot along curve
+          const vietnamDot = document.getElementById('vietnamDot');
+          const vietnamLabelGroup = document.getElementById('vietnamLabelGroup');
+          const eraLabel = document.getElementById('eraLabel');
+          const icrGroup1 = document.getElementById('icrGroup1');
+          const icrGroup2 = document.getElementById('icrGroup2');
+          const insightCallout = document.getElementById('insightCallout');
+
+          // Path points for Vietnam's journey (matching updated coordinates)
+          const pathPoints = [
+            { x: 140, y: 185, era: '2000', labelX: 155, labelY: 160 },
+            { x: 230, y: 115, era: '2010', labelX: 245, labelY: 90 },
+            { x: 340, y: 82, era: '2024', labelX: 355, labelY: 57 }
+          ];
+
+          let pointIndex = 0;
+          const moveDot = () => {
+            if (pointIndex >= pathPoints.length) return;
+            const point = pathPoints[pointIndex];
+            vietnamDot.style.transition = 'all 1s ease-out';
+            vietnamDot.setAttribute('cx', point.x);
+            vietnamDot.setAttribute('cy', point.y);
+
+            // Update label group position
+            const labelGroup = vietnamLabelGroup;
+            const rect = labelGroup.querySelector('rect');
+            const labelText = labelGroup.querySelector('#vietnamLabel');
+            const eraText = labelGroup.querySelector('#eraLabel');
+
+            rect.setAttribute('x', point.labelX);
+            rect.setAttribute('y', point.labelY);
+            labelText.setAttribute('x', point.labelX + 32);
+            labelText.setAttribute('y', point.labelY + 13);
+            eraText.setAttribute('x', point.labelX + 32);
+            eraText.setAttribute('y', point.labelY + 23);
+            eraText.textContent = point.era;
+
+            if (pointIndex === 0) {
+              labelGroup.style.transition = 'opacity 0.5s';
+              labelGroup.style.opacity = '1';
+              setTimeout(() => {
+                icrGroup1.style.transition = 'opacity 0.6s';
+                icrGroup1.style.opacity = '1';
+              }, 400);
+            }
+            if (pointIndex === 1) {
+              setTimeout(() => {
+                icrGroup2.style.transition = 'opacity 0.6s';
+                icrGroup2.style.opacity = '1';
+              }, 400);
+            }
+            if (pointIndex === 2) {
+              setTimeout(() => {
+                insightCallout.style.transition = 'opacity 0.8s';
+                insightCallout.style.opacity = '1';
+              }, 600);
+            }
+
+            pointIndex++;
+            if (pointIndex < pathPoints.length) {
+              setTimeout(moveDot, 1200);
+            }
+          };
+
+          setTimeout(moveDot, 600);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    solowObserver.observe(solowChart);
+  }
+
+  // ==========================================
+  // SANKEY DIAGRAM ANIMATION
+  // ==========================================
+  const sankeyChart = document.getElementById('sankeyChart');
+  if (sankeyChart) {
+    const sankeyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+
+          // Show total imports indicator
+          setTimeout(() => {
+            const totalImports = document.getElementById('totalImports');
+            if (totalImports) {
+              totalImports.style.transition = 'opacity 0.6s ease-out';
+              totalImports.style.opacity = '1';
+            }
+          }, 200);
+
+          // Animate import paths (left side) with staggered timing
+          for (let i = 1; i <= 5; i++) {
+            const path = document.getElementById('sankeyImport' + i);
+            if (path) {
+              setTimeout(() => {
+                path.style.transition = 'stroke-dashoffset 1s ease-out';
+                path.style.strokeDashoffset = '0';
+              }, 300 + i * 180);
+            }
+          }
+
+          // Show total exports indicator
+          setTimeout(() => {
+            const totalExports = document.getElementById('totalExports');
+            if (totalExports) {
+              totalExports.style.transition = 'opacity 0.6s ease-out';
+              totalExports.style.opacity = '1';
+            }
+          }, 1200);
+
+          // Animate export paths (right side) with delay
+          for (let i = 1; i <= 5; i++) {
+            const path = document.getElementById('sankeyExport' + i);
+            if (path) {
+              setTimeout(() => {
+                path.style.transition = 'stroke-dashoffset 1s ease-out';
+                path.style.strokeDashoffset = '0';
+              }, 1300 + i * 180);
+            }
+          }
+
+          // Show insight callout
+          setTimeout(() => {
+            const sankeyInsight = document.getElementById('sankeyInsight');
+            if (sankeyInsight) {
+              sankeyInsight.style.transition = 'opacity 0.8s ease-out';
+              sankeyInsight.style.opacity = '1';
+            }
+          }, 2400);
+
+          // Show surplus indicator
+          setTimeout(() => {
+            const surplusIndicator = document.getElementById('surplusIndicator');
+            if (surplusIndicator) {
+              surplusIndicator.style.transition = 'opacity 0.8s ease-out';
+              surplusIndicator.style.opacity = '1';
+            }
+          }, 2800);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    sankeyObserver.observe(sankeyChart);
+  }
+
+  // ==========================================
+  // DEMOGRAPHIC RING ANIMATION
+  // ==========================================
+  const demoRingContainer = document.getElementById('demoRingContainer');
+  if (demoRingContainer) {
+    const demoRingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+          const ringFill = document.getElementById('demoRingFill');
+          // 70% of circumference (2 * PI * 70 = 440)
+          // 70% = 308
+          setTimeout(() => {
+            ringFill.style.strokeDasharray = '308 440';
+          }, 300);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    demoRingObserver.observe(demoRingContainer);
+  }
+
+  // ==========================================
+  // VIETNAM MAP PINS ANIMATION
+  // ==========================================
+  const vietnamMapContainer = document.getElementById('vietnamMapContainer');
+  if (vietnamMapContainer) {
+    const mapPins = vietnamMapContainer.querySelectorAll('.map-pin');
+    const mapTooltip = document.getElementById('mapTooltip');
+    const tooltipTitle = document.getElementById('tooltipTitle');
+    const tooltipDetail = document.getElementById('tooltipDetail');
+    const legendItems = vietnamMapContainer.querySelectorAll('.map-legend-item');
+
+    const mapObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+          mapPins.forEach((pin, i) => {
+            setTimeout(() => {
+              pin.classList.add('visible');
+            }, i * 200);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    mapObserver.observe(vietnamMapContainer);
+
+    // Helper function to show tooltip
+    const showTooltip = (pin, referenceElement) => {
+      const city = pin.dataset.city;
+      const detail = pin.dataset.detail;
+      tooltipTitle.textContent = city;
+      tooltipDetail.textContent = detail;
+      mapTooltip.classList.add('visible');
+
+      const rect = vietnamMapContainer.getBoundingClientRect();
+      const refRect = referenceElement.getBoundingClientRect();
+      mapTooltip.style.left = (refRect.left - rect.left + 25) + 'px';
+      mapTooltip.style.top = (refRect.top - rect.top - 10) + 'px';
+    };
+
+    // Tooltip functionality for pins
+    mapPins.forEach(pin => {
+      pin.addEventListener('mouseenter', (e) => {
+        showTooltip(pin, pin);
+        // Highlight corresponding legend item
+        const pinId = pin.id;
+        legendItems.forEach(item => {
+          if (item.dataset.pin === pinId) {
+            item.style.background = 'rgba(218,37,29,0.1)';
+          }
+        });
+      });
+
+      pin.addEventListener('mouseleave', () => {
+        mapTooltip.classList.remove('visible');
+        legendItems.forEach(item => {
+          item.style.background = '';
+        });
+      });
+
+      // Touch support
+      pin.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        showTooltip(pin, pin);
+        mapTooltip.classList.toggle('visible');
+      });
+    });
+
+    // Legend item interactions
+    legendItems.forEach(item => {
+      const pinId = item.dataset.pin;
+      const correspondingPin = document.getElementById(pinId);
+
+      item.addEventListener('mouseenter', () => {
+        if (correspondingPin) {
+          // Highlight the pin
+          const marker = correspondingPin.querySelector('.map-pin-marker');
+          if (marker) {
+            marker.style.transform = 'scale(1.4)';
+            marker.style.filter = 'drop-shadow(0 0 6px rgba(218,37,29,0.6))';
+          }
+          showTooltip(correspondingPin, item);
+        }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        if (correspondingPin) {
+          const marker = correspondingPin.querySelector('.map-pin-marker');
+          if (marker) {
+            marker.style.transform = '';
+            marker.style.filter = '';
+          }
+        }
+        mapTooltip.classList.remove('visible');
+      });
+
+      item.addEventListener('click', () => {
+        if (correspondingPin) {
+          correspondingPin.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+  }
+
+  // ==========================================
+  // RACING BAR CHART ANIMATION
+  // ==========================================
+  const racingBarContainer = document.getElementById('racingBarContainer');
+  if (racingBarContainer) {
+    const racingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+          const bars = entry.target.querySelectorAll('.racing-bar-fill');
+
+          // First show starting positions
+          bars.forEach(bar => {
+            bar.style.width = bar.dataset.start + '%';
+          });
+
+          // Then animate to end positions
+          setTimeout(() => {
+            bars.forEach((bar, i) => {
+              setTimeout(() => {
+                bar.style.width = bar.dataset.end + '%';
+              }, i * 200);
+            });
+          }, 500);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    racingObserver.observe(racingBarContainer);
+  }
+
+  // ==========================================
+  // CHART TOOLTIPS
+  // ==========================================
+  function createTooltip() {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'chart-tooltip';
+    tooltip.innerHTML = '<div class="chart-tooltip-value"></div><div class="chart-tooltip-source"></div>';
+    document.body.appendChild(tooltip);
+    return tooltip;
+  }
+
+  const chartTooltip = createTooltip();
+
+  // Add tooltips to bar charts
+  const barRows = document.querySelectorAll('.bar-row');
+  const tooltipData = {
+    'fdiChart': {
+      'S. Korea': { value: '$92B cumulative', source: 'Source: MPI, 2024' },
+      'Singapore': { value: '$84B cumulative', source: 'Source: MPI, 2024' },
+      'Japan': { value: '$42B cumulative', source: 'Source: MPI, 2024' },
+      'Taiwan': { value: '$32B cumulative', source: 'Source: MPI, 2024' },
+      'China': { value: 'Rising rapidly', source: 'Source: MPI, 2024' }
+    },
+    'fvaChart': {
+      'Vietnam': { value: '51% import intensity', source: 'Source: OECD TiVA, 2023' },
+      'Malaysia': { value: '35% import intensity', source: 'Source: OECD TiVA, 2023' },
+      'Thailand': { value: '35% import intensity', source: 'Source: OECD TiVA, 2023' },
+      'India': { value: '20% import intensity', source: 'Source: OECD TiVA, 2023' },
+      'Indonesia': { value: '15% import intensity', source: 'Source: OECD TiVA, 2023' }
+    },
+    'partnersChart': {
+      'USA': { value: '$153.2B (~30% of exports)', source: 'Source: UN Comtrade, 2025' },
+      'China': { value: '$64.5B', source: 'Source: UN Comtrade, 2025' },
+      'EU': { value: '$55B', source: 'Source: UN Comtrade, 2025' },
+      'S. Korea': { value: '$30B', source: 'Source: UN Comtrade, 2025' },
+      'Japan': { value: '$27B', source: 'Source: UN Comtrade, 2025' }
+    }
+  };
+
+  barRows.forEach(row => {
+    row.addEventListener('mouseenter', (e) => {
+      const chart = row.closest('.bar-chart');
+      if (!chart) return;
+      const chartId = chart.id;
+      const label = row.querySelector('.bar-label')?.textContent.trim();
+
+      if (tooltipData[chartId] && tooltipData[chartId][label]) {
+        const data = tooltipData[chartId][label];
+        chartTooltip.querySelector('.chart-tooltip-value').textContent = data.value;
+        chartTooltip.querySelector('.chart-tooltip-source').textContent = data.source;
+        chartTooltip.classList.add('visible');
+
+        const rect = row.getBoundingClientRect();
+        chartTooltip.style.left = (rect.left + rect.width / 2) + 'px';
+        chartTooltip.style.top = (rect.top - 50) + 'px';
+      }
+    });
+
+    row.addEventListener('mouseleave', () => {
+      chartTooltip.classList.remove('visible');
+    });
+  });
+
+  // Add tooltips to legend items (donut chart)
+  const legendItems = document.querySelectorAll('.legend-item');
+  const legendTooltipData = {
+    'Electronics & phones': { value: '$126.5B (33% of exports)', source: 'Source: GSO, 2025' },
+    'Agri/forestry/fishery': { value: '$62.5B (16% of exports)', source: 'Source: GSO, 2025' },
+    'Textiles & footwear': { value: '~$61B (16% of exports)', source: 'Source: GSO, 2025' },
+    'Machinery & equipment': { value: '~$49B (13% of exports)', source: 'Source: GSO, 2025' },
+    'Other': { value: '~$88B (22% of exports)', source: 'Source: GSO, 2025' }
+  };
+
+  legendItems.forEach(item => {
+    item.addEventListener('mouseenter', (e) => {
+      const label = item.querySelector('.legend-label')?.textContent.trim();
+      if (legendTooltipData[label]) {
+        const data = legendTooltipData[label];
+        chartTooltip.querySelector('.chart-tooltip-value').textContent = data.value;
+        chartTooltip.querySelector('.chart-tooltip-source').textContent = data.source;
+        chartTooltip.classList.add('visible');
+
+        const rect = item.getBoundingClientRect();
+        chartTooltip.style.left = (rect.left + rect.width / 2) + 'px';
+        chartTooltip.style.top = (rect.top - 50) + 'px';
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      chartTooltip.classList.remove('visible');
+    });
+  });
+</script>
+</body>
+</html>
