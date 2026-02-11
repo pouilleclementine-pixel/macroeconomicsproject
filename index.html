@@ -2264,63 +2264,69 @@
             <!-- Vietnam map from SVG file -->
             <image href="vn.svg" x="0" y="0" width="1000" height="1000" style="opacity:0.85"/>
 
-            <!-- Region highlight boxes -->
-            <rect x="530" y="85" width="220" height="140" rx="8" fill="rgba(218,37,29,0.06)" stroke="rgba(218,37,29,0.25)" stroke-width="2" stroke-dasharray="8 5"/>
-            <rect x="540" y="780" width="180" height="120" rx="8" fill="rgba(218,37,29,0.06)" stroke="rgba(218,37,29,0.25)" stroke-width="2" stroke-dasharray="8 5"/>
+            <!-- Region highlight boxes - positioned to match actual map regions -->
+            <!-- Red River Delta: covers Hanoi, Bac Ninh, Hai Phong, Thai Nguyen area -->
+            <rect x="455" y="130" width="150" height="90" rx="8" fill="rgba(218,37,29,0.08)" stroke="rgba(218,37,29,0.3)" stroke-width="2" stroke-dasharray="8 5"/>
+            <!-- Southeast Region: covers HCMC, Binh Duong, Dong Nai area -->
+            <rect x="530" y="780" width="140" height="90" rx="8" fill="rgba(218,37,29,0.08)" stroke="rgba(218,37,29,0.3)" stroke-width="2" stroke-dasharray="8 5"/>
 
             <!-- Region labels -->
-            <text x="640" y="75" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:16px;fill:var(--red);text-transform:uppercase;letter-spacing:0.1em;font-weight:600">Red River Delta</text>
-            <text x="630" y="920" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:16px;fill:var(--red);text-transform:uppercase;letter-spacing:0.1em;font-weight:600">Southeast Region</text>
+            <text x="530" y="120" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:13px;fill:var(--red);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Red River Delta</text>
+            <text x="600" y="890" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:13px;fill:var(--red);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Southeast Region</text>
 
-            <!-- Map Pins - Northern Cluster -->
+            <!-- Map Pins - Northern Cluster (based on actual lat/long converted to SVG coords) -->
+            <!-- Bac Ninh: 21.12°N, 106.07°E → x≈502, y≈180 -->
             <g class="map-pin" id="pin1" data-city="Bac Ninh" data-detail="Samsung HQ — $22.4B invested, 50% of global Samsung phones produced here">
-              <circle cx="645" cy="155" r="35" fill="url(#pulseGradient)" class="pulse-ring"/>
-              <circle cx="645" cy="155" r="20" class="map-pin-marker" filter="url(#pinGlow)"/>
-              <text x="645" y="162" text-anchor="middle" style="font-size:14px;fill:white;font-weight:bold">1</text>
-              <text x="680" y="155" text-anchor="start" style="font-size:13px;fill:var(--dark);font-weight:600">Bac Ninh</text>
+              <circle cx="502" cy="180" r="30" fill="url(#pulseGradient)" class="pulse-ring"/>
+              <circle cx="502" cy="180" r="16" class="map-pin-marker" filter="url(#pinGlow)"/>
+              <text x="502" y="185" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">1</text>
             </g>
 
+            <!-- Thai Nguyen: 21.59°N, 105.85°E → x≈476, y≈151 -->
             <g class="map-pin" id="pin2" data-city="Thai Nguyen" data-detail="Samsung complex — Display manufacturing, component production">
-              <circle cx="580" cy="120" r="16" class="map-pin-marker"/>
-              <text x="580" y="126" text-anchor="middle" style="font-size:14px;fill:white;font-weight:bold">2</text>
-              <text x="545" y="110" text-anchor="end" style="font-size:13px;fill:var(--dark);font-weight:600">Thai Nguyen</text>
+              <circle cx="476" cy="151" r="14" class="map-pin-marker"/>
+              <text x="476" y="156" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">2</text>
             </g>
 
+            <!-- Hai Phong: 20.86°N, 106.68°E → x≈574, y≈196 -->
             <g class="map-pin" id="pin3" data-city="Hai Phong" data-detail="LG Display $5.65B + Lach Huyen deep-water port — Gateway for exports">
-              <circle cx="700" cy="180" r="18" class="map-pin-marker"/>
-              <text x="700" y="187" text-anchor="middle" style="font-size:14px;fill:white;font-weight:bold">3</text>
-              <text x="730" y="180" text-anchor="start" style="font-size:13px;fill:var(--dark);font-weight:600">Hai Phong</text>
+              <circle cx="574" cy="196" r="14" class="map-pin-marker"/>
+              <text x="574" y="201" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">3</text>
             </g>
 
+            <!-- Hanoi: 21.03°N, 105.85°E → x≈476, y≈186 -->
             <g class="map-pin" id="pin4" data-city="Hanoi" data-detail="Foxconn, Luxshare — Apple supplier hub, AirPods & MacBook assembly">
-              <circle cx="610" cy="170" r="16" class="map-pin-marker"/>
-              <text x="610" y="177" text-anchor="middle" style="font-size:14px;fill:white;font-weight:bold">4</text>
-              <text x="575" y="185" text-anchor="end" style="font-size:13px;fill:var(--dark);font-weight:600">Hanoi</text>
+              <circle cx="476" cy="186" r="14" class="map-pin-marker"/>
+              <text x="476" y="191" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">4</text>
             </g>
 
             <!-- Map Pins - Southern Cluster -->
+            <!-- Ho Chi Minh City: 10.76°N, 106.66°E → x≈572, y≈828 -->
             <g class="map-pin" id="pin5" data-city="Ho Chi Minh City" data-detail="Intel $1.5B — World's largest chip assembly & test facility">
-              <circle cx="595" cy="855" r="35" fill="url(#pulseGradient)" class="pulse-ring"/>
-              <circle cx="595" cy="855" r="20" class="map-pin-marker" filter="url(#pinGlow)"/>
-              <text x="595" y="862" text-anchor="middle" style="font-size:14px;fill:white;font-weight:bold">5</text>
-              <text x="560" y="865" text-anchor="end" style="font-size:13px;fill:var(--dark);font-weight:600">HCMC</text>
+              <circle cx="572" cy="828" r="30" fill="url(#pulseGradient)" class="pulse-ring"/>
+              <circle cx="572" cy="828" r="16" class="map-pin-marker" filter="url(#pinGlow)"/>
+              <text x="572" y="833" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">5</text>
             </g>
 
+            <!-- Binh Duong: 11.17°N, 106.65°E → x≈571, y≈802 -->
             <g class="map-pin" id="pin6" data-city="Binh Duong" data-detail="'The new Dongguan' — 4,000+ factories, global furniture hub">
-              <circle cx="630" cy="815" r="16" class="map-pin-marker"/>
-              <text x="630" y="822" text-anchor="middle" style="font-size:14px;fill:white;font-weight:bold">6</text>
-              <text x="660" y="810" text-anchor="start" style="font-size:13px;fill:var(--dark);font-weight:600">Binh Duong</text>
+              <circle cx="571" cy="802" r="14" class="map-pin-marker"/>
+              <text x="571" y="807" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">6</text>
             </g>
 
+            <!-- Dong Nai: 10.95°N, 107.18°E → x≈633, y≈816 -->
             <g class="map-pin" id="pin7" data-city="Dong Nai" data-detail="Industrial zone cluster — 32 IZs, $40B cumulative FDI">
-              <circle cx="670" cy="850" r="16" class="map-pin-marker"/>
-              <text x="670" y="857" text-anchor="middle" style="font-size:14px;fill:white;font-weight:bold">7</text>
-              <text x="700" y="850" text-anchor="start" style="font-size:13px;fill:var(--dark);font-weight:600">Dong Nai</text>
+              <circle cx="633" cy="816" r="14" class="map-pin-marker"/>
+              <text x="633" y="821" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">7</text>
             </g>
 
-            <!-- Connecting line showing North-South corridor -->
-            <path d="M 620 220 Q 500 500, 600 780" stroke="var(--gold)" stroke-width="5" stroke-dasharray="15 10" fill="none" opacity="0.6"/>
-            <text x="470" y="500" style="font-family:'JetBrains Mono',monospace;font-size:14px;fill:var(--gold);font-weight:500" transform="rotate(-70 470 500)">Highway 1 corridor</text>
+            <!-- Highway 1 corridor - follows Vietnam's coastal shape from Hanoi to HCMC -->
+            <path d="M 490 200
+                     Q 520 300, 540 400
+                     Q 560 500, 580 600
+                     Q 590 700, 575 810"
+                  stroke="var(--gold)" stroke-width="4" stroke-dasharray="12 8" fill="none" opacity="0.5"/>
+            <text x="420" y="480" style="font-family:'JetBrains Mono',monospace;font-size:12px;fill:var(--gold);font-weight:500" transform="rotate(-75 420 480)">Highway 1 corridor</text>
           </svg>
         </div>
 
