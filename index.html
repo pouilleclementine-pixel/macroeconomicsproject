@@ -2248,7 +2248,7 @@
       <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;justify-content:center">
         <!-- Map Column -->
         <div style="flex:1 1 400px;max-width:500px;position:relative">
-          <svg class="vietnam-map-svg" viewBox="320 40 500 920" id="vietnamMap" style="width:100%;height:auto;min-height:600px">
+          <svg class="vietnam-map-svg" viewBox="280 40 540 920" id="vietnamMap" style="width:100%;height:auto;min-height:600px">
             <defs>
               <!-- Glow effect for pins -->
               <filter id="pinGlow" x="-50%" y="-50%" width="200%" height="200%">
@@ -2324,13 +2324,14 @@
               <text x="603" y="806" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">7</text>
             </g>
 
-            <!-- Highway 1 corridor - adjusted to match new pin positions -->
-            <path d="M 510 195
-                     Q 540 300, 560 400
-                     Q 570 500, 575 620
-                     Q 575 720, 560 800"
+            <!-- Highway 1 corridor - follows coastal route from Hanoi to HCMC -->
+            <path d="M 520 190
+                     Q 560 250, 580 320
+                     Q 620 420, 640 520
+                     Q 650 600, 630 680
+                     Q 600 750, 560 800"
                   stroke="var(--gold)" stroke-width="4" stroke-dasharray="12 8" fill="none" opacity="0.5"/>
-            <text x="440" y="500" style="font-family:'JetBrains Mono',monospace;font-size:12px;fill:var(--gold);font-weight:500" transform="rotate(-75 440 500)">Highway 1 corridor</text>
+            <text x="660" y="520" style="font-family:'JetBrains Mono',monospace;font-size:12px;fill:var(--gold);font-weight:500" transform="rotate(75 660 520)">Highway 1 corridor</text>
           </svg>
         </div>
 
