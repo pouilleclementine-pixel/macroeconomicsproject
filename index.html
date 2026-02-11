@@ -1154,11 +1154,15 @@
 
   .map-pin {
     cursor: pointer;
-    opacity: 0;
+    opacity: 1;
     transform-origin: center bottom;
   }
 
-  .map-pin.visible {
+  .map-pin.animate-in {
+    opacity: 0;
+  }
+
+  .map-pin.animate-in.visible {
     animation: dropBounce 0.6s ease forwards;
   }
 
