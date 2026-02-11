@@ -2270,38 +2270,38 @@
 
             <!-- Region highlight boxes - adjusted to match pin positions -->
             <!-- Red River Delta: covers Hanoi, Bac Ninh, Hai Phong, Thai Nguyen area -->
-            <rect x="480" y="150" width="140" height="90" rx="8" fill="rgba(218,37,29,0.08)" stroke="rgba(218,37,29,0.3)" stroke-width="2" stroke-dasharray="8 5"/>
+            <rect x="450" y="120" width="150" height="95" rx="8" fill="rgba(218,37,29,0.08)" stroke="rgba(218,37,29,0.3)" stroke-width="2" stroke-dasharray="8 5"/>
             <!-- Southeast Region: covers HCMC, Binh Duong, Dong Nai area -->
             <rect x="500" y="765" width="140" height="90" rx="8" fill="rgba(218,37,29,0.08)" stroke="rgba(218,37,29,0.3)" stroke-width="2" stroke-dasharray="8 5"/>
 
             <!-- Region labels -->
-            <text x="550" y="140" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:13px;fill:var(--red);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Red River Delta</text>
+            <text x="525" y="110" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:13px;fill:var(--red);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Red River Delta</text>
             <text x="570" y="875" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:13px;fill:var(--red);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Southeast Region</text>
 
-            <!-- Map Pins - Northern Cluster (adjusted: +50px right, +35px down based on arrow) -->
+            <!-- Map Pins - Northern Cluster (readjusted: moved back left and up) -->
             <!-- Bac Ninh - east of Hanoi -->
             <g class="map-pin" id="pin1" data-city="Bac Ninh" data-detail="Samsung HQ — $22.4B invested, 50% of global Samsung phones produced here">
-              <circle cx="540" cy="205" r="30" fill="url(#pulseGradient)" class="pulse-ring"/>
-              <circle cx="540" cy="205" r="16" class="map-pin-marker" filter="url(#pinGlow)"/>
-              <text x="540" y="210" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">1</text>
+              <circle cx="545" cy="180" r="30" fill="url(#pulseGradient)" class="pulse-ring"/>
+              <circle cx="545" cy="180" r="16" class="map-pin-marker" filter="url(#pinGlow)"/>
+              <text x="545" y="185" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">1</text>
             </g>
 
             <!-- Thai Nguyen - north of Hanoi -->
             <g class="map-pin" id="pin2" data-city="Thai Nguyen" data-detail="Samsung complex — Display manufacturing, component production">
-              <circle cx="500" cy="165" r="14" class="map-pin-marker"/>
-              <text x="500" y="170" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">2</text>
+              <circle cx="470" cy="140" r="14" class="map-pin-marker"/>
+              <text x="470" y="145" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">2</text>
             </g>
 
             <!-- Hai Phong - coastal, east of Bac Ninh -->
             <g class="map-pin" id="pin3" data-city="Hai Phong" data-detail="LG Display $5.65B + Lach Huyen deep-water port — Gateway for exports">
-              <circle cx="595" cy="220" r="14" class="map-pin-marker"/>
-              <text x="595" y="225" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">3</text>
+              <circle cx="580" cy="195" r="14" class="map-pin-marker"/>
+              <text x="580" y="200" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">3</text>
             </g>
 
-            <!-- Hanoi - where the arrow points -->
+            <!-- Hanoi - central position -->
             <g class="map-pin" id="pin4" data-city="Hanoi" data-detail="Foxconn, Luxshare — Apple supplier hub, AirPods & MacBook assembly">
-              <circle cx="505" cy="200" r="14" class="map-pin-marker"/>
-              <text x="505" y="205" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">4</text>
+              <circle cx="510" cy="175" r="14" class="map-pin-marker"/>
+              <text x="510" y="180" text-anchor="middle" style="font-size:12px;fill:white;font-weight:bold">4</text>
             </g>
 
             <!-- Map Pins - Southern Cluster (adjusted: -30px left, -15px up) -->
@@ -2325,9 +2325,9 @@
             </g>
 
             <!-- Highway 1 corridor - adjusted to match new pin positions -->
-            <path d="M 510 220
-                     Q 540 320, 560 420
-                     Q 570 520, 575 620
+            <path d="M 510 195
+                     Q 540 300, 560 400
+                     Q 570 500, 575 620
                      Q 575 720, 560 800"
                   stroke="var(--gold)" stroke-width="4" stroke-dasharray="12 8" fill="none" opacity="0.5"/>
             <text x="440" y="500" style="font-family:'JetBrains Mono',monospace;font-size:12px;fill:var(--gold);font-weight:500" transform="rotate(-75 440 500)">Highway 1 corridor</text>
