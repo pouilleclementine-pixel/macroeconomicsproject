@@ -1430,6 +1430,7 @@
   <div class="section-dot" data-section="4" data-tooltip="Road Ahead"></div>
   <div class="section-dot" data-section="5" data-tooltip="Challenges"></div>
   <div class="section-dot" data-section="6" data-tooltip="Conclusion"></div>
+  <div class="section-dot" data-section="7" data-tooltip="Simulator"></div>
 </nav>
 
 <!-- SECTION 1: HERO + HOOK -->
@@ -2492,6 +2493,1249 @@
   </div>
 </section>
 
+<!-- INTERACTIVE SIMULATOR -->
+<section class="section-full" data-section-index="7" style="background: linear-gradient(180deg, var(--dark) 0%, #2a2a2a 100%); padding: 4rem 0;" id="simulator-section">
+  <div class="reveal" style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="chapter-label" style="color: var(--gold);">Interactive Experience</span>
+      <h2 style="color: var(--cream);">Build Vietnam: A Policy Simulator</h2>
+      <p style="color: rgba(250,247,242,0.7); max-width: 600px; margin: 1rem auto 0;">
+        Can you guide Vietnam from $200 GDP per capita to high-income status? Make the policy choices that shaped a nation's economic destiny.
+      </p>
+    </div>
+
+    <!-- Simulator Container -->
+    <div id="simulator" class="simulator-container">
+
+      <!-- Start Screen -->
+      <div id="sim-start" class="sim-screen active">
+        <div class="sim-start-content">
+          <div class="sim-start-flag">&#9733;</div>
+          <h3>Can You Beat Vietnam?</h3>
+          <p>It's 1986. Vietnam is on the brink: 774% inflation, Soviet aid collapsing, people going hungry. Real Vietnam grew to $4,700 GDP per capita by 2024—impressive, but still in the middle-income trap danger zone ($4,000-12,000).</p>
+          <p style="color: var(--gold);">Vietnam made some brilliant moves and some costly mistakes. Can you do better? The demographic window closes by 2036.</p>
+          <div class="sim-objectives">
+            <div class="sim-objective">
+              <span class="sim-obj-icon">&#x1F3AF;</span>
+              <span>Escape the trap: reach $13,000+ by 2045</span>
+            </div>
+            <div class="sim-objective">
+              <span class="sim-obj-icon">&#x1F4C8;</span>
+              <span>Beat Vietnam's real trajectory</span>
+            </div>
+            <div class="sim-objective">
+              <span class="sim-obj-icon">&#x26A0;</span>
+              <span>Avoid Vietnam's policy mistakes</span>
+            </div>
+          </div>
+          <button id="sim-start-btn" class="sim-btn sim-btn-primary">Begin Simulation</button>
+        </div>
+      </div>
+
+      <!-- Game Screen -->
+      <div id="sim-game" class="sim-screen">
+        <!-- Dashboard -->
+        <div class="sim-dashboard">
+          <div class="sim-era-banner" id="sim-era-banner">
+            <span class="sim-era-label">Era I</span>
+            <span class="sim-era-name">Survival & Stabilization</span>
+            <span class="sim-era-years">1986-2000</span>
+          </div>
+
+          <div class="sim-metrics">
+            <div class="sim-metric">
+              <div class="sim-metric-value" id="sim-gdp">$200</div>
+              <div class="sim-metric-label">
+                GDP per Capita
+                <span class="sim-tooltip-trigger" data-tooltip="gdp">&#x24D8;</span>
+              </div>
+              <div class="sim-metric-bar">
+                <div class="sim-metric-fill" id="sim-gdp-bar" style="width: 1.5%"></div>
+                <div class="sim-metric-target" style="left: 100%"></div>
+              </div>
+            </div>
+            <div class="sim-metric">
+              <div class="sim-metric-value" id="sim-growth">2.8%</div>
+              <div class="sim-metric-label">
+                GDP Growth
+                <span class="sim-tooltip-trigger" data-tooltip="growth">&#x24D8;</span>
+              </div>
+              <div class="sim-metric-bar">
+                <div class="sim-metric-fill growth" id="sim-growth-bar" style="width: 28%"></div>
+              </div>
+            </div>
+            <div class="sim-metric">
+              <div class="sim-metric-value" id="sim-fdi">15%</div>
+              <div class="sim-metric-label">
+                FDI Linkage
+                <span class="sim-tooltip-trigger" data-tooltip="fdi">&#x24D8;</span>
+              </div>
+              <div class="sim-metric-bar">
+                <div class="sim-metric-fill fdi" id="sim-fdi-bar" style="width: 15%"></div>
+              </div>
+            </div>
+            <div class="sim-metric warning">
+              <div class="sim-metric-value" id="sim-trap">25%</div>
+              <div class="sim-metric-label">
+                Trap Risk
+                <span class="sim-tooltip-trigger" data-tooltip="trap">&#x24D8;</span>
+              </div>
+              <div class="sim-metric-bar trap">
+                <div class="sim-metric-fill trap" id="sim-trap-bar" style="width: 25%"></div>
+                <div class="sim-metric-danger" style="left: 80%"></div>
+              </div>
+            </div>
+
+            <!-- Tooltip popup (shared, positioned by JS) -->
+            <div class="sim-tooltip-popup" id="sim-tooltip-popup"></div>
+          </div>
+
+          <div class="sim-secondary-metrics">
+            <div class="sim-sec-metric">
+              <span class="sim-sec-label">Year</span>
+              <span class="sim-sec-value" id="sim-year">1986</span>
+            </div>
+            <div class="sim-sec-metric">
+              <span class="sim-sec-label">Stability</span>
+              <span class="sim-sec-value" id="sim-stability">60%</span>
+            </div>
+            <div class="sim-sec-metric">
+              <span class="sim-sec-label">Inequality</span>
+              <span class="sim-sec-value" id="sim-inequality">0.35</span>
+            </div>
+            <div class="sim-sec-metric">
+              <span class="sim-sec-label">Turn</span>
+              <span class="sim-sec-value"><span id="sim-turn">1</span>/15</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Timeline -->
+        <div class="sim-timeline-bar">
+          <div class="sim-timeline-track">
+            <div class="sim-timeline-progress" id="sim-timeline-progress"></div>
+            <div class="sim-timeline-markers" id="sim-timeline-markers">
+              <!-- Era markers injected by JS -->
+            </div>
+          </div>
+          <div class="sim-timeline-labels">
+            <span>1986</span>
+            <span>2000</span>
+            <span>2015</span>
+            <span>2045</span>
+          </div>
+        </div>
+
+        <!-- GDP Chart -->
+        <div class="sim-chart-container" id="sim-chart-container">
+          <div class="sim-chart-header">
+            <span class="sim-chart-title">GDP per Capita Trajectory</span>
+            <div class="sim-chart-legend">
+              <span class="sim-legend-item"><span class="sim-legend-dot player"></span>Your Path</span>
+              <span class="sim-legend-item"><span class="sim-legend-dot real"></span>Real Vietnam</span>
+            </div>
+          </div>
+          <div class="sim-chart" id="sim-chart">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="playerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:var(--gold);stop-opacity:0.3" />
+                  <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0" />
+                </linearGradient>
+              </defs>
+              <!-- Grid lines -->
+              <line x1="0" y1="37.5" x2="400" y2="37.5" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <line x1="0" y1="112.5" x2="400" y2="112.5" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <!-- Target line at $13k -->
+              <line x1="0" y1="37.5" x2="400" y2="37.5" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+              <!-- Real Vietnam path (static) - based on actual GDP per capita data -->
+              <!-- Years: 1986($200), 1989($250), 1992($280), 1995($320), 1998($420), 2001($550), 2004($900), 2007($1150), 2010($1400), 2013($1800), 2016($2200), 2020($2800), 2024($4700), projected to 2045 -->
+              <polyline id="sim-real-path" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="5,3"
+                points="0,148 20,147.5 41,147.2 61,146.8 81,145.8 102,144.5 122,141 142,138.5 163,136 183,132 203,128 237,122 258,103 285,98 312,82 352,45 400,37"/>
+              <!-- Current position marker (2024 @ ~$4,700) -->
+              <circle cx="258" cy="103" r="4" fill="rgba(255,255,255,0.6)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+              <text x="258" y="96" fill="rgba(255,255,255,0.5)" font-size="8" text-anchor="middle">2024</text>
+              <!-- Player path (dynamic) -->
+              <path id="sim-player-area" fill="url(#playerGradient)" d=""/>
+              <polyline id="sim-player-path" fill="none" stroke="var(--gold)" stroke-width="2.5" points="0,145"/>
+            </svg>
+            <div class="sim-chart-y-labels">
+              <span>$13k</span>
+              <span>$10k</span>
+              <span>$5k</span>
+              <span>$0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decision Area -->
+        <div class="sim-decision-area">
+          <div class="sim-situation" id="sim-situation">
+            <h4 id="sim-situation-title">The Collapse of Central Planning</h4>
+            <p id="sim-situation-desc">Agricultural cooperatives are failing. Farmers have no incentive to produce beyond quotas. Food shortages are spreading. You must decide how to reform the agricultural sector.</p>
+          </div>
+
+          <div class="sim-choices-header">
+            <span class="sim-choices-prompt">Choose your policy:</span>
+            <span class="sim-choices-hint">Click a card to decide</span>
+          </div>
+          <div class="sim-choices" id="sim-choices">
+            <!-- Choices will be injected here -->
+          </div>
+
+          <!-- History Reveal Panel (shown after choice) -->
+          <div class="sim-history-reveal" id="sim-history-reveal">
+            <div class="sim-history-header">
+              <span class="sim-history-icon">&#x1F4DC;</span>
+              <span class="sim-history-label">What Actually Happened</span>
+            </div>
+            <div class="sim-history-content">
+              <p id="sim-history-text"></p>
+              <div class="sim-history-comparison" id="sim-history-comparison">
+                <!-- Comparison stats injected here -->
+              </div>
+            </div>
+            <button class="sim-btn sim-btn-secondary" id="sim-history-continue">Continue to Next Turn</button>
+          </div>
+        </div>
+
+        <!-- Event Popup -->
+        <div class="sim-event-overlay" id="sim-event-overlay">
+          <div class="sim-event-popup" id="sim-event-popup">
+            <div class="sim-event-icon" id="sim-event-icon">&#x26A1;</div>
+            <h4 id="sim-event-title">Event Title</h4>
+            <p id="sim-event-desc">Event description goes here.</p>
+            <div class="sim-event-effects" id="sim-event-effects"></div>
+            <button class="sim-btn sim-btn-secondary" id="sim-event-close">Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Screen -->
+      <div id="sim-end" class="sim-screen">
+        <div class="sim-end-content">
+          <div class="sim-end-icon" id="sim-end-icon">&#9733;</div>
+          <h3 id="sim-end-title">Simulation Complete</h3>
+          <p id="sim-end-desc">Your results are in.</p>
+
+          <div class="sim-final-stats" id="sim-final-stats">
+            <!-- Final stats injected here -->
+          </div>
+
+          <div class="sim-end-analysis" id="sim-end-analysis">
+            <!-- Analysis injected here -->
+          </div>
+
+          <div class="sim-scorecard" id="sim-scorecard">
+            <!-- Decision-by-decision scorecard injected here -->
+          </div>
+
+          <button id="sim-restart-btn" class="sim-btn sim-btn-primary">Try Again</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* Simulator Styles */
+.simulator-container {
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  min-height: 600px;
+  position: relative;
+}
+
+.sim-screen {
+  display: none;
+  padding: 2rem;
+}
+
+.sim-screen.active {
+  display: block;
+}
+
+/* Start Screen */
+.sim-start-content {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.sim-start-flag {
+  font-size: 4rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.sim-start-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.sim-start-content p {
+  color: rgba(250,247,242,0.75);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.sim-objectives {
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.sim-objective {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(250,247,242,0.85);
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+}
+
+.sim-obj-icon {
+  font-size: 1.2rem;
+}
+
+/* Buttons */
+.sim-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 0.85rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.sim-btn-primary {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+.sim-btn-primary:hover {
+  background: #e5bc3f;
+  transform: translateY(-2px);
+}
+
+.sim-btn-secondary {
+  background: rgba(255,255,255,0.1);
+  color: var(--cream);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.sim-btn-secondary:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Dashboard */
+.sim-dashboard {
+  background: linear-gradient(135deg, #252525 0%, #1a1a1a 100%);
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sim-era-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sim-era-label {
+  background: var(--red);
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.sim-era-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cream);
+  flex: 1;
+}
+
+.sim-era-years {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: rgba(250,247,242,0.5);
+}
+
+.sim-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .sim-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.sim-metric {
+  background: rgba(255,255,255,0.03);
+  border-radius: 6px;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.sim-metric.warning .sim-metric-value {
+  color: var(--warning);
+}
+
+.sim-metric-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.sim-metric-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(250,247,242,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+/* Tooltip styles */
+.sim-tooltip-trigger {
+  cursor: help;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.sim-tooltip-trigger:hover {
+  opacity: 1;
+}
+
+.sim-tooltip-popup {
+  position: fixed;
+  background: rgba(20, 18, 15, 0.98);
+  border: 1px solid rgba(212,175,55,0.5);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  width: 260px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(250,247,242,0.95);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  pointer-events: none;
+  text-align: left;
+}
+
+.sim-tooltip-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sim-tooltip-popup::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(212,175,55,0.5);
+}
+
+.sim-tooltip-popup strong {
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.sim-metric-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  position: relative;
+  overflow: visible;
+}
+
+.sim-metric-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.sim-metric-fill.growth {
+  background: var(--accent-green);
+}
+
+.sim-metric-fill.fdi {
+  background: var(--accent-blue);
+}
+
+.sim-metric-fill.trap {
+  background: var(--warning);
+}
+
+.sim-metric-target,
+.sim-metric-danger {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 10px;
+  background: var(--gold);
+  border-radius: 1px;
+}
+
+.sim-metric-danger {
+  background: var(--red);
+}
+
+.sim-secondary-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.sim-sec-metric {
+  text-align: center;
+}
+
+.sim-sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(250,247,242,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.sim-sec-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--cream);
+}
+
+/* Decision Area */
+.sim-decision-area {
+  padding: 1.5rem 2rem 2rem;
+}
+
+.sim-situation {
+  background: rgba(218,37,29,0.08);
+  border-left: 3px solid var(--red);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.sim-situation h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.sim-situation p {
+  color: rgba(250,247,242,0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.sim-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 700px) {
+  .sim-choices {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Choices header */
+.sim-choices-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.25rem;
+}
+
+.sim-choices-prompt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.sim-choices-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(250,247,242,0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sim-choices-hint::before {
+  content: '👇';
+  font-size: 0.85rem;
+}
+
+.sim-choice {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+  position: relative;
+}
+
+.sim-choice::after {
+  content: 'SELECT →';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(212,175,55,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.25s ease;
+}
+
+.sim-choice:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(212,175,55,0.15);
+}
+
+.sim-choice:hover::after {
+  color: var(--gold);
+}
+
+.sim-choice-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.sim-choice-desc {
+  font-size: 0.85rem;
+  color: rgba(250,247,242,0.6);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.sim-choice-effects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.sim-effect {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+.sim-effect.positive {
+  background: rgba(45,106,79,0.25);
+  color: #6fcf97;
+}
+
+.sim-effect.negative {
+  background: rgba(218,37,29,0.2);
+  color: #eb8585;
+}
+
+.sim-effect.neutral {
+  background: rgba(255,255,255,0.1);
+  color: rgba(250,247,242,0.7);
+}
+
+/* Event Overlay */
+.sim-event-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.sim-event-overlay.active {
+  display: flex;
+}
+
+.sim-event-popup {
+  background: #252525;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 450px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.1);
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sim-event-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.sim-event-popup h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.sim-event-popup p {
+  color: rgba(250,247,242,0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.sim-event-effects {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* End Screen */
+.sim-end-content {
+  text-align: center;
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.sim-end-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.sim-end-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.sim-end-content > p {
+  color: rgba(250,247,242,0.7);
+  margin-bottom: 1.5rem;
+}
+
+.sim-final-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sim-final-stat {
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.sim-final-stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.sim-final-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(250,247,242,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+.sim-end-analysis {
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.sim-end-analysis h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.sim-end-analysis p {
+  color: rgba(250,247,242,0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Scorecard Styles */
+.sim-scorecard {
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.sim-scorecard h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sim-scorecard-summary {
+  font-size: 0.75rem;
+  color: rgba(250,247,242,0.6);
+  font-family: var(--font-sans);
+}
+
+.sim-scorecard-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  gap: 0.75rem;
+}
+
+.sim-scorecard-row:last-child {
+  border-bottom: none;
+}
+
+.sim-scorecard-turn {
+  font-size: 0.65rem;
+  color: rgba(250,247,242,0.4);
+  min-width: 2rem;
+  padding-top: 0.15rem;
+}
+
+.sim-scorecard-verdict {
+  font-size: 0.9rem;
+  min-width: 1.5rem;
+}
+
+.sim-scorecard-content {
+  flex: 1;
+}
+
+.sim-scorecard-title {
+  font-size: 0.8rem;
+  color: rgba(250,247,242,0.9);
+  font-weight: 500;
+}
+
+.sim-scorecard-match {
+  font-size: 0.7rem;
+  margin-top: 0.15rem;
+}
+
+.sim-scorecard-match.same {
+  color: #6fcf97;
+}
+
+.sim-scorecard-match.different {
+  color: var(--gold);
+}
+
+.sim-scorecard-match.better {
+  color: #3498db;
+}
+
+.sim-outcome-win {
+  color: #6fcf97;
+}
+
+.sim-outcome-lose {
+  color: #eb8585;
+}
+
+/* Progress Timeline */
+.sim-timeline-bar {
+  padding: 0 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sim-timeline-track {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  position: relative;
+  overflow: visible;
+}
+
+.sim-timeline-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.sim-timeline-progress::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: -3px;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(242,201,76,0.5);
+}
+
+.sim-timeline-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sim-timeline-marker {
+  position: absolute;
+  top: -8px;
+  width: 2px;
+  height: 22px;
+  background: rgba(255,255,255,0.3);
+}
+
+.sim-timeline-marker.era {
+  background: var(--red);
+  width: 3px;
+}
+
+.sim-timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(250,247,242,0.85);
+}
+
+/* GDP Chart */
+.sim-chart-container {
+  background: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin: 0 1.5rem 1rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.sim-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.sim-chart-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(250,247,242,0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sim-chart-legend {
+  display: flex;
+  gap: 1rem;
+}
+
+.sim-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(250,247,242,0.9);
+}
+
+.sim-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.sim-legend-dot.player {
+  background: var(--gold);
+}
+
+.sim-legend-dot.real {
+  background: rgba(255,255,255,0.7);
+  border: 1px dashed rgba(255,255,255,0.5);
+}
+
+.sim-chart {
+  position: relative;
+  height: 150px;
+}
+
+.sim-chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sim-chart-y-labels {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(250,247,242,0.8);
+  pointer-events: none;
+}
+
+/* History Reveal Panel */
+.sim-history-reveal {
+  display: none;
+  background: linear-gradient(135deg, rgba(45,106,79,0.15) 0%, rgba(27,73,101,0.15) 100%);
+  border: 1px solid rgba(111,207,151,0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  animation: slideUp 0.4s ease;
+}
+
+.sim-history-reveal.active {
+  display: block;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sim-history-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.sim-history-icon {
+  font-size: 1.3rem;
+}
+
+.sim-history-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #6fcf97;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.sim-history-content p {
+  color: rgba(250,247,242,0.85);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.sim-history-comparison {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .sim-history-comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sim-comparison-stat {
+  background: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.sim-comparison-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(250,247,242,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.sim-comparison-values {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sim-comparison-yours {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.sim-comparison-vs {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(250,247,242,0.4);
+}
+
+.sim-comparison-real {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Branching indicator */
+.sim-branch-warning {
+  background: rgba(230,126,34,0.15);
+  border: 1px solid rgba(230,126,34,0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.sim-branch-warning-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.sim-branch-warning-text {
+  font-size: 0.85rem;
+  color: rgba(250,247,242,0.8);
+  line-height: 1.5;
+}
+
+.sim-branch-warning-text strong {
+  color: var(--warning);
+}
+
+/* Locked choice styling */
+.sim-choice.locked {
+  opacity: 0.5;
+  pointer-events: none;
+  position: relative;
+}
+
+.sim-choice.locked::after {
+  content: '🔒 Locked by previous choices';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(250,247,242,0.5);
+}
+
+.sim-choice.boosted {
+  border-color: rgba(111,207,151,0.5);
+  background: rgba(45,106,79,0.1);
+}
+
+.sim-choice.boosted::after {
+  content: '⚡ BOOSTED';
+  color: #6fcf97;
+}
+
+.sim-choice.boosted:hover::after {
+  color: #6fcf97;
+}
+</style>
+
 <!-- SOURCES -->
 <section class="section" style="padding-top: 1rem;">
   <div class="reveal">
@@ -3274,6 +4518,1319 @@
       chartTooltip.classList.remove('visible');
     });
   });
+
+  // ==========================================
+  // BUILD VIETNAM SIMULATOR
+  // ==========================================
+  (function() {
+    // Game State
+    const state = {
+      year: 1986,
+      turn: 1,
+      maxTurns: 15,
+      era: 1,
+      gdpPerCapita: 200,
+      gdpGrowth: 2.8,
+      fdiLinkage: 15,
+      trapRisk: 25,
+      stability: 60,
+      inequality: 0.35,
+      choices: [],
+      gdpHistory: [{ year: 1986, gdp: 200 }],
+      flags: {} // For branching consequences
+    };
+
+    // Real Vietnam GDP per capita data (approximate, for comparison)
+    const realVietnamData = [
+      { year: 1986, gdp: 200 },
+      { year: 1989, gdp: 250 },
+      { year: 1992, gdp: 350 },
+      { year: 1995, gdp: 500 },
+      { year: 1998, gdp: 650 },
+      { year: 2001, gdp: 750 },
+      { year: 2004, gdp: 900 },
+      { year: 2007, gdp: 1200 },
+      { year: 2010, gdp: 1600 },
+      { year: 2013, gdp: 2000 },
+      { year: 2016, gdp: 2500 },
+      { year: 2020, gdp: 3200 },
+      { year: 2024, gdp: 4700 },
+      { year: 2030, gdp: 6500 },
+      { year: 2040, gdp: 9000 },
+      { year: 2045, gdp: 10500 }
+    ];
+
+    // Era definitions
+    const eras = [
+      { id: 1, name: "Survival & Stabilization", years: "1986-2000", label: "Era I", turns: [1, 5] },
+      { id: 2, name: "Integration & Growth", years: "2001-2015", label: "Era II", turns: [6, 10] },
+      { id: 3, name: "Quality & Escape", years: "2016-2045", label: "Era III", turns: [11, 15] }
+    ];
+
+    // Policy decisions by turn - with historical context and branching
+    const decisions = [
+      // ERA I: Survival (Turns 1-5)
+      {
+        turn: 1,
+        title: "The Collapse of Central Planning",
+        desc: "Agricultural cooperatives are failing. Farmers have no incentive to produce beyond quotas. Food shortages are spreading. You must decide how to reform the agricultural sector.",
+        history: {
+          real: "Vietnam chose Resolution 10 (Khoán 10) in 1988, giving households land-use rights. The result was dramatic: Vietnam transformed from a rice importer in 1987 to the world's 3rd-largest rice exporter by 1989. However, the dismantling of cooperatives also collapsed rural social services.",
+          realChoice: 0,
+          realGdp: 250,
+          source: "UCL Economic Miracle Study",
+          verdict: "success",
+          verdictText: "World Bank considers this a pivotal reform that enabled Vietnam's growth miracle."
+        },
+        choices: [
+          {
+            id: "decollectivize",
+            title: "Resolution 10: De-collectivize Agriculture",
+            desc: "Give households land-use rights and let them sell surplus at market prices. Dismantle the cooperative system.",
+            effects: { gdpGrowth: 2.5, stability: 10, trapRisk: -5, inequality: 0.03 },
+            tags: ["+2.5% Growth", "+Stability", "-Trap Risk", "+Inequality"],
+            setFlags: { agrarian_reform: "radical" }
+          },
+          {
+            id: "gradual_agri",
+            title: "Gradual Reform with Safety Nets",
+            desc: "Slowly transition while maintaining cooperative social services. Less disruption but slower gains.",
+            effects: { gdpGrowth: 1.0, stability: 5, trapRisk: 0, inequality: 0.01 },
+            tags: ["+1% Growth", "+Stability", "Slower Impact"],
+            setFlags: { agrarian_reform: "gradual" },
+            altHistory: "A gradual approach resembles what China attempted in the early 1980s before fully committing to household responsibility. Economists estimate Vietnam would have seen slower but steadier growth (~$200-220 GDP per capita by 1991 vs. the $250 achieved), preserving rural healthcare and education systems. However, the food crisis might have persisted 2-3 years longer, risking political instability."
+          }
+        ]
+      },
+      {
+        turn: 2,
+        title: "Opening to Foreign Capital",
+        desc: "Vietnam desperately needs investment capital. You can pass a liberal Foreign Investment Law to attract FDI, but terms matter.",
+        history: {
+          real: "Vietnam passed the 1987 Foreign Investment Law—exceptionally liberal for a communist state, allowing 100% foreign ownership and guaranteeing against nationalization. This attracted the first wave of Taiwanese and Hong Kong capital for textiles and footwear. However, tax holidays and land preferences inadvertently disadvantaged the nascent domestic private sector, planting seeds of the 'dual economy' problem.",
+          realChoice: 0,
+          realGdp: 280,
+          source: "ERIA FDI Study",
+          verdict: "mixed",
+          verdictText: "Attracted massive FDI (success) but created an 'enclave economy' with weak local linkages—today FDI firms still account for 74% of exports with minimal technology transfer."
+        },
+        choices: [
+          {
+            id: "aggressive_fdi",
+            title: "Aggressive FDI Incentives",
+            desc: "100% foreign ownership, long tax holidays, profit repatriation guarantees. Maximum attraction.",
+            effects: { gdpGrowth: 2.0, fdiLinkage: -8, trapRisk: 5, stability: 5 },
+            tags: ["+2% Growth", "-FDI Linkage", "+Trap Risk"],
+            setFlags: { fdi_approach: "open" }
+          },
+          {
+            id: "conditional_fdi",
+            title: "Conditional FDI with Local Content Rules",
+            desc: "Require joint ventures and local supplier development. Slower start but stronger linkages.",
+            effects: { gdpGrowth: 0.8, fdiLinkage: 5, trapRisk: -5, stability: 0 },
+            tags: ["+0.8% Growth", "+FDI Linkage", "-Trap Risk"],
+            setFlags: { fdi_approach: "conditional" },
+            altHistory: "This approach mirrors what Malaysia and Indonesia tried with mixed results. Studies suggest Vietnam might have attracted 30-40% less FDI initially (~$240-260 GDP per capita vs. $280), but with stronger technology transfer and local supplier networks. The Moran study found conditional FDI often yields 2-3 year technology lag initially but creates deeper domestic capabilities by year 10-15."
+          }
+        ]
+      },
+      {
+        turn: 3,
+        title: "Macroeconomic Stabilization",
+        desc: "Inflation hit 774% last year. The currency is unstable. You need to restore economic order.",
+        history: {
+          real: "Vietnam pursued aggressive stabilization: tightening fiscal/monetary policy, unifying exchange rates, and phasing out SOE subsidies. Inflation fell from 774% (1986) to single digits by the early 1990s. This painful medicine created the macro stability that enabled FDI to flow.",
+          realChoice: 0,
+          realGdp: 320,
+          source: "World Bank Short History",
+          verdict: "success",
+          verdictText: "IMF praises the bold reforms for achieving stability without the 'transformational recession' that hit Eastern Europe."
+        },
+        choices: [
+          {
+            id: "shock_therapy",
+            title: "Shock Therapy: Tight Money",
+            desc: "Dramatic interest rate hikes, unified exchange rate, end SOE subsidies. Painful but decisive.",
+            effects: { gdpGrowth: -1.5, stability: 15, trapRisk: -8, inequality: 0.02 },
+            tags: ["-1.5% Growth", "++Stability", "--Trap Risk"],
+            setFlags: { macro_approach: "orthodox" }
+          },
+          {
+            id: "gradual_tightening",
+            title: "Gradual Tightening",
+            desc: "Slowly reduce inflation while maintaining some support for state enterprises.",
+            effects: { gdpGrowth: 0.5, stability: 5, trapRisk: 3, inequality: 0 },
+            tags: ["+0.5% Growth", "+Stability", "+Trap Risk"],
+            setFlags: { macro_approach: "gradual" },
+            altHistory: "Argentina and Brazil tried gradual stabilization in similar situations, often leading to prolonged inflation and delayed FDI. The IMF estimates that without decisive action, Vietnam's hyperinflation could have persisted until the mid-1990s, potentially leaving GDP per capita 15-20% lower (~$270-280 vs. $320) by 1994 and triggering social unrest as seen in other transition economies."
+          }
+        ]
+      },
+      {
+        turn: 4,
+        title: "US Normalization",
+        desc: "The embargo is lifting. Normalizing relations with the US could open massive markets for Vietnamese exports.",
+        history: {
+          real: "Vietnam pursued full normalization, accepting US conditions on POW/MIA cooperation. The embargo lifted in 1994, diplomatic relations established in 1995, and the Bilateral Trade Agreement (BTA) signed in 2001. This opened access to the world's largest consumer market and triggered a massive export boom.",
+          realChoice: 0,
+          realGdp: 420,
+          source: "US Embassy Vietnam",
+          verdict: "success",
+          verdictText: "Trade with the US grew from $1.5B (2001) to $150B+ by 2024. Economists consider this a major diplomatic and economic win."
+        },
+        choices: [
+          {
+            id: "full_us",
+            title: "Pursue Full Normalization",
+            desc: "Accept US conditions on POW/MIA issues, begin trade negotiations. Political risk but economic opportunity.",
+            effects: { gdpGrowth: 1.5, fdiLinkage: 3, stability: -5, trapRisk: -5 },
+            tags: ["+1.5% Growth", "+Linkage", "-Stability", "-Trap Risk"],
+            setFlags: { us_relations: "full" }
+          },
+          {
+            id: "cautious_us",
+            title: "Cautious Engagement",
+            desc: "Limited diplomatic progress while maintaining sovereignty concerns. Slower economic benefits.",
+            effects: { gdpGrowth: 0.5, fdiLinkage: 0, stability: 5, trapRisk: 2 },
+            tags: ["+0.5% Growth", "+Stability"],
+            setFlags: { us_relations: "cautious" },
+            altHistory: "Cuba maintained this stance and remains under embargo today. Myanmar's isolation until the 2010s shows the cost: lost decades of FDI and export opportunities. Fukase & Martin's World Bank model estimates that without MFN access, Vietnam's exports would have been halved and GDP per capita 20-30% lower (~$330-380 vs. $420 by 1998)."
+          }
+        ]
+      },
+      {
+        turn: 5,
+        title: "Infrastructure Strategy",
+        desc: "Where should Vietnam invest its limited infrastructure budget?",
+        history: {
+          real: "Vietnam invested heavily (~3.6% of GDP) in coastal roads and ports, prioritizing export corridors connecting Hanoi/HCMC to industrial zones. Studies suggest this delivered large GDP gains but an alternative inland-focused allocation could have generated 48-72% higher welfare, with less climate vulnerability.",
+          realChoice: 0,
+          realGdp: 550,
+          source: "Yale Economics / VoxDev",
+          verdict: "mixed",
+          verdictText: "Coastal focus boosted exports but Yale economists found inland investment could have yielded 48-72% higher welfare gains with better climate resilience."
+        },
+        choices: [
+          {
+            id: "coastal_infra",
+            title: "Coastal Export Corridors",
+            desc: "Prioritize ports, roads to industrial zones, and connections to Hanoi/HCMC. Maximum export efficiency.",
+            effects: { gdpGrowth: 1.8, inequality: 0.04, trapRisk: 3, fdiLinkage: -3 },
+            tags: ["+1.8% Growth", "+Inequality", "Regional Imbalance"],
+            setFlags: { infra_focus: "coastal" }
+          },
+          {
+            id: "balanced_infra",
+            title: "Balanced Regional Development",
+            desc: "Invest in inland connectivity and rural infrastructure. More inclusive but slower export growth.",
+            effects: { gdpGrowth: 0.8, inequality: -0.02, trapRisk: -3, stability: 5 },
+            tags: ["+0.8% Growth", "-Inequality", "-Trap Risk"],
+            setFlags: { infra_focus: "balanced" },
+            altHistory: "Yale/VoxDev study found that inland-focused infrastructure could have generated 48-72% higher welfare gains (~$580-620 GDP-equivalent welfare vs. $550 achieved). This translates to roughly 1-1.5 percentage points higher long-run growth, with better climate resilience. However, short-term export competitiveness might have suffered."
+          }
+        ]
+      },
+      // ERA II: Integration (Turns 6-10)
+      {
+        turn: 6,
+        title: "WTO Accession Negotiations",
+        desc: "Vietnam has the opportunity to join the WTO. This requires significant domestic reforms and opening service sectors.",
+        history: {
+          real: "Vietnam pursued full WTO accession in 2007, accepting conditions to lower tariffs, open banking/telecom, and reduce SOE subsidies. Reformers used international commitments as leverage against conservative factions. FDI surged 70% in 2007, hitting $64B registered in 2008.",
+          realChoice: 0,
+          realGdp: 900,
+          source: "WTO Trade Policy Review",
+          verdict: "success",
+          verdictText: "WTO accession exceeded model predictions. Productivity gains in manufacturing reached 3.7% annually. Strong consensus among economists."
+        },
+        branchEffects: {
+          condition: (flags) => flags.us_relations === "cautious",
+          warning: "Your cautious approach to US relations makes WTO accession harder. Full membership benefits reduced.",
+          modifier: { gdpGrowth: -0.5 }
+        },
+        choices: [
+          {
+            id: "full_wto",
+            title: "Full WTO Accession",
+            desc: "Accept all conditions: lower tariffs, open banking/telecom, reform SOEs. Lock in reforms.",
+            effects: { gdpGrowth: 2.5, fdiLinkage: -5, trapRisk: -8, stability: -5 },
+            tags: ["+2.5% Growth", "-FDI Linkage", "--Trap Risk"],
+            setFlags: { wto: "full" }
+          },
+          {
+            id: "limited_wto",
+            title: "Negotiate Extended Transitions",
+            desc: "Seek longer phase-in periods for sensitive sectors. Protect domestic firms longer.",
+            effects: { gdpGrowth: 1.2, fdiLinkage: 3, trapRisk: 5, stability: 5 },
+            tags: ["+1.2% Growth", "+Linkage", "+Trap Risk"],
+            setFlags: { wto: "limited" },
+            altHistory: "Indonesia and Philippines took this more cautious WTO approach. The CEPII study estimates Vietnam would have foregone ~1% of GDP welfare gains annually. Combined with missing the 2007-08 FDI surge (which hit $64B registered), GDP per capita could have been ~$750-800 vs. the $900 achieved by 2007."
+          }
+        ]
+      },
+      {
+        turn: 7,
+        title: "The SOE Question: Vinashin",
+        desc: "State shipbuilder Vinashin wants to expand into finance and real estate with government backing. The chaebol model beckons.",
+        history: {
+          real: "Vietnam backed Vinashin with sovereign credit ($750M bond) and allowed diversification. It was a disaster: corruption, mismanagement, and a $4.5B default in 2010 paralyzed the banking system. This is Vietnam's cautionary tale about state capitalism without accountability.",
+          realChoice: 0,
+          realGdp: 1150,
+          source: "World Bank Vietnam Reports",
+          verdict: "mistake",
+          verdictText: "IMF and Moody's flag this as a major policy error. The $4.5B default damaged sovereign credit ratings and required years of banking sector cleanup."
+        },
+        branchEffects: {
+          condition: (flags) => flags.macro_approach === "gradual",
+          warning: "Your gradual stabilization left SOEs with soft budget expectations. Vinashin is even more likely to take excessive risks.",
+          modifier: { trapRisk: 5 }
+        },
+        choices: [
+          {
+            id: "back_soe",
+            title: "Back the National Champion",
+            desc: "Provide sovereign credit and let Vinashin diversify. Build a Korean-style conglomerate.",
+            effects: { gdpGrowth: 1.5, trapRisk: 12, stability: -8, fdiLinkage: -5 },
+            tags: ["+1.5% Growth", "++Trap Risk", "-Stability", "Crisis Risk"],
+            setFlags: { soe_strategy: "champion" }
+          },
+          {
+            id: "hard_budget",
+            title: "Hard Budget Constraints",
+            desc: "Force SOEs to compete without soft loans. Allow failures. Politically painful.",
+            effects: { gdpGrowth: -0.5, trapRisk: -10, stability: -5, fdiLinkage: 5 },
+            tags: ["-0.5% Growth", "--Trap Risk", "+Linkage"],
+            setFlags: { soe_strategy: "market" },
+            altHistory: "This is what reformers advocated but lost. Singapore and Taiwan enforced hard budget constraints on state firms. Studies suggest Vietnam could have avoided the $4.5B Vinashin debacle, banking crisis, and inflation spike. By avoiding these, GDP per capita could have been ~$1,300-1,400 by 2010 vs. $1,150 achieved—and without years of painful cleanup."
+          }
+        ]
+      },
+      {
+        turn: 8,
+        title: "The Credit Boom",
+        desc: "FDI is flooding in post-WTO. Banks are lending aggressively. Real estate prices are surging. What do you do?",
+        history: {
+          real: "Vietnam let it ride. Credit grew >30% per year. Combined with the Vinashin debacle and a 2009 stimulus, inflation hit 23% (2008) and 18.6% (2011). Real estate crashed, NPLs reached ~15% (unofficially), and years were spent cleaning up bank balance sheets via VAMC.",
+          realChoice: 0,
+          realGdp: 1400,
+          source: "IMF Article IV Reports",
+          verdict: "mistake",
+          verdictText: "World Bank/IMF cite overly expansionary policy fueling 35% credit growth and 20%+ inflation. Consensus among experts: this was overheating that cost years of cleanup."
+        },
+        branchEffects: {
+          condition: (flags) => flags.soe_strategy === "champion",
+          warning: "Your SOE backing has cross-ownership with banks. Letting the boom ride is especially dangerous.",
+          modifier: { trapRisk: 5, stability: -5 }
+        },
+        choices: [
+          {
+            id: "let_ride",
+            title: "Let It Ride",
+            desc: "High growth is good. Don't interfere with the market momentum. Maximize the boom.",
+            effects: { gdpGrowth: 2.0, trapRisk: 10, stability: -10, inequality: 0.03 },
+            tags: ["+2% Growth", "++Trap Risk", "--Stability", "Bubble Risk"],
+            setFlags: { credit_policy: "loose" }
+          },
+          {
+            id: "tighten",
+            title: "Macroprudential Tightening",
+            desc: "Raise reserve requirements, limit real estate lending, sterilize capital flows.",
+            effects: { gdpGrowth: 0.0, trapRisk: -5, stability: 8, inequality: -0.01 },
+            tags: ["0% Growth Impact", "-Trap Risk", "+Stability"],
+            setFlags: { credit_policy: "tight" },
+            altHistory: "China implemented strict credit controls in similar overheating situations. The IMF notes that macroprudential tightening could have prevented the 23% inflation spike and real estate crash. Peak growth would have been lower (~6-7% vs 8.5%) but the crash avoided. By 2012, GDP per capita could have been ~$1,500-1,600 vs $1,400 achieved, with healthier banks."
+          }
+        ]
+      },
+      {
+        turn: 9,
+        title: "Human Capital Investment",
+        desc: "Vietnam's PISA scores are strong, but higher education and vocational training lag. Where to invest?",
+        history: {
+          real: "Vietnam maintained its basic education focus. While K-12 outcomes rival OECD countries, only ~26% of the workforce has formal training/degrees. The vocational system remains fragmented and disconnected from industry needs—a key bottleneck for moving up value chains.",
+          realChoice: 1,
+          realGdp: 1800,
+          source: "OECD Economic Survey 2025",
+          verdict: "mixed",
+          verdictText: "Basic education success (PISA scores rival rich countries), but delayed tertiary investment created a skills bottleneck—now a binding constraint for high-tech industries."
+        },
+        branchEffects: {
+          condition: (flags) => flags.fdi_approach === "open",
+          warning: "Your aggressive FDI incentives created an assembly economy. Without skilled workers, upgrading is impossible.",
+          boost: 1,
+          boostText: "Education investment is extra valuable for breaking out of assembly"
+        },
+        choices: [
+          {
+            id: "tertiary_push",
+            title: "Expand Tertiary & Vocational",
+            desc: "Major investment in universities and technical training. Prepare for industrial upgrading.",
+            effects: { gdpGrowth: -0.3, trapRisk: -12, fdiLinkage: 8, inequality: 0.02 },
+            tags: ["Short-term Cost", "--Trap Risk", "++Linkage", "Long-term Gain"],
+            setFlags: { education: "upgraded" },
+            altHistory: "South Korea invested heavily in tertiary education during its middle-income phase, reaching 70%+ university enrollment. Returns to tertiary education in Vietnam are 15-20% per year of schooling. CSIRO modeling suggests this path could boost TFP contribution from 30% to 40%+ of growth, potentially adding 0.5-1% to annual GDP growth long-term."
+          },
+          {
+            id: "basic_education",
+            title: "Maintain Basic Education Focus",
+            desc: "Keep emphasizing primary/secondary. Sufficient for current assembly-based model.",
+            effects: { gdpGrowth: 0.5, trapRisk: 5, fdiLinkage: -3, inequality: -0.01 },
+            tags: ["+0.5% Growth", "+Trap Risk", "-Linkage"],
+            setFlags: { education: "basic" }
+          }
+        ]
+      },
+      {
+        turn: 10,
+        title: "The Formosa Environmental Crisis",
+        desc: "A Taiwanese steel plant has discharged toxic waste, killing fish across four provinces. Mass protests erupt.",
+        history: {
+          real: "Vietnam took a mixed approach: extracted a $500M settlement from Formosa and enacted some new regulations, but avoided a broader crackdown on polluting FDI. The 'I Choose Fish' protests marked a turning point in environmental awareness but fundamental enforcement gaps remain.",
+          realChoice: 1,
+          realGdp: 2200,
+          source: "Various news sources, 2016",
+          verdict: "mistake",
+          verdictText: "Government response criticized as inadequate. Transparency lacking, activists arrested. Economists cite weak enforcement as emblematic of 'growth at all costs' mentality."
+        },
+        choices: [
+          {
+            id: "strict_env",
+            title: "Strict Environmental Enforcement",
+            desc: "Heavy fines, strict new regulations, shut down violators. Signal that pollution has costs.",
+            effects: { gdpGrowth: -0.8, trapRisk: -8, stability: 10, fdiLinkage: 5 },
+            tags: ["-0.8% Growth", "-Trap Risk", "+Stability", "Green Signal"],
+            setFlags: { environment: "strict" },
+            altHistory: "China's strict enforcement after major pollution scandals attracted higher-quality FDI seeking stable regulatory environments. Studies show this shifts FDI composition toward cleaner, higher-value projects. Short-term GDP might be 0.5-1% lower, but long-run welfare-equivalent GDP could be higher due to avoided environmental/health costs."
+          },
+          {
+            id: "limited_env",
+            title: "Limited Response",
+            desc: "Handle this case quietly. Maintain friendly FDI environment. Avoid scaring investors.",
+            effects: { gdpGrowth: 0.3, trapRisk: 5, stability: -8, fdiLinkage: -3 },
+            tags: ["+0.3% Growth", "+Trap Risk", "--Stability", "Social Risk"],
+            setFlags: { environment: "weak" }
+          }
+        ]
+      },
+      // ERA III: Escape (Turns 11-15)
+      {
+        turn: 11,
+        title: "Deep FTAs: CPTPP & EVFTA",
+        desc: "Vietnam can join comprehensive trade agreements with strict labor/environment rules and deep market access.",
+        history: {
+          real: "Vietnam signed both CPTPP (2018) and EVFTA (2020), accepting labor/environment chapters and SOE disciplines in exchange for deep market access. These 'external anchors' helped reformers push through domestic changes that would otherwise face internal resistance.",
+          realChoice: 0,
+          realGdp: 2800,
+          source: "WTO/CPTPP Documentation",
+          verdict: "success",
+          verdictText: "Studies show significant trade boosts. EVFTA especially positive. Strong consensus among economists that deep FTAs locked in beneficial reforms."
+        },
+        branchEffects: {
+          condition: (flags) => flags.environment === "weak",
+          warning: "Your weak environmental enforcement makes EVFTA compliance harder. EU may impose non-tariff barriers.",
+          modifier: { gdpGrowth: -0.3 }
+        },
+        choices: [
+          {
+            id: "deep_ftas",
+            title: "Sign Deep FTAs",
+            desc: "Accept labor reform requirements, SOE disciplines, and competition rules for full market access.",
+            effects: { gdpGrowth: 1.5, trapRisk: -10, fdiLinkage: 5, stability: -3 },
+            tags: ["+1.5% Growth", "--Trap Risk", "+Linkage"],
+            setFlags: { trade: "deep" }
+          },
+          {
+            id: "selective_ftas",
+            title: "Selective Participation",
+            desc: "Negotiate exceptions for sensitive areas. Maintain more policy flexibility.",
+            effects: { gdpGrowth: 0.8, trapRisk: 3, fdiLinkage: -2, stability: 3 },
+            tags: ["+0.8% Growth", "+Trap Risk", "Policy Space"],
+            setFlags: { trade: "selective" },
+            altHistory: "India took this approach, staying out of RCEP and limiting FTA commitments. Studies show EVFTA alone boosted trade by 18%+. Selective participation could mean ~$2,400-2,600 GDP per capita by 2020 vs $2,800 achieved, plus missing the 'external anchor' that helped reformers push domestic changes."
+          }
+        ]
+      },
+      {
+        turn: 12,
+        title: "Resolution 68: Private Sector Strategy",
+        desc: "The Party recognizes the private sector as the 'most important driving force.' How to implement?",
+        history: {
+          real: "Vietnam issued Resolution 68 in 2025, targeting 2 million enterprises and 20 'National Champions' by 2030. The strategy tilts toward large conglomerates (Vingroup, FPT, Hoa Phat), risking oligarchy formation similar to Thailand. SME credit programs have historically failed due to rigid collateral requirements.",
+          realChoice: 0,
+          realGdp: 3800,
+          source: "Resolution 68, Lowy Institute",
+          verdict: "mixed",
+          verdictText: "Brookings critiques see risk of crony capitalism. World Bank notes governance issues. Ongoing debate—could succeed like Korea's chaebols or fail like Thailand's oligarchs."
+        },
+        branchEffects: {
+          condition: (flags) => flags.soe_strategy === "champion",
+          warning: "Your SOE champion strategy created crony capitalism patterns. National Champions risk becoming oligarchs.",
+          modifier: { trapRisk: 5, inequality: 0.02 }
+        },
+        choices: [
+          {
+            id: "champions",
+            title: "National Champions Strategy",
+            desc: "Channel resources to large conglomerates like Vingroup and FPT. Build global players.",
+            effects: { gdpGrowth: 1.2, trapRisk: 8, fdiLinkage: -5, inequality: 0.04 },
+            tags: ["+1.2% Growth", "+Trap Risk", "Oligarchy Risk"],
+            setFlags: { private_sector: "champions" }
+          },
+          {
+            id: "sme_focus",
+            title: "SME Development Focus",
+            desc: "Credit guarantees, regulatory simplification for small firms. Broader but slower.",
+            effects: { gdpGrowth: 0.5, trapRisk: -8, fdiLinkage: 8, inequality: -0.02 },
+            tags: ["+0.5% Growth", "-Trap Risk", "++Linkage", "Inclusive"],
+            setFlags: { private_sector: "sme" },
+            altHistory: "Taiwan's industrial miracle was built on SME networks, not chaebols. Studies show dense SME ecosystems create stronger FDI linkages—potentially increasing the 'local content' of exports from ~25% to 40-50% over 10-15 years. Growth may be 0.5% slower annually but with higher domestic value capture and lower inequality."
+          }
+        ]
+      },
+      {
+        turn: 13,
+        title: "The Semiconductor Opportunity",
+        desc: "Intel and Samsung are expanding chip operations. Vietnam needs 50,000 chip engineers but has ~1,400. What's the priority?",
+        history: {
+          real: "Vietnam is attempting both paths: PM Pham Minh Chinh announced targets for 50,000-100,000 semiconductor workers by 2030, while also courting Samsung/Intel training centers. The challenge is real: Intel has been in Vietnam since 2006 but local content remains ~5% for chips.",
+          realChoice: 1,
+          realGdp: 5200,
+          source: "Ministry of Industry and Trade",
+          verdict: "pending",
+          verdictText: "Still unfolding. The gap between 1,400 current chip engineers and 50,000 target is daunting. Success depends on execution over the next decade."
+        },
+        branchEffects: {
+          condition: (flags) => flags.education === "basic",
+          locked: 0,
+          lockText: "Your basic education focus left no foundation for tech education. Massive push is not viable."
+        },
+        choices: [
+          {
+            id: "tech_education",
+            title: "Massive Tech Education Push",
+            desc: "Partner with universities, fund overseas training, import expertise. 10-year commitment.",
+            effects: { gdpGrowth: -0.5, trapRisk: -15, fdiLinkage: 12, stability: 0 },
+            tags: ["High Investment", "---Trap Risk", "+++Linkage", "Long-term"],
+            setFlags: { tech: "domestic" },
+            altHistory: "South Korea and Taiwan invested heavily in semiconductor education in the 1980s-90s, creating TSMC and Samsung's chip divisions. This path requires patience—GDP impact may be negative (-0.5%) for 5 years—but countries that made this investment saw TFP contribution rise from 30% to 50%+ of growth, enabling the leap to high-income status."
+          },
+          {
+            id: "foreign_training",
+            title: "Attract Foreign Training Centers",
+            desc: "Let Samsung and Intel run their own academies. Faster but less local control.",
+            effects: { gdpGrowth: 0.5, trapRisk: -5, fdiLinkage: 3, stability: 3 },
+            tags: ["+0.5% Growth", "-Trap Risk", "+Linkage"],
+            setFlags: { tech: "foreign" }
+          }
+        ]
+      },
+      {
+        turn: 14,
+        title: "The Energy Transition (JETP)",
+        desc: "Vietnam depends on coal but has a $15.5B green transition deal on the table. Energy costs vs climate.",
+        history: {
+          real: "Vietnam signed the $15.5B JETP deal but implementation is slow. Power shortages hit manufacturing in 2023-24. The country remains coal-dependent (~50% of power) while facing EU Carbon Border Adjustment Mechanism (CBAM) taxes on exports. A classic transition dilemma.",
+          realChoice: 1,
+          realGdp: 6800,
+          source: "JETP Documentation, IEA",
+          verdict: "pending",
+          verdictText: "Still unfolding. JETP implementation lagging while power shortages hurt manufacturing. The energy transition dilemma remains unresolved."
+        },
+        branchEffects: {
+          condition: (flags) => flags.environment === "strict",
+          boost: 0,
+          boostText: "Your environmental track record makes green transition more credible to investors"
+        },
+        choices: [
+          {
+            id: "green_push",
+            title: "Aggressive Green Transition",
+            desc: "Phase out coal rapidly, massive renewable investment. Higher energy costs but future-proof.",
+            effects: { gdpGrowth: -0.8, trapRisk: -10, fdiLinkage: 5, stability: -5 },
+            tags: ["-0.8% Growth", "--Trap Risk", "Green FDI", "Transition Pain"],
+            setFlags: { energy: "green" },
+            altHistory: "Germany's Energiewende shows both the promise and pain: higher energy costs hurt competitiveness short-term (0.5-1% GDP drag). But with EU's CBAM taxing carbon-intensive imports by 2026+, green manufacturing becomes essential. World Bank estimates climate inaction could cost Vietnam 12.5% of GDP by 2050."
+          },
+          {
+            id: "gradual_energy",
+            title: "Gradual Energy Shift",
+            desc: "Maintain coal baseline while slowly building renewables. Cheaper but climate/trade risks.",
+            effects: { gdpGrowth: 0.3, trapRisk: 5, fdiLinkage: -3, stability: 3 },
+            tags: ["+0.3% Growth", "+Trap Risk", "Carbon Tax Risk"],
+            setFlags: { energy: "brown" }
+          }
+        ]
+      },
+      {
+        turn: 15,
+        title: "The 2045 Crossroads",
+        desc: "The demographic window is closing. This is the final push. What defines Vietnam's legacy?",
+        history: {
+          real: "Vietnam's path remains unwritten. Current trajectory: GDP per capita ~$4,700 (2024), targeting high-income by 2045. R&D spending is only 0.4% of GDP (vs 2%+ needed). FDI still dominates exports (~74%). The demographic dividend ends around 2035-40. Time is running out.",
+          realChoice: -1,
+          realGdp: 10500,
+          source: "World Bank Vietnam 2045 Report",
+          verdict: "pending",
+          verdictText: "The ultimate test. Vietnam must boost R&D from 0.4% to 2%+ of GDP and build innovation capacity before the demographic window closes in 2036."
+        },
+        branchEffects: {
+          condition: (flags) => flags.tech === "domestic" && flags.education === "upgraded",
+          boost: 0,
+          boostText: "Your education investments pay off! Innovation pivot has a much higher chance of success."
+        },
+        choices: [
+          {
+            id: "innovation",
+            title: "Innovation Economy Pivot",
+            desc: "R&D at 2%+ of GDP, startup ecosystem, university autonomy. Accept slower near-term growth.",
+            effects: { gdpGrowth: -0.3, trapRisk: -20, fdiLinkage: 15, inequality: 0.02 },
+            tags: ["Investment Phase", "----Trap Risk", "Innovation Path"],
+            setFlags: { endgame: "innovation" },
+            altHistory: "This is the path South Korea took in the 1990s-2000s, accepting slower growth to build innovation capacity. Korea's R&D jumped from 1% to 4%+ of GDP, enabling the leap from $8,000 to $35,000+ GDP per capita. It's the only proven path to high-income status for manufacturing-based economies."
+          },
+          {
+            id: "manufacturing",
+            title: "Double Down on Manufacturing",
+            desc: "Maximize the remaining labor advantage. Extract every dollar from the current model.",
+            effects: { gdpGrowth: 1.5, trapRisk: 15, fdiLinkage: -8, inequality: 0.03 },
+            tags: ["+1.5% Growth", "+++Trap Risk", "Assembly Trap"],
+            setFlags: { endgame: "manufacturing" },
+            altHistory: "This is Thailand's current trajectory—stuck at ~$7,000-8,000 GDP per capita for two decades. Productivity growth just 2.6% (2016-23). As wages rise and demographics shift, the country becomes uncompetitive in assembly but lacks skills for innovation. The classic middle-income trap that 75% of countries never escape."
+          }
+        ]
+      }
+    ];
+
+    // Random events that can trigger
+    const events = [
+      {
+        id: "asian_crisis",
+        trigger: (s) => s.turn === 4 && Math.random() > 0.5,
+        icon: "&#x1F4C9;",
+        title: "Asian Financial Crisis",
+        desc: "Thailand's currency collapses. Regional contagion spreads. FDI dries up temporarily.",
+        effects: { gdpGrowth: -1.5, stability: -10 }
+      },
+      {
+        id: "wto_boom",
+        trigger: (s) => s.turn === 7 && s.choices.includes("Full WTO Accession"),
+        icon: "&#x1F4C8;",
+        title: "WTO Dividend",
+        desc: "FDI floods in after WTO accession. Samsung announces a $1B factory.",
+        effects: { gdpGrowth: 1.5, fdiLinkage: -3 }
+      },
+      {
+        id: "vinashin_collapse",
+        trigger: (s) => s.turn === 9 && s.choices.includes("Back the National Champion"),
+        icon: "&#x1F4A5;",
+        title: "Vinashin Collapse",
+        desc: "The state shipbuilder defaults on $4.5B in debt. Banking system freezes. Crisis mode.",
+        effects: { gdpGrowth: -2.0, stability: -15, trapRisk: 10 }
+      },
+      {
+        id: "china_plus_one",
+        trigger: (s) => s.turn === 12 && Math.random() > 0.4,
+        icon: "&#x1F3ED;",
+        title: "China Plus One Wave",
+        desc: "US-China trade war accelerates. Companies are relocating supply chains to Vietnam.",
+        effects: { gdpGrowth: 2.0, fdiLinkage: -5, trapRisk: -3 }
+      },
+      {
+        id: "tariff_threat",
+        trigger: (s) => s.turn === 14 && s.gdpGrowth > 6 && Math.random() > 0.5,
+        icon: "&#x26A0;",
+        title: "US Tariff Threat",
+        desc: "The US threatens 46% tariffs on Vietnamese exports due to the large trade surplus.",
+        effects: { gdpGrowth: -1.0, stability: -8 }
+      }
+    ];
+
+    // DOM Elements
+    const elements = {
+      startScreen: document.getElementById('sim-start'),
+      gameScreen: document.getElementById('sim-game'),
+      endScreen: document.getElementById('sim-end'),
+      startBtn: document.getElementById('sim-start-btn'),
+      restartBtn: document.getElementById('sim-restart-btn'),
+      eraBanner: document.getElementById('sim-era-banner'),
+      situation: document.getElementById('sim-situation'),
+      situationTitle: document.getElementById('sim-situation-title'),
+      situationDesc: document.getElementById('sim-situation-desc'),
+      choicesContainer: document.getElementById('sim-choices'),
+      eventOverlay: document.getElementById('sim-event-overlay'),
+      eventIcon: document.getElementById('sim-event-icon'),
+      eventTitle: document.getElementById('sim-event-title'),
+      eventDesc: document.getElementById('sim-event-desc'),
+      eventEffects: document.getElementById('sim-event-effects'),
+      eventClose: document.getElementById('sim-event-close'),
+      endIcon: document.getElementById('sim-end-icon'),
+      endTitle: document.getElementById('sim-end-title'),
+      endDesc: document.getElementById('sim-end-desc'),
+      finalStats: document.getElementById('sim-final-stats'),
+      endAnalysis: document.getElementById('sim-end-analysis'),
+      // Metrics
+      gdp: document.getElementById('sim-gdp'),
+      gdpBar: document.getElementById('sim-gdp-bar'),
+      growth: document.getElementById('sim-growth'),
+      growthBar: document.getElementById('sim-growth-bar'),
+      fdi: document.getElementById('sim-fdi'),
+      fdiBar: document.getElementById('sim-fdi-bar'),
+      trap: document.getElementById('sim-trap'),
+      trapBar: document.getElementById('sim-trap-bar'),
+      year: document.getElementById('sim-year'),
+      stability: document.getElementById('sim-stability'),
+      inequality: document.getElementById('sim-inequality'),
+      turn: document.getElementById('sim-turn'),
+      // New elements
+      timelineProgress: document.getElementById('sim-timeline-progress'),
+      playerPath: document.getElementById('sim-player-path'),
+      playerArea: document.getElementById('sim-player-area'),
+      historyReveal: document.getElementById('sim-history-reveal'),
+      historyText: document.getElementById('sim-history-text'),
+      historyComparison: document.getElementById('sim-history-comparison'),
+      historyContinue: document.getElementById('sim-history-continue')
+    };
+
+    // Current decision for history reveal
+    let currentDecision = null;
+    let currentChoiceIndex = null;
+
+    // Initialize
+    // Tooltip content definitions
+    const tooltipContent = {
+      gdp: `<strong>GDP per Capita</strong>Your country's total economic output divided by population. Goal: reach $13,000+ (high-income threshold) by 2045.`,
+      growth: `<strong>GDP Growth Rate</strong>How fast your economy is growing annually. Higher is better, but growth without linkages can create a "dual economy."`,
+      fdi: `<strong>FDI Linkage</strong>How connected foreign investment is to domestic firms. High linkage = technology transfer and local supplier development. Low linkage = "screwdriver economy" where value stays foreign.`,
+      trap: `<strong>Middle-Income Trap Risk</strong>The danger of stagnating at $4,000-12,000 GDP per capita. Countries get stuck when wages rise faster than productivity, losing competitiveness in low-cost manufacturing before developing innovation capacity. Thailand and Malaysia are cautionary examples.`
+    };
+
+    function init() {
+      elements.startBtn.addEventListener('click', startGame);
+      elements.restartBtn.addEventListener('click', restartGame);
+      elements.eventClose.addEventListener('click', closeEvent);
+      if (elements.historyContinue) {
+        elements.historyContinue.addEventListener('click', continueAfterHistory);
+      }
+      initTooltips();
+    }
+
+    // Tooltip functionality
+    function initTooltips() {
+      const popup = document.getElementById('sim-tooltip-popup');
+      const triggers = document.querySelectorAll('.sim-tooltip-trigger');
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', (e) => {
+          const key = trigger.getAttribute('data-tooltip');
+          const content = tooltipContent[key];
+          if (content && popup) {
+            popup.innerHTML = content;
+
+            // Position the popup below the metrics section
+            const metricsSection = document.querySelector('.sim-metrics');
+            const metricsRect = metricsSection ? metricsSection.getBoundingClientRect() : null;
+            const triggerRect = trigger.getBoundingClientRect();
+
+            // Center horizontally on the trigger, position below metrics
+            const popupWidth = 260;
+            let leftPos = triggerRect.left + triggerRect.width/2 - popupWidth/2;
+
+            // Keep within viewport
+            if (leftPos < 10) leftPos = 10;
+            if (leftPos + popupWidth > window.innerWidth - 10) {
+              leftPos = window.innerWidth - popupWidth - 10;
+            }
+
+            popup.style.left = leftPos + 'px';
+            popup.style.top = (metricsRect ? metricsRect.bottom + 15 : triggerRect.bottom + 15) + 'px';
+            popup.classList.add('active');
+          }
+        });
+
+        trigger.addEventListener('mouseleave', () => {
+          if (popup) popup.classList.remove('active');
+        });
+      });
+    }
+
+    function startGame() {
+      resetState();
+      showScreen('game');
+      updateUI();
+      updateChart();
+      updateTimeline();
+      showDecision();
+    }
+
+    function restartGame() {
+      resetState();
+      showScreen('game');
+      updateUI();
+      updateChart();
+      updateTimeline();
+      showDecision();
+    }
+
+    function resetState() {
+      state.year = 1986;
+      state.turn = 1;
+      state.era = 1;
+      state.gdpPerCapita = 200;
+      state.gdpGrowth = 2.8;
+      state.fdiLinkage = 15;
+      state.trapRisk = 25;
+      state.stability = 60;
+      state.inequality = 0.35;
+      state.choices = [];
+      state.gdpHistory = [{ year: 1986, gdp: 200 }];
+      state.flags = {};
+    }
+
+    function showScreen(screen) {
+      elements.startScreen.classList.remove('active');
+      elements.gameScreen.classList.remove('active');
+      elements.endScreen.classList.remove('active');
+
+      if (screen === 'start') elements.startScreen.classList.add('active');
+      if (screen === 'game') elements.gameScreen.classList.add('active');
+      if (screen === 'end') elements.endScreen.classList.add('active');
+    }
+
+    function updateUI() {
+      // Update metrics
+      elements.gdp.textContent = '$' + formatNumber(Math.round(state.gdpPerCapita));
+      elements.gdpBar.style.width = Math.min(100, (state.gdpPerCapita / 13000) * 100) + '%';
+
+      elements.growth.textContent = state.gdpGrowth.toFixed(1) + '%';
+      elements.growthBar.style.width = Math.min(100, Math.max(0, state.gdpGrowth * 10)) + '%';
+
+      elements.fdi.textContent = Math.round(state.fdiLinkage) + '%';
+      elements.fdiBar.style.width = Math.min(100, state.fdiLinkage) + '%';
+
+      elements.trap.textContent = Math.round(state.trapRisk) + '%';
+      elements.trapBar.style.width = Math.min(100, state.trapRisk) + '%';
+
+      elements.year.textContent = state.year;
+      elements.stability.textContent = Math.round(state.stability) + '%';
+      elements.inequality.textContent = state.inequality.toFixed(2);
+      elements.turn.textContent = state.turn;
+
+      // Update era banner
+      const era = eras.find(e => state.turn >= e.turns[0] && state.turn <= e.turns[1]);
+      if (era) {
+        state.era = era.id;
+        elements.eraBanner.innerHTML = `
+          <span class="sim-era-label">${era.label}</span>
+          <span class="sim-era-name">${era.name}</span>
+          <span class="sim-era-years">${era.years}</span>
+        `;
+      }
+    }
+
+    function updateTimeline() {
+      if (!elements.timelineProgress) return;
+      // Timeline spans 1986-2045 (59 years)
+      const progress = ((state.year - 1986) / 59) * 100;
+      elements.timelineProgress.style.width = Math.min(100, progress) + '%';
+    }
+
+    function updateChart() {
+      if (!elements.playerPath) return;
+
+      // Convert GDP history to SVG points
+      const points = state.gdpHistory.map((d, i) => {
+        const x = ((d.year - 1986) / 59) * 400;
+        const y = 150 - (Math.min(d.gdp, 15000) / 15000) * 150;
+        return `${x},${y}`;
+      }).join(' ');
+
+      elements.playerPath.setAttribute('points', points);
+
+      // Create area fill
+      if (elements.playerArea && state.gdpHistory.length > 1) {
+        const firstPoint = state.gdpHistory[0];
+        const lastPoint = state.gdpHistory[state.gdpHistory.length - 1];
+        const startX = ((firstPoint.year - 1986) / 59) * 400;
+        const endX = ((lastPoint.year - 1986) / 59) * 400;
+
+        const areaPath = `M ${startX},150 L ${points} L ${endX},150 Z`;
+        elements.playerArea.setAttribute('d', areaPath);
+      }
+    }
+
+    function formatNumber(num) {
+      if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'k';
+      }
+      return num.toString();
+    }
+
+    function showDecision() {
+      const decision = decisions.find(d => d.turn === state.turn);
+      if (!decision) {
+        endGame();
+        return;
+      }
+
+      currentDecision = decision;
+
+      // Hide history reveal panel
+      if (elements.historyReveal) {
+        elements.historyReveal.classList.remove('active');
+      }
+
+      elements.situationTitle.textContent = decision.title;
+      elements.situationDesc.textContent = decision.desc;
+
+      // Check for branch effects and locked choices
+      let branchWarning = '';
+      let lockedChoice = -1;
+      let boostedChoice = -1;
+
+      if (decision.branchEffects) {
+        const be = decision.branchEffects;
+        if (be.condition && be.condition(state.flags)) {
+          if (be.warning) {
+            branchWarning = be.warning;
+          }
+          if (be.locked !== undefined) {
+            lockedChoice = be.locked;
+          }
+          if (be.boost !== undefined) {
+            boostedChoice = be.boost;
+          }
+        }
+      }
+
+      // Create shuffled indices to randomize choice order
+      const choiceIndices = decision.choices.map((_, i) => i);
+      // Fisher-Yates shuffle
+      for (let i = choiceIndices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [choiceIndices[i], choiceIndices[j]] = [choiceIndices[j], choiceIndices[i]];
+      }
+
+      elements.choicesContainer.innerHTML = choiceIndices.map(originalIndex => {
+        const choice = decision.choices[originalIndex];
+        const isLocked = originalIndex === lockedChoice;
+        const isBoosted = originalIndex === boostedChoice;
+        let extraClass = '';
+        if (isLocked) extraClass = ' locked';
+        if (isBoosted) extraClass = ' boosted';
+
+        return `
+        <div class="sim-choice${extraClass}" data-choice="${originalIndex}">
+          <div class="sim-choice-title">${choice.title}</div>
+          <div class="sim-choice-desc">${choice.desc}</div>
+          <div class="sim-choice-effects">
+            ${choice.tags.map(tag => {
+              const isPositive = tag.includes('+') && !tag.includes('-') && !tag.includes('Risk') && !tag.includes('Inequality');
+              const isNegative = tag.includes('-') || tag.includes('Risk') || tag.includes('Trap') || tag.includes('Crisis') || tag.includes('Pain') || tag.includes('Cost');
+              const cls = isPositive ? 'positive' : (isNegative ? 'negative' : 'neutral');
+              return `<span class="sim-effect ${cls}">${tag}</span>`;
+            }).join('')}
+          </div>
+        </div>
+      `}).join('');
+
+      // Add branch warning if applicable
+      if (branchWarning) {
+        const warningHtml = `
+          <div class="sim-branch-warning">
+            <span class="sim-branch-warning-icon">&#x26A0;</span>
+            <span class="sim-branch-warning-text"><strong>Previous choices affect this decision:</strong> ${branchWarning}</span>
+          </div>
+        `;
+        elements.choicesContainer.insertAdjacentHTML('beforeend', warningHtml);
+      }
+
+      // Add click handlers
+      document.querySelectorAll('.sim-choice:not(.locked)').forEach(el => {
+        el.addEventListener('click', () => {
+          const choiceIndex = parseInt(el.dataset.choice);
+          currentChoiceIndex = choiceIndex;
+          makeChoice(decision.choices[choiceIndex], decision);
+        });
+      });
+    }
+
+    function makeChoice(choice, decision) {
+      // Record choice
+      state.choices.push(choice.title);
+
+      // Set flags from this choice
+      if (choice.setFlags) {
+        Object.assign(state.flags, choice.setFlags);
+      }
+
+      // Apply branch modifiers if applicable
+      if (decision.branchEffects) {
+        const be = decision.branchEffects;
+        if (be.condition && be.condition(state.flags) && be.modifier) {
+          applyEffects(be.modifier);
+        }
+      }
+
+      // Apply choice effects
+      applyEffects(choice.effects);
+
+      // Calculate GDP growth for this turn
+      calculateGrowth();
+
+      // Update chart and timeline
+      updateUI();
+      updateChart();
+      updateTimeline();
+
+      // Check for events
+      const triggeredEvent = events.find(e => e.trigger(state) && !state.choices.includes('event_' + e.id));
+      if (triggeredEvent) {
+        state.choices.push('event_' + triggeredEvent.id);
+        showEvent(triggeredEvent);
+      } else {
+        // Show history reveal instead of immediately advancing
+        showHistoryReveal(decision, currentChoiceIndex);
+      }
+    }
+
+    function showHistoryReveal(decision, choiceIndex) {
+      if (!elements.historyReveal || !decision.history) {
+        advanceTurn();
+        return;
+      }
+
+      const history = decision.history;
+      const yourChoice = decision.choices[choiceIndex];
+      const realChoice = history.realChoice >= 0 ? decision.choices[history.realChoice].title : "Still unfolding...";
+      const matchedHistory = history.realChoice === choiceIndex;
+
+      // Build verdict badge
+      let verdictBadge = '';
+      if (history.verdict && history.verdictText) {
+        const verdictStyles = {
+          success: { icon: '✅', color: '#6fcf97', label: 'SUCCESS' },
+          mixed: { icon: '⚠️', color: '#f0ad4e', label: 'MIXED RESULTS' },
+          mistake: { icon: '❌', color: '#e74c3c', label: 'POLICY ERROR' },
+          pending: { icon: '⏳', color: 'rgba(250,247,242,0.6)', label: 'STILL UNFOLDING' }
+        };
+        const v = verdictStyles[history.verdict] || verdictStyles.pending;
+        verdictBadge = `<div style="margin-bottom: 1rem; padding: 0.6rem 0.8rem; background: rgba(${history.verdict === 'mistake' ? '231,76,60' : history.verdict === 'success' ? '111,207,151' : history.verdict === 'mixed' ? '240,173,78' : '250,247,242'},0.1); border-left: 3px solid ${v.color}; border-radius: 4px;">
+          <span style="font-size: 0.75rem; font-weight: 700; color: ${v.color}; letter-spacing: 0.05em;">${v.icon} ECONOMIST VERDICT: ${v.label}</span>
+          <p style="margin: 0.3rem 0 0 0; font-size: 0.85rem; color: rgba(250,247,242,0.8);">${history.verdictText}</p>
+        </div>`;
+      }
+
+      // Build history text
+      let historyHtml = '';
+
+      if (matchedHistory) {
+        // Player chose what Vietnam chose - show what actually happened
+        historyHtml = verdictBadge + `<strong style="color: #6fcf97;">You chose the same path as Vietnam.</strong> ` + history.real;
+      } else if (history.realChoice >= 0) {
+        // Player chose differently - show counterfactual for their choice, then what Vietnam did
+        historyHtml = `<strong style="color: var(--gold);">You chose a different path.</strong>`;
+
+        // Show counterfactual for the player's choice if available
+        if (yourChoice.altHistory) {
+          historyHtml += `<div style="margin: 0.8rem 0; padding: 0.8rem; background: rgba(212,175,55,0.1); border-left: 2px solid var(--gold); border-radius: 4px;">
+            <span style="color: var(--gold); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">What might have happened:</span>
+            <p style="margin: 0.4rem 0 0 0; color: rgba(250,247,242,0.85);">${yourChoice.altHistory}</p>
+          </div>`;
+        }
+
+        historyHtml += verdictBadge + `<div style="margin-top: 0.8rem;">
+          <span style="color: rgba(250,247,242,0.6); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">What Vietnam actually did:</span>
+          <p style="margin: 0.4rem 0 0 0;">${history.real}</p>
+        </div>`;
+      } else {
+        // Future decision (realChoice = -1), history is still unwritten
+        historyHtml = verdictBadge + `<strong style="color: rgba(250,247,242,0.7);">This decision is still playing out.</strong> ` + history.real;
+      }
+
+      elements.historyText.innerHTML = historyHtml;
+
+      // Build comparison stats
+      const realGdpAtPoint = history.realGdp || 0;
+      elements.historyComparison.innerHTML = `
+        <div class="sim-comparison-stat">
+          <span class="sim-comparison-label">Your GDP</span>
+          <div class="sim-comparison-values">
+            <span class="sim-comparison-yours">$${formatNumber(Math.round(state.gdpPerCapita))}</span>
+          </div>
+        </div>
+        <div class="sim-comparison-stat">
+          <span class="sim-comparison-label">Real Vietnam (${state.year})</span>
+          <div class="sim-comparison-values">
+            <span class="sim-comparison-real">$${formatNumber(realGdpAtPoint)}</span>
+          </div>
+        </div>
+        <div class="sim-comparison-stat">
+          <span class="sim-comparison-label">Source</span>
+          <div class="sim-comparison-values">
+            <span class="sim-comparison-real" style="font-size: 0.7rem;">${history.source}</span>
+          </div>
+        </div>
+      `;
+
+      elements.historyReveal.classList.add('active');
+      elements.choicesContainer.style.display = 'none';
+    }
+
+    function continueAfterHistory() {
+      elements.historyReveal.classList.remove('active');
+      elements.choicesContainer.style.display = 'grid';
+
+      // Check for random events after history reveal
+      const triggeredEvent = events.find(e => e.trigger(state) && !state.choices.includes('event_' + e.id));
+      if (triggeredEvent) {
+        state.choices.push('event_' + triggeredEvent.id);
+        showEvent(triggeredEvent);
+      } else {
+        advanceTurn();
+      }
+    }
+
+    function applyEffects(effects) {
+      if (effects.gdpGrowth) state.gdpGrowth += effects.gdpGrowth;
+      if (effects.fdiLinkage) state.fdiLinkage = Math.max(0, Math.min(100, state.fdiLinkage + effects.fdiLinkage));
+      if (effects.trapRisk) state.trapRisk = Math.max(0, Math.min(100, state.trapRisk + effects.trapRisk));
+      if (effects.stability) state.stability = Math.max(0, Math.min(100, state.stability + effects.stability));
+      if (effects.inequality) state.inequality = Math.max(0.2, Math.min(0.6, state.inequality + effects.inequality));
+    }
+
+    function calculateGrowth() {
+      // Base growth calculation
+      let effectiveGrowth = state.gdpGrowth;
+
+      // Stability penalty
+      if (state.stability < 40) {
+        effectiveGrowth *= 0.7;
+      }
+
+      // High trap risk penalty (diminishing returns)
+      if (state.trapRisk > 60 && state.gdpPerCapita > 4000) {
+        effectiveGrowth *= 0.8;
+      }
+
+      // Apply growth
+      const growthMultiplier = 1 + (effectiveGrowth / 100);
+      state.gdpPerCapita *= growthMultiplier;
+
+      // Era-based year progression
+      const yearsPerTurn = state.era === 1 ? 3 : (state.era === 2 ? 3 : 4);
+      state.year += yearsPerTurn;
+
+      // Record GDP history for chart
+      state.gdpHistory.push({ year: state.year, gdp: state.gdpPerCapita });
+
+      // Natural trap risk increase as income rises
+      if (state.gdpPerCapita > 4000 && state.gdpPerCapita < 12000) {
+        state.trapRisk += 2;
+      }
+
+      // FDI linkage decay without investment
+      if (state.fdiLinkage > 20) {
+        state.fdiLinkage -= 1;
+      }
+    }
+
+    function showEvent(event) {
+      elements.eventIcon.innerHTML = event.icon;
+      elements.eventTitle.textContent = event.title;
+      elements.eventDesc.textContent = event.desc;
+
+      elements.eventEffects.innerHTML = Object.entries(event.effects).map(([key, val]) => {
+        const labels = {
+          gdpGrowth: 'Growth',
+          fdiLinkage: 'FDI Linkage',
+          trapRisk: 'Trap Risk',
+          stability: 'Stability'
+        };
+        const isPositive = (key === 'trapRisk' ? val < 0 : val > 0);
+        const cls = isPositive ? 'positive' : 'negative';
+        const sign = val > 0 ? '+' : '';
+        return `<span class="sim-effect ${cls}">${labels[key] || key}: ${sign}${val}</span>`;
+      }).join('');
+
+      applyEffects(event.effects);
+      elements.eventOverlay.classList.add('active');
+    }
+
+    function closeEvent() {
+      elements.eventOverlay.classList.remove('active');
+      // If we came from a choice, show history reveal
+      if (currentDecision && currentDecision.history) {
+        showHistoryReveal(currentDecision, currentChoiceIndex);
+      } else {
+        advanceTurn();
+      }
+    }
+
+    function advanceTurn() {
+      state.turn++;
+      updateUI();
+      updateChart();
+      updateTimeline();
+
+      // Check end conditions
+      if (state.turn > state.maxTurns || state.trapRisk >= 100 || state.stability <= 0) {
+        endGame();
+      } else {
+        showDecision();
+      }
+    }
+
+    function endGame() {
+      showScreen('end');
+
+      const escaped = state.gdpPerCapita >= 13000 && state.trapRisk < 80;
+      const trapped = state.trapRisk >= 80 || (state.gdpPerCapita < 13000 && state.gdpPerCapita > 4000);
+      const collapsed = state.stability <= 0;
+
+      let outcome, icon, desc;
+
+      if (collapsed) {
+        outcome = "Economic Collapse";
+        icon = "&#x1F4A5;";
+        desc = "Political instability overwhelmed the economy. Reform without stability leads to chaos.";
+      } else if (escaped) {
+        outcome = "High-Income Nation!";
+        icon = "&#x1F31F;";
+        desc = "Vietnam escaped the middle-income trap and achieved high-income status. You beat the 1-in-4 odds.";
+      } else if (trapped) {
+        outcome = "Stuck in the Trap";
+        icon = "&#x26D4;";
+        desc = "Vietnam achieved growth but failed to escape the middle-income trap. Like Thailand and Malaysia, structural weaknesses capped potential.";
+      } else {
+        outcome = "Slow Progress";
+        icon = "&#x23F3;";
+        desc = "Vietnam grew but didn't reach middle-income levels. More aggressive reform was needed.";
+      }
+
+      elements.endIcon.innerHTML = icon;
+      elements.endTitle.innerHTML = `<span class="${escaped ? 'sim-outcome-win' : 'sim-outcome-lose'}">${outcome}</span>`;
+      elements.endDesc.textContent = desc;
+
+      elements.finalStats.innerHTML = `
+        <div class="sim-final-stat">
+          <div class="sim-final-stat-value">$${formatNumber(Math.round(state.gdpPerCapita))}</div>
+          <div class="sim-final-stat-label">Final GDP per Capita</div>
+        </div>
+        <div class="sim-final-stat">
+          <div class="sim-final-stat-value">${Math.round(state.trapRisk)}%</div>
+          <div class="sim-final-stat-label">Trap Risk</div>
+        </div>
+        <div class="sim-final-stat">
+          <div class="sim-final-stat-value">${Math.round(state.fdiLinkage)}%</div>
+          <div class="sim-final-stat-label">FDI Linkage</div>
+        </div>
+        <div class="sim-final-stat">
+          <div class="sim-final-stat-value">${state.inequality.toFixed(2)}</div>
+          <div class="sim-final-stat-label">Inequality (Gini)</div>
+        </div>
+      `;
+
+      // Analysis based on choices
+      let analysis = "";
+      if (state.fdiLinkage >= 40) {
+        analysis = "Your focus on domestic linkages helped avoid the dual economy problem that plagues Vietnam today. ";
+      } else {
+        analysis = "The weak linkages between FDI and domestic firms mirror Vietnam's real 'screwdriver economy' challenge. ";
+      }
+
+      if (state.trapRisk >= 60) {
+        analysis += "High trap risk reflects over-reliance on assembly and insufficient investment in innovation and skills.";
+      } else {
+        analysis += "Managing trap risk through education, R&D, and institutional reform was key to your success.";
+      }
+
+      elements.endAnalysis.innerHTML = `
+        <h4>Analysis</h4>
+        <p>${analysis}</p>
+      `;
+
+      // Generate scorecard
+      generateScorecard();
+    }
+
+    function generateScorecard() {
+      const scorecard = document.getElementById('sim-scorecard');
+      if (!scorecard) return;
+
+      let sameAsVietnam = 0;
+      let avoidedMistakes = 0;
+      let totalMistakes = 0;
+      let rows = '';
+
+      decisions.forEach((decision, index) => {
+        if (index >= state.choices.length) return; // Haven't reached this decision
+
+        const playerChoiceTitle = state.choices[index];
+        const history = decision.history;
+        const realChoiceIndex = history.realChoice;
+        const realChoiceTitle = realChoiceIndex >= 0 ? decision.choices[realChoiceIndex].title : null;
+        const playerChoiceIndex = decision.choices.findIndex(c => c.title === playerChoiceTitle);
+
+        const matchedVietnam = playerChoiceTitle === realChoiceTitle;
+        const verdict = history.verdict;
+
+        // Track statistics
+        if (matchedVietnam) sameAsVietnam++;
+        if (verdict === 'mistake') {
+          totalMistakes++;
+          if (!matchedVietnam) avoidedMistakes++;
+        }
+
+        // Verdict icon
+        let verdictIcon = '';
+        if (verdict === 'success') verdictIcon = '✅';
+        else if (verdict === 'mixed') verdictIcon = '⚠️';
+        else if (verdict === 'mistake') verdictIcon = '❌';
+        else verdictIcon = '⏳';
+
+        // Match status
+        let matchText = '';
+        let matchClass = '';
+        if (realChoiceIndex < 0) {
+          matchText = 'Still unfolding';
+          matchClass = '';
+        } else if (matchedVietnam) {
+          matchText = 'Same as Vietnam';
+          matchClass = 'same';
+        } else if (verdict === 'mistake') {
+          matchText = '✓ You avoided Vietnam\'s mistake';
+          matchClass = 'better';
+        } else {
+          matchText = 'Different path';
+          matchClass = 'different';
+        }
+
+        rows += `
+          <div class="sim-scorecard-row">
+            <span class="sim-scorecard-turn">T${index + 1}</span>
+            <span class="sim-scorecard-verdict">${verdictIcon}</span>
+            <div class="sim-scorecard-content">
+              <div class="sim-scorecard-title">${decision.title}</div>
+              <div class="sim-scorecard-match ${matchClass}">${matchText}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      const summaryText = `${sameAsVietnam}/${state.choices.length} same • ${avoidedMistakes}/${totalMistakes} mistakes avoided`;
+
+      scorecard.innerHTML = `
+        <h4>
+          Decision Scorecard
+          <span class="sim-scorecard-summary">${summaryText}</span>
+        </h4>
+        ${rows}
+      `;
+    }
+
+    // Start the simulator
+    init();
+  })();
 </script>
 </body>
 </html>
