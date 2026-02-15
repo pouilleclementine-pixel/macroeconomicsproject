@@ -539,6 +539,25 @@
     font-size: 0.95rem;
   }
 
+  .insight-box-light {
+    background: linear-gradient(135deg, var(--cream) 0%, #f5f0e6 100%);
+    color: var(--dark);
+    border-left-color: var(--accent-green);
+  }
+
+  .insight-box-light h4 {
+    color: var(--accent-green);
+  }
+
+  .insight-box-light p {
+    color: rgba(30,30,30,0.85);
+  }
+
+  .insight-box-light a {
+    color: var(--accent-green) !important;
+    text-decoration: underline !important;
+  }
+
   .divider {
     text-align: center;
     padding: 2rem 0;
@@ -674,6 +693,88 @@
   .equation-box .explanation {
     font-size: 0.75rem;
     color: #777;
+  }
+
+  /* Collapsible Sidebar Styles */
+  .collapsible-sidebar {
+    background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+    color: var(--cream);
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--gold);
+    overflow: hidden;
+  }
+
+  .collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .collapsible-header:hover {
+    background: rgba(255,255,255,0.03);
+  }
+
+  .collapsible-header h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .collapsible-header h4::before {
+    content: '?';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: var(--gold);
+    color: var(--dark);
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+  .collapsible-toggle {
+    font-size: 0.7rem;
+    color: rgba(250,247,242,0.5);
+    transition: transform 0.3s ease;
+  }
+
+  .collapsible-sidebar.open .collapsible-toggle {
+    transform: rotate(180deg);
+  }
+
+  .collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+
+  .collapsible-sidebar.open .collapsible-content {
+    max-height: 500px;
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .collapsible-content p {
+    color: rgba(250,247,242,0.85);
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .collapsible-content a {
+    color: var(--gold);
+    text-decoration: underline;
   }
 
   @keyframes fadeInUp {
@@ -1424,13 +1525,10 @@
 <!-- Section Navigation Dots -->
 <nav class="section-nav" id="sectionNav">
   <div class="section-dot" data-section="0" data-tooltip="Introduction"></div>
-  <div class="section-dot" data-section="1" data-tooltip="The Foundation"></div>
-  <div class="section-dot" data-section="2" data-tooltip="FDI Engine"></div>
-  <div class="section-dot" data-section="3" data-tooltip="The Paradox"></div>
-  <div class="section-dot" data-section="4" data-tooltip="Road Ahead"></div>
-  <div class="section-dot" data-section="5" data-tooltip="Challenges"></div>
-  <div class="section-dot" data-section="6" data-tooltip="Conclusion"></div>
-  <div class="section-dot" data-section="7" data-tooltip="Simulator"></div>
+  <div class="section-dot" data-section="1" data-tooltip="The Boom"></div>
+  <div class="section-dot" data-section="2" data-tooltip="The Screwdriver"></div>
+  <div class="section-dot" data-section="3" data-tooltip="The Window"></div>
+  <div class="section-dot" data-section="4" data-tooltip="Simulator"></div>
 </nav>
 
 <!-- SECTION 1: HERO + HOOK -->
@@ -1465,92 +1563,39 @@
   </div>
 </section>
 
-<!-- SECTION 2: THE FOUNDATION -->
-<section class="section" data-section-index="1" data-export-value="14.5">
+<!-- ACT I: THE BOOM -->
+<section class="section" data-section-index="1" data-export-value="150">
   <div class="reveal">
-    <span class="chapter-label">I. The Foundation</span>
-    <h2>Doi Moi and Trade Integration</h2>
+    <span class="chapter-label">Act I</span>
+    <h2>The Boom</h2>
   </div>
   <div class="reveal reveal-delay-1">
-    <p class="lead dropcap">In 1990, Vietnam's <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=VN" target="_blank" style="color:var(--red);text-decoration:none;">GDP per capita stood at $98</a>. <a href="https://www.imf.org/en/Countries/VNM/vietnam-raising-millions-out-of-poverty" target="_blank" style="color:var(--red);text-decoration:none;">Poverty affected 58% of the population</a> in 1993. The economy was closed and centrally planned. <a href="https://data.worldbank.org/indicator/NE.EXP.GNFS.ZS?locations=VN" target="_blank" style="color:var(--slate);text-decoration:none;">Exports were under 4% of GDP in 1988</a>. Over the next 35 years, <a href="https://wits.worldbank.org/CountryProfile/en/VNM" target="_blank" style="color:var(--slate);text-decoration:none;">exports grew to over 80% of GDP</a>. <a href="https://databankfiles.worldbank.org/public/ddpext_download/poverty/987B9C90-CB9F-4D93-AE8C-750588BF00QA/current/Global_POVEQ_VNM.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">Poverty fell below 4%</a>. This <a href="https://www.imf.org/en/Countries/VNM/vietnam-raising-millions-out-of-poverty" target="_blank" style="color:var(--slate);text-decoration:none;">ranks among the fastest economic transformations</a> on record.</p>
+    <p class="lead dropcap">In 1986, Vietnam was collapsing. <a href="https://www.rosalux.de/en/news?tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=News&tx_news_pi1%5Bnews%5D=45887" target="_blank" style="color:var(--red);text-decoration:none;">Inflation exceeded 700%</a>. <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=VN" target="_blank" style="color:var(--red);text-decoration:none;">GDP per capita was $98</a>. Two-thirds lived in poverty. The Communist Party made a calculated pivot: <a href="https://www.ucl.ac.uk/social-historical-sciences/sites/social_historical_sciences/files/decoding_vietnams_economic_miracle.pdf" target="_blank" style="color:var(--red);text-decoration:none;">Đổi Mới</a> (renovation)—market mechanisms without political liberalization. They legalized private enterprise, dismantled agricultural collectives, and opened to foreign investment. Within a decade, growth recovered. Within a generation, <a href="https://databankfiles.worldbank.org/public/ddpext_download/poverty/987B9C90-CB9F-4D93-AE8C-750588BF00QA/current/Global_POVEQ_VNM.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">poverty fell from 58% to 12%</a>.</p>
   </div>
   <div class="reveal reveal-delay-2">
-    <p>The trigger: <a href="https://www.ucl.ac.uk/social-historical-sciences/sites/social_historical_sciences/files/decoding_vietnams_economic_miracle.pdf" target="_blank" style="color:var(--red);text-decoration:none;">Đổi Mới</a> (Vietnamese for "renovation") in 1986. The accelerant: trade integration. Vietnam is now party to <a href="https://web.wtocenter.org.tw/file/PageFile/359006/WTTPRS410R1.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">15 regional trade agreements</a>, including CPTPP (the Pacific Rim trade deal the US left) and RCEP (the world's largest trade bloc, covering 30% of global GDP).</p>
+    <p>The accelerant was trade integration. Vietnam joined ASEAN (1995), signed a <a href="https://ustr.gov/sites/default/files/US-VietNam-BilateralTradeAgreement.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">bilateral trade agreement with the US</a> (2001), entered the <a href="https://www.wto.org/english/thewto_e/acc_e/a1_vietnam_e.htm" target="_blank" style="color:var(--slate);text-decoration:none;">WTO</a> (2007), then CPTPP and EVFTA. The result: <a href="https://web.wtocenter.org.tw/file/PageFile/359006/WTTPRS410R1.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">17 free trade agreements</a> covering 90% of global GDP. Tariff arbitrage became national strategy—a company manufacturing in China faces 10-15% EU tariffs on electronics; the same company assembling in Vietnam faces nearly zero.</p>
   </div>
 
   <div class="reveal">
-    <div class="insight-box">
-      <h4>Đổi Mới Explained</h4>
-      <p>Vietnam's version of China's 1978 reforms under Deng Xiaoping. The country faced economic crisis: 700%+ inflation, food shortages, Soviet aid drying up. The Communist Party made a strategic pivot: retain one-party political control while introducing market mechanisms. Key changes included legalizing private enterprise, dismantling agricultural collectives (letting farmers sell surplus at market prices), opening to foreign investment, and devaluing the currency to make exports competitive. Unlike the Soviet collapse or China's Cultural Revolution chaos, Vietnam managed a controlled transition. Gradualist reform without political liberalization. The model: socialist-oriented market economy.</p>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-year">1986</div>
-        <div class="timeline-text"><a href="https://en.wikipedia.org/wiki/6th_National_Congress_of_the_Communist_Party_of_Vietnam" target="_blank" style="color:var(--slate);text-decoration:underline;">Đổi Mới</a> launches at 6th Party Congress. The reforms legalized private business, ended collective farming, and opened doors to foreign capital. <a href="https://thesis.eur.nl/pub/6710/Bui%20Thi%20Kim%20Thanh%20ECD.pdf" target="_blank" style="color:var(--slate);text-decoration:underline;">Inflation brought from 700%+ to single digits</a> by early 1990s through fiscal discipline and currency reform.</div>
+    <div class="collapsible-sidebar" onclick="this.classList.toggle('open')">
+      <div class="collapsible-header">
+        <h4>What is Đổi Mới?</h4>
+        <span class="collapsible-toggle">▼</span>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-year">1995</div>
-        <div class="timeline-text">ASEAN membership. Integration into regional trade networks begins.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2001</div>
-        <div class="timeline-text"><a href="https://ustr.gov/sites/default/files/US-VietNam-BilateralTradeAgreement.pdf" target="_blank" style="color:var(--slate);text-decoration:underline;">US-Vietnam Bilateral Trade Agreement (BTA)</a> grants Vietnam normal trade relations with its largest future export market. <a href="https://www.nber.org/system/files/working_papers/w29830/w29830.pdf" target="_blank" style="color:var(--slate);text-decoration:underline;">US tariffs fell from ~40% to ~3%</a>. <a href="https://vietnamembassy-usa.org/vi/node/2671" target="_blank" style="color:var(--slate);text-decoration:underline;">Exports to US surged ~120% in 2002</a>.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2007</div>
-        <div class="timeline-text"><a href="https://www.wto.org/english/thewto_e/acc_e/a1_vietnam_e.htm" target="_blank" style="color:var(--slate);text-decoration:underline;">WTO accession</a> after 12 years of negotiations. Full entry into global trading system.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2018-19</div>
-        <div class="timeline-text"><a href="https://www.trade.gov/country-commercial-guides/vietnam-trade-agreements" target="_blank" style="color:var(--slate);text-decoration:underline;">CPTPP</a> (the Pacific Rim trade deal the US withdrew from) and <a href="https://ec.europa.eu/eurostat/statistics-explained/SEPDF/cache/71515.pdf" target="_blank" style="color:var(--slate);text-decoration:underline;">EVFTA</a> (EU-Vietnam Free Trade Agreement) ratified. 99% tariff elimination with EU. Access to 53 countries covering 87% of world GDP.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2025</div>
-        <div class="timeline-text"><a href="https://www.mufgresearch.com/fx/vietnam-doi-moi-20-the-most-ambitious-structural-reforms-since-1986-21-august-2025/" target="_blank" style="color:var(--slate);text-decoration:underline;">Doi Moi 2.0</a> announced. Consolidate 63 to 34 provinces, reduce bureaucracy 30%. Institutional reform continues.</div>
+      <div class="collapsible-content">
+        <p>Vietnam's 1986 market reforms—similar to China's 1978 opening under Deng. The Party retained political control while introducing market mechanisms: legalizing private enterprise, dismantling collectives, opening to FDI. Unlike the Soviet collapse, Vietnam managed a controlled transition. GDP rose from $6.5B (1990) to $31.2B (2000).</p>
       </div>
     </div>
   </div>
 
   <div class="reveal">
-    <div class="insight-box">
-      <h4>Why FTAs Matter: Tariff Arbitrage</h4>
-      <p>Free Trade Agreements (FTAs) eliminate or reduce tariffs between member countries. Vietnam has signed 15+ FTAs with partners representing ~90% of global GDP, including the EU, Japan, South Korea, and ASEAN. The arbitrage: a company manufacturing in China faces EU tariffs of 10-15% on electronics. The same company assembling in Vietnam faces nearly zero under EVFTA. This is why multinationals relocate final assembly to Vietnam even when components still come from China. They are buying tariff-free access to Western markets. <a href="https://www.worldbank.org/en/news/press-release/2020/05/21/decisive-reforms-needed-for-vietnam-to-see-full-benefits-of-eu-trade-agreement-report" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">The EVFTA alone is projected to raise GDP by 2.4% and exports by 12% by 2030</a>.</p>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="insight-box" style="border-left-color: var(--warning);">
-      <h4>2025 Update: Trump Tariffs and Vietnam's Vulnerability</h4>
-      <p>Vietnam's FTA-based model has one gap: the United States. There is no US-Vietnam FTA, and the US is Vietnam's largest export market (~30% of exports). In April 2025, the Trump administration imposed a <a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">46% "reciprocal tariff"</a> on Vietnamese goods, citing the $123B trade surplus. Negotiations reduced this to 20%, still a major hit. The administration also targets "transshipment" (Chinese goods routed through Vietnam to avoid China tariffs) with 40% duties. This exposes the model's fragility: Vietnam's tariff arbitrage works with the EU and CPTPP countries, but its largest market sets its own rules.</p>
-    </div>
-  </div>
-</section>
-
-<!-- INTERSTITIAL 1: Samsung Export Share -->
-<section class="interstitial" id="interstitial1">
-  <div class="interstitial-content">
-    <p class="interstitial-stat">Samsung alone accounts for <em><a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--gold);text-decoration:none;">~20%</a></em> of Vietnam's exports.</p>
-    <p class="interstitial-context">One Korean conglomerate, producing 40%+ of its global smartphones here, dominates Vietnam's export model.</p>
-  </div>
-</section>
-
-<!-- SECTION 3: THE FDI ENGINE -->
-<section class="section" data-section-index="2" data-export-value="150">
-  <div class="reveal">
-    <span class="chapter-label">II. The FDI Engine</span>
-    <h2>Foreign Factories, Local Assembly</h2>
-  </div>
-  <div class="reveal reveal-delay-1">
-    <p class="lead dropcap">Trade agreements opened the door. Foreign firms walked through it. <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--red);text-decoration:none;">Foreign firms account for nearly three-quarters of Vietnam's exports</a>, up to 90% in phones, computers, and machinery. The domestic private sector runs a trade deficit. <a href="https://documents1.worldbank.org/curated/en/261221506064451984/pdf/119861-WP-EnhancingEnterpriseCompetitivenessandSMELinkagesPPostD-PUBLIC.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">Local linkages remain shallow</a> and spillovers to domestic firms have fallen short of expectations.</p>
+    <p>Foreign investment flooded in. <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--red);text-decoration:none;">Foreign firms now account for ~73% of Vietnam's exports</a>. Samsung alone invested <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--slate);text-decoration:none;">$22 billion</a>, produces 40%+ of its global smartphones here, and accounts for <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--red);text-decoration:none;">~20% of Vietnam's total exports</a>. <a href="https://theinvestor.vn/intels-20-years-in-vietnam-15-bln-invested-4-bln-chips-produced-d16287.html" target="_blank" style="color:var(--slate);text-decoration:none;">Intel operates a $1.5B facility</a>—its largest globally. Apple has <a href="https://en.baochinhphu.vn/jpmorgan-65-of-worlds-airpods-production-to-be-located-in-viet-nam-in-2025-111220927105738214.htm" target="_blank" style="color:var(--slate);text-decoration:none;">35 supplier facilities</a> assembling ~65% of AirPods and ~20% of iPads. <a href="https://www.vietnam-briefing.com/news/where-are-nikes-factories-located-in-vietnam.html/" target="_blank" style="color:var(--slate);text-decoration:none;">Nike sources 51% of global footwear</a> from 162 Vietnamese factories.</p>
   </div>
 
   <div class="reveal">
     <div class="chart-container">
-      <div class="chart-title">The Samsung Effect: One Company's Footprint</div>
-      <div class="chart-subtitle">Samsung Vietnam operations | Source: <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:#999;text-decoration:underline;">OECD 2025</a>, <a href="https://documents1.worldbank.org/curated/en/099800208092223549/pdf/IDU-4826ad39-5f38-4868-a257-cfbb51a5bb56.pdf" target="_blank" style="color:#999;text-decoration:underline;">World Bank</a></div>
+      <div class="chart-title">The Samsung Effect</div>
+      <div class="chart-subtitle">One company's dominance in Vietnam's export model | Source: <a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:#999;text-decoration:underline;">OECD 2025</a></div>
       <table class="data-table">
         <tr>
           <th>Metric</th>
@@ -1559,128 +1604,63 @@
         </tr>
         <tr>
           <td>Total investment</td>
-          <td class="highlight"><a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--dark);text-decoration:underline;">~$22B</a></td>
+          <td class="highlight">~$22B</td>
           <td>Vietnam's largest foreign investor</td>
         </tr>
         <tr>
           <td>Export share</td>
-          <td class="highlight"><a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--dark);text-decoration:underline;">~20%</a></td>
-          <td class="red">One firm = 1/5 of Vietnam's exports</td>
+          <td class="highlight red">~20%</td>
+          <td>One firm = 1/5 of Vietnam's exports</td>
         </tr>
         <tr>
           <td>Employees</td>
-          <td class="highlight"><a href="https://www.oecd.org/en/publications/oecd-economic-surveys-viet-nam-2025_fb37254b-en/full-report/harnessing-trade-and-investment-flows-to-boost-productivity_98d56c90.html" target="_blank" style="color:var(--dark);text-decoration:underline;">~112,000</a></td>
-          <td>~35% of Samsung's global workforce in Vietnam</td>
+          <td class="highlight">~112,000</td>
+          <td>~35% of Samsung's global workforce</td>
         </tr>
         <tr>
-          <td>Global production share</td>
-          <td class="highlight"><a href="https://documents1.worldbank.org/curated/en/099800208092223549/pdf/IDU-4826ad39-5f38-4868-a257-cfbb51a5bb56.pdf" target="_blank" style="color:var(--dark);text-decoration:underline;">40%+</a></td>
-          <td>Of all Samsung smartphones worldwide</td>
-        </tr>
-        <tr>
-          <td>Local sourcing</td>
-          <td class="highlight warning"><a href="https://documents1.worldbank.org/curated/en/261221506064451984/pdf/119861-WP-EnhancingEnterpriseCompetitivenessandSMELinkagesPPostD-PUBLIC.pdf" target="_blank" style="color:var(--warning);text-decoration:underline;">~30%</a></td>
-          <td>Most "local" suppliers are foreign firms in Vietnam</td>
+          <td>Global production</td>
+          <td class="highlight">40%+</td>
+          <td>Of all Samsung smartphones</td>
         </tr>
       </table>
     </div>
   </div>
 
   <div class="reveal">
-    <p>Samsung anchors a broader ecosystem. <a href="https://theinvestor.vn/intels-20-years-in-vietnam-15-bln-invested-4-bln-chips-produced-d16287.html" target="_blank" style="color:var(--slate);text-decoration:underline;">Intel operates a $1.5B facility</a> (largest globally) with $100B+ cumulative exports. Apple has expanded to <a href="https://en.baochinhphu.vn/jpmorgan-65-of-worlds-airpods-production-to-be-located-in-viet-nam-in-2025-111220927105738214.htm" target="_blank" style="color:var(--slate);text-decoration:underline;">35 supplier facilities</a> (doubled from 18 in 2016), assembling ~65% of AirPods and ~20% of iPads in Vietnam. <a href="https://www.vietnam-briefing.com/news/where-are-nikes-factories-located-in-vietnam.html/" target="_blank" style="color:var(--slate);text-decoration:underline;">Nike sources 51% of global footwear</a> through 162 factories and 493,000 workers. The open issue: <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/06/oecd-economic-surveys-viet-nam-2025_f2511b78/fb37254b-en.pdf" target="_blank" style="color:var(--slate);text-decoration:underline;">how much technology transfers to local firms</a>.</p>
-  </div>
-
-  <div class="reveal">
-    <div class="insight-box">
-      <h4>FDI Spillovers: How Foreign Investment Affects Local Firms</h4>
-      <p>Development economists distinguish two types of spillovers from multinational enterprises (MNEs). <strong>Backward spillovers</strong> occur when local firms become suppliers to foreign companies. They learn quality standards, receive technical assistance, and upgrade capabilities. <strong>Horizontal spillovers</strong> happen when local competitors learn from (or are crushed by) foreign firms in their industry. <a href="https://www.sciencedirect.com/science/article/abs/pii/S1049007816302111" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Research finds backward spillovers are positive in Vietnam, but horizontal spillovers are often negative</a>. Foreign firms outcompete locals rather than inspiring them. <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/06/oecd-economic-surveys-viet-nam-2025_f2511b78/fb37254b-en.pdf" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Benefits depend on institutional quality</a>. FDI alone does not transfer technology. Local absorptive capacity and policy matter.</p>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="chart-container">
-      <div class="chart-title">FDI Stock by Source Country</div>
-      <div class="chart-subtitle">Cumulative registered capital, USD billions | Source: <a href="https://www.mekongcapital.com/foreign-direct-investment-in-vietnam/" target="_blank" style="color:#999;text-decoration:underline;">Mekong Capital</a></div>
-      <div class="bar-chart" id="fdiChart">
-        <div class="bar-row">
-          <span class="bar-label"><a href="https://www.mekongcapital.com/foreign-direct-investment-in-vietnam/" target="_blank" style="color:var(--slate);text-decoration:none;">S. Korea</a></span>
-          <div class="bar-track"><div class="bar-fill" data-width="100" style="background:var(--red)"><span class="bar-value">$92B</span></div></div>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label">Singapore</span>
-          <div class="bar-track"><div class="bar-fill" data-width="91" style="background:var(--accent-blue)"><span class="bar-value">$84B</span></div></div>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label">Japan</span>
-          <div class="bar-track"><div class="bar-fill" data-width="80" style="background:var(--accent-green)"><span class="bar-value">$74B</span></div></div>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label">Taiwan</span>
-          <div class="bar-track"><div class="bar-fill" data-width="43" style="background:#E74C3C"><span class="bar-value">$40B</span></div></div>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label">China</span>
-          <div class="bar-track"><div class="bar-fill" data-width="25" style="background:var(--gold)"><span class="bar-value">Rising fast</span></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="insight-box">
-      <h4>The China+1 Strategy</h4>
-      <p>After COVID supply chain disruptions and US-China trade tensions, multinationals adopted "China+1": maintaining Chinese operations while adding one alternative manufacturing base to reduce risk. Vietnam is the most popular "+1" destination. The reasons: geographic proximity to China (easy to shift some production while keeping supply chains connected), competitive wages ($250-400/month vs. China's $500-800), 15+ FTAs providing tariff-free access to Western markets, and existing supplier ecosystems established by early movers like Samsung. The strategy explains why Chinese FDI into Vietnam is "rising fast." Chinese firms themselves are relocating final assembly to Vietnam to access markets their home country cannot reach tariff-free.</p>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="comparison-grid">
-      <div class="comparison-card">
-        <span class="stat-number"><a href="https://vietnam.incorp.asia/vietnam-labor-cost/" target="_blank" style="color:var(--red);text-decoration:none;">$250-400</a></span>
-        <h3>Monthly Manufacturing Wage</h3>
-        <p>Vs. China $500-800. The cost advantage persists.</p>
-      </div>
-      <div class="comparison-card">
-        <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/vietnam-manufacturing-tracker.html/" target="_blank" style="color:var(--red);text-decoration:none;">433</a></span>
-        <h3>Industrial Zones</h3>
-        <p>Ready infrastructure with <a href="https://www.state.gov/reports/2019-investment-climate-statements/vietnam/" target="_blank" style="color:var(--slate);text-decoration:underline;">tax holidays</a> (4yr exemption + 10-15yr preferential rates).</p>
-      </div>
-      <div class="comparison-card">
-        <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/vietnam-economy-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--red);text-decoration:none;">42,002</a></span>
-        <h3>Active FDI Projects</h3>
-        <p>$502.8B registered capital, $322.5B disbursed. <a href="https://www.vietnam-briefing.com/news/vietnam-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--slate);text-decoration:underline;">Record $25.35B in 2024</a>.</p>
-      </div>
-      <div class="comparison-card warning">
-        <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/vietnam-economy-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--warning);text-decoration:none;">77.3%</a></span>
-        <h3>FDI Share of Exports</h3>
-        <p><a href="https://vietnamnet.vn/en/vietnam-s-record-exports-and-the-hidden-fragility-of-its-economy-2474047.html" target="_blank" style="color:var(--slate);text-decoration:underline;">Domestic firms run a trade deficit</a>. The paradox of borrowed capacity.</p>
-      </div>
+    <div class="pull-quote" style="margin: 2rem 0; padding: 1.5rem 2rem; background: linear-gradient(135deg, rgba(218,37,29,0.08) 0%, rgba(212,175,55,0.08) 100%); border-left: 4px solid var(--red); border-radius: 0 8px 8px 0;">
+      <p style="font-size: 1.3rem; line-height: 1.5; margin: 0; font-weight: 400;">The model worked—until it revealed its limits. <a href="https://www.vietnam-briefing.com/news/vietnam-economy-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--warning);text-decoration:none;font-weight:600;">77.3% of exports come from foreign firms</a>. Domestic companies collectively run a trade deficit.</p>
+      <p style="font-size: 1.5rem; line-height: 1.4; margin: 1rem 0 0 0; font-family: 'Playfair Display', serif; font-weight: 700; color: var(--dark);">The question is whether Vietnam captured the value—or just the jobs.</p>
     </div>
   </div>
 </section>
 
-<!-- INTERSTITIAL 2: FDI Export Share -->
-<section class="interstitial" id="interstitial2">
+<!-- INTERSTITIAL 1: The Turn -->
+<section class="interstitial" id="interstitial1">
   <div class="interstitial-content">
-    <p class="interstitial-stat"><em><a href="https://www.vietnam-briefing.com/news/vietnam-economy-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--gold);text-decoration:none;">77.3%</a></em> of Vietnam's exports come from foreign-owned firms.</p>
-    <p class="interstitial-context">Domestic companies collectively run a trade deficit.</p>
+    <p class="interstitial-stat"><em><a href="https://www.vietnam-briefing.com/news/vietnam-economy-gdp-fdi-and-trade-2025.html/" target="_blank" style="color:var(--gold);text-decoration:none;">73%</a></em> of exports are foreign-owned.</p>
+    <p class="interstitial-context">The question is whether Vietnam captured the value—or just the jobs.</p>
   </div>
 </section>
 
-<!-- SECTION 4: THE STRUCTURAL PROBLEM -->
-<section class="section-wide" data-section-index="3" data-export-value="336">
+<!-- ACT II: THE SCREWDRIVER -->
+<section class="section-wide" data-section-index="2" data-export-value="336">
   <div class="reveal">
-    <span class="chapter-label">III. The Structural Problem</span>
-    <h2>The Screwdriver Economy Paradox</h2>
+    <span class="chapter-label">Act II</span>
+    <h2>The Screwdriver Economy</h2>
   </div>
   <div class="reveal reveal-delay-1">
-    <p class="lead dropcap" style="max-width:720px;">The FDI boom created jobs and drove exports. It also created a dependency. <a href="https://www.oecd.org/content/dam/oecd/en/topics/policy-sub-issues/trade-in-value-added/tiva-2023-VNM.pdf" target="_blank" style="color:var(--red);text-decoration:none;">Foreign value-added in Vietnam's exports rose from 43% in 2008 to 48% in 2020</a>, well above the OECD average of 27%. Domestic value capture fell even as exports surged. This is the core paradox: <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:var(--slate);text-decoration:none;">local business participation in global supply chains dropped from 35% to 18% between 2009 and 2023</a>.</p>
+    <p class="lead dropcap" style="max-width:720px;">The FDI boom created jobs and drove exports. It also created a dependency. <a href="https://www.oecd.org/content/dam/oecd/en/topics/policy-sub-issues/trade-in-value-added/tiva-2023-VNM.pdf" target="_blank" style="color:var(--red);text-decoration:none;">Foreign value-added in Vietnam's exports rose from 43% in 2008 to 48% in 2020</a>, well above the OECD average of 27%. Domestic value capture fell even as exports surged. This is the core paradox: <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:var(--slate);text-decoration:none;">local business participation in global supply chains dropped from 35% to 18% between 2009 and 2023</a>. The structural transformation has been dramatic: <a href="https://www.theglobaleconomy.com/Vietnam/share_of_agriculture/" target="_blank" style="color:var(--slate);text-decoration:none;">agriculture's share of GDP fell from nearly 46% in 1988 to only about 11.9% in 2024</a>. <a href="https://tradingeconomics.com/vietnam/employment-in-agriculture-percent-of-total-employment-wb-data.html" target="_blank" style="color:var(--slate);text-decoration:none;">Agricultural employment fell to about 33% by 2023</a>. Yet the benefits of this transformation are increasingly captured by foreign firms.</p>
   </div>
 
   <div class="reveal">
-    <div class="insight-box">
-      <h4>Understanding Value-Added: DVA vs FVA</h4>
-      <p>When Vietnam exports a $1,000 smartphone, most of the wealth leaves the country. The OECD tracks this using <strong>Domestic Value-Added (DVA)</strong>, the portion from Vietnamese labor, materials, and profits, versus <strong>Foreign Value-Added (FVA)</strong>, the value of imported components and foreign IP. Vietnam's DVA is 52%, meaning $480 of that phone's value came from imports (Korean chips, Japanese screens, Taiwanese components). The $520 Vietnam "adds" is mostly assembly labor, the lowest-margin step. Compare to China (68% DVA) or Germany (74% DVA), where domestic firms capture more of the value chain. <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Local business participation in global supply chains fell from 35% to 18% between 2009 and 2023</a>.</p>
+    <div class="collapsible-sidebar" onclick="this.classList.toggle('open')">
+      <div class="collapsible-header">
+        <h4>What is DVA vs FVA?</h4>
+        <span class="collapsible-toggle">▼</span>
+      </div>
+      <div class="collapsible-content">
+        <p><strong>Domestic Value-Added (DVA)</strong> = Vietnamese labor, materials, profits. <strong>Foreign Value-Added (FVA)</strong> = imported components and foreign IP. Vietnam's DVA is 52%—meaning $480 of a $1,000 smartphone came from imports (Korean chips, Japanese screens, Taiwanese components). The $520 Vietnam "adds" is mostly assembly—the lowest-margin step. Compare: China 68%, Germany 74%.</p>
+      </div>
     </div>
   </div>
 
@@ -1838,20 +1818,24 @@
 
         <!-- Legend and insight row at bottom -->
         <g transform="translate(0, 295)">
-          <!-- Key insight callout -->
+          <!-- Key insight callout - THE CORE QUESTION -->
           <g id="sankeyInsight" opacity="0">
-            <rect x="25" y="0" width="140" height="32" rx="4" fill="var(--dark)"/>
-            <text x="95" y="14" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:7px;fill:var(--gold);text-transform:uppercase;letter-spacing:0.05em">The Question</text>
-            <text x="95" y="26" text-anchor="middle" style="font-family:'Source Serif 4',serif;font-size:9px;fill:white">Value capture unclear</text>
+            <rect x="15" y="-5" width="180" height="45" rx="6" fill="var(--dark)" stroke="var(--gold)" stroke-width="1"/>
+            <text x="105" y="12" text-anchor="middle" style="font-family:'JetBrains Mono',monospace;font-size:8px;fill:var(--gold);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">The Core Question</text>
+            <text x="105" y="28" text-anchor="middle" style="font-family:'Playfair Display',serif;font-size:11px;fill:white;font-weight:600">Did Vietnam capture the value</text>
+            <text x="105" y="40" text-anchor="middle" style="font-family:'Playfair Display',serif;font-size:11px;fill:white;font-weight:600">—or just the jobs?</text>
           </g>
 
-          <!-- Legend -->
-          <rect x="220" y="8" width="12" height="10" rx="2" fill="var(--gold)" opacity="0.7"/>
-          <text x="238" y="17" class="sankey-value" style="font-size:9px">Imports (components)</text>
-          <rect x="380" y="8" width="12" height="10" rx="2" fill="var(--red)" opacity="0.7"/>
-          <text x="398" y="17" class="sankey-value" style="font-size:9px">Exports (finished goods)</text>
-          <rect x="555" y="8" width="12" height="10" rx="2" fill="var(--warning)" opacity="0.3"/>
-          <text x="573" y="17" class="sankey-value" style="font-size:9px">Domestic value added (52%)</text>
+          <!-- Legend - with prominent DVA highlight -->
+          <rect x="230" y="8" width="12" height="10" rx="2" fill="var(--gold)" opacity="0.7"/>
+          <text x="248" y="17" class="sankey-value" style="font-size:9px">Imports (components)</text>
+          <rect x="390" y="8" width="12" height="10" rx="2" fill="var(--red)" opacity="0.7"/>
+          <text x="408" y="17" class="sankey-value" style="font-size:9px">Exports (finished goods)</text>
+
+          <!-- DVA Highlight Box -->
+          <rect x="540" y="-2" width="165" height="28" rx="4" fill="rgba(212,175,55,0.15)" stroke="var(--gold)" stroke-width="1"/>
+          <rect x="550" y="8" width="12" height="10" rx="2" fill="var(--gold)" opacity="0.4"/>
+          <text x="568" y="17" class="sankey-value" style="font-size:10px;font-weight:600;fill:var(--dark)">Vietnam keeps only 52%</text>
         </g>
       </svg>
     </div>
@@ -2001,6 +1985,13 @@
   </div>
 
   <div class="reveal">
+    <div class="insight-box" style="border-left-color: var(--warning);">
+      <h4>The Assembly Trap Explained</h4>
+      <p>Vietnam's export success is driven largely by assembling imported inputs. <a href="https://www.rmit.edu.vn/news/all-news/2025/nov/vietnam-electronics-fdi-growth-without-spillovers" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Electronics FDI firms produce about 98% of Vietnam's electronics exports</a> (which totaled US$126.5 billion in 2024). <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Foreign-owned companies now account for ~73% of all exports</a>. Domestic enterprises often lack linkages, so Vietnam captures only a fraction of the value of exported goods. <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Services exports are still only ~12% of total exports</a> (and ~7% of manufacturing exports), much lower than in developed economies. This raises concerns of an "assembly trap" where growth relies on assembly jobs with limited skill gains or technology transfer.</p>
+    </div>
+  </div>
+
+  <div class="reveal">
     <div class="pull-quote">
       <p>"<a href="https://documents.worldbank.org/en/publication/documents-reports/documentdetail/352041468338949354/export-liberalization-job-creation-and-the-skill-premium-evidence-from-the-u-s-vietnam-bilateral-trade-agreement" target="_blank" style="color:var(--dark);text-decoration:underline;">The boom in exports following the BTA was particularly beneficial to wages of unskilled workers and was a key driver of poverty reduction because it was concentrated in labor-intensive manufacturing.</a>"</p>
       <cite>World Bank research on BTA impact</cite>
@@ -2008,114 +1999,19 @@
   </div>
 </section>
 
-<!-- INTERSTITIAL 3: Demographic Window -->
-<section class="interstitial" id="interstitial3">
+<!-- INTERSTITIAL 2: The Deadline -->
+<section class="interstitial" id="interstitial2">
   <div class="interstitial-content">
-    <p class="interstitial-stat">Vietnam's working-age population peaks around <em><a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--gold);text-decoration:none;">2038</a></em> at 72 million.</p>
-    <p class="interstitial-context">After that, the labor force shrinks. The old-age dependency ratio will nearly triple by 2040.</p>
-  </div>
-</section>
-
-<!-- SECTION 5: THE ROAD AHEAD -->
-<section class="section" data-section-index="4" data-export-value="475">
-  <div class="reveal">
-    <span class="chapter-label">IV. The Road Ahead</span>
-    <h2>The 10-Year Window</h2>
-  </div>
-  <div class="reveal reveal-delay-1">
-    <p class="lead dropcap">The paradox has a deadline. Vietnam has 10-12 years before its demographic dividend ends. <a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--red);text-decoration:none;">Working-age population peaks around 2038 at 72 million</a>, then declines. The <a href="https://documents1.worldbank.org/curated/en/544371632385243499/pdf/Vietnam-Adapting-to-an-Aging-Society.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">old-age dependency ratio will nearly triple by 2040</a>. <a href="https://www.imf.org/en/Publications/CR/Issues/2025/10/03/Vietnam-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-570895" target="_blank" style="color:var(--slate);text-decoration:none;">The traditional export-led model now faces a more uncertain global trade environment</a>. Vietnam must transition from assembly platform to innovation economy before time runs out.</p>
-  </div>
-
-  <!-- Demographic Countdown Ring -->
-  <div class="reveal">
-    <div class="demo-ring-container" id="demoRingContainer">
-      <svg class="demo-ring-svg" viewBox="0 0 300 280" id="demoRingSvg">
-        <!-- Track (empty ring) -->
-        <circle cx="150" cy="130" r="95" class="demo-ring-track"/>
-
-        <!-- Fill (animated) - goes clockwise from top -->
-        <circle cx="150" cy="130" r="95" class="demo-ring-fill" id="demoRingFill"/>
-
-        <!-- Center text -->
-        <text x="150" y="120" text-anchor="middle" class="demo-ring-center">~10 years</text>
-        <text x="150" y="145" text-anchor="middle" class="demo-ring-subtitle">of demographic dividend</text>
-        <text x="150" y="162" text-anchor="middle" class="demo-ring-subtitle">remaining</text>
-
-        <!-- Tick marks - positioned clockwise from top -->
-        <g class="demo-ring-ticks">
-          <!-- 2025 (now) - at top of ring (12 o'clock) -->
-          <line x1="150" y1="23" x2="150" y2="35" stroke="var(--dark)" stroke-width="2"/>
-          <text x="150" y="15" text-anchor="middle">2025</text>
-
-          <!-- ~2035 (dividend ends) - at ~70% clockwise (roughly 5 o'clock) -->
-          <line x1="220" y1="195" x2="210" y2="188" stroke="var(--gold)" stroke-width="2"/>
-          <text x="235" y="205" text-anchor="start" fill="var(--gold)">~2035</text>
-
-          <!-- 2038 (peak working age) - at bottom (6 o'clock) -->
-          <line x1="150" y1="225" x2="150" y2="237" stroke="var(--slate)" stroke-width="1"/>
-          <text x="150" y="255" text-anchor="middle">2038</text>
-        </g>
-      </svg>
-
-      <div class="demo-ring-info">
-        <p><strong>The window is closing.</strong> <a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--dark);text-decoration:underline;">Working-age population peaks around 2038 at 72 million</a>, but the dividend window effectively closes in the mid-2030s as dependency ratios begin rising.</p>
-        <p style="color:var(--warning);font-family:'JetBrains Mono',monospace;font-size:0.8rem;"><a href="https://documents1.worldbank.org/curated/en/477421632385962082/pdf/Overview.pdf" target="_blank" style="color:var(--warning);text-decoration:none;">Aging will shave ~0.9pp off annual GDP growth by 2050</a></p>
-        <p style="font-size:0.85rem;color:var(--slate);">Working-age share will shrink by ~5 percentage points through the early 2040s. Vietnam is "getting old before getting rich."</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="comparison-grid">
-      <div class="comparison-card">
-        <span class="stat-number"><a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--red);text-decoration:none;">100M+</a></span>
-        <h3>Population</h3>
-        <p>Working-age peaks ~2038 at <a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">72 million</a>, then declines steadily.</p>
-      </div>
-      <div class="comparison-card warning">
-        <span class="stat-number"><a href="https://documents1.worldbank.org/curated/en/544371632385243499/pdf/Vietnam-Adapting-to-an-Aging-Society.pdf" target="_blank" style="color:var(--warning);text-decoration:none;">~3×</a></span>
-        <h3>Dependency Ratio Rise</h3>
-        <p>Old-age dependency ratio nearly triples from ~10% to 26% by 2040.</p>
-      </div>
-      <div class="comparison-card warning">
-        <span class="stat-number">27.2%</span>
-        <h3>Workers With Degrees</h3>
-        <p><a href="https://www.ilo.org/publications/research-report-informal-employment-viet-nam-through-gender-lens" target="_blank" style="color:var(--slate);text-decoration:none;">~65-68%</a> in informal sector. Only <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:var(--slate);text-decoration:underline;">~1,400 microchip engineers</a> vs. 50,000 target.</p>
-      </div>
-      <div class="comparison-card">
-        <span class="stat-number">25-40%</span>
-        <h3>Dividend Contribution</h3>
-        <p>Share of East Asian Tiger growth attributable to demographics (Bloom & Williamson).</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <p>The agricultural reallocation channel shows TFP growth in action. <a href="https://www.ucl.ac.uk/social-historical-sciences/sites/social_historical_sciences/files/decoding_vietnams_economic_miracle.pdf" target="_blank" style="color:var(--slate);text-decoration:underline;">Agricultural liberalization turned Vietnam from a food-deficit country into one of the world's top rice exporters</a>. Employment shifted from ~50% (2008) to 26.9% (2024) in agriculture. <a href="https://documents.worldbank.org/en/publication/documents-reports/documentdetail/352041468338949354/export-liberalization-job-creation-and-the-skill-premium-evidence-from-the-u-s-vietnam-bilateral-trade-agreement" target="_blank" style="color:var(--slate);text-decoration:underline;">Workers moved from informal microenterprises into formal wage jobs in larger firms</a>. This channel is running out of room. The easy gains are behind Vietnam.</p>
-  </div>
-
-  <div class="reveal">
-    <div class="insight-box">
-      <h4>The Skills Constraint</h4>
-      <p>Vietnam has approximately <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">1,400 chip engineers and 5,000 chip design graduates total</a>. Strategy 1018 targets 50,000 semiconductor engineers by 2030. Without this human capital upgrade, the country cannot move up the value chain before the demographic window closes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- INTERSTITIAL 4: Middle Income Trap -->
-<section class="interstitial" id="interstitial4">
-  <div class="interstitial-content">
-    <p class="interstitial-stat">Only <em><a href="https://www.worldbank.org/en/news/press-release/2024/07/22/-middle-income-trap-hinders-progress-in-108-developing-countries" target="_blank" style="color:var(--gold);text-decoration:none;">34 of ~142</a></em> middle-income countries have ever made it to high-income status.</p>
-    <p class="interstitial-context">The odds are roughly 1 in 4. 108 remain stuck today.</p>
+    <p class="interstitial-stat">Vietnam's demographic dividend ends around <em><a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--gold);text-decoration:none;">2035</a></em>.</p>
+    <p class="interstitial-context">Only 34 of ~142 middle-income countries have ever made it to high-income status.</p>
   </div>
 </section>
 
 <!-- Vietnam Industrial Map -->
 <section class="section-wide">
   <div class="reveal">
-    <span class="chapter-label">Where the Factories Are</span>
-    <h2>The Industrial Clusters</h2>
-    <p style="max-width:720px;margin-top:0.5rem;">The challenge is geographic. Vietnam's export economy concentrates in two clusters: electronics in the north around Hanoi, diversified manufacturing in the south around Ho Chi Minh City. These regions must transform from assembly platforms to innovation centers before the demographic window closes.</p>
+    <h2 style="margin-bottom:0.5rem">Where the Factories Are</h2>
+    <p style="max-width:720px;margin-top:0;">Two clusters: electronics in the north around Hanoi, diversified manufacturing in the south around Ho Chi Minh City.</p>
   </div>
   <div class="reveal">
     <div class="vietnam-map-container" id="vietnamMapContainer">
@@ -2291,198 +2187,43 @@
   </div>
 </section>
 
-<!-- SECTION 6: CHALLENGES AND VULNERABILITIES -->
-<section class="section" data-section-index="5" data-export-value="475">
+<!-- ACT III: THE WINDOW -->
+<section class="section" data-section-index="3" data-export-value="475">
   <div class="reveal">
-    <span class="chapter-label">V. Challenges</span>
-    <h2>Tariff Threats and Concentration Risk</h2>
+    <span class="chapter-label">Act III</span>
+    <h2>The Window</h2>
   </div>
   <div class="reveal reveal-delay-1">
-    <p class="lead dropcap">The clock is ticking. External shocks are not waiting. In April 2025, the US imposed a <a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:var(--red);text-decoration:none;">46% reciprocal tariff</a> on Vietnamese goods. Negotiations reduced this to 20%. The threat exposed a core vulnerability: Vietnam's export model depends on one market absorbing 30% of output.</p>
+    <p class="lead dropcap">The paradox has a deadline. Vietnam's <a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--red);text-decoration:none;">working-age population peaks around 2038 at 72 million</a>, then declines. The demographic dividend that enabled cheap labor ends in the mid-2030s. The <a href="https://documents1.worldbank.org/curated/en/544371632385243499/pdf/Vietnam-Adapting-to-an-Aging-Society.pdf" target="_blank" style="color:var(--slate);text-decoration:none;">old-age dependency ratio nearly triples by 2040</a>. <a href="https://documents1.worldbank.org/curated/en/477421632385962082/pdf/Overview.pdf" target="_blank" style="color:var(--warning);text-decoration:none;">Aging will shave ~0.9 percentage points off annual GDP growth by 2050</a>. Vietnam is getting old before getting rich.</p>
   </div>
 
   <div class="reveal">
-    <div class="insight-box">
-      <h4>Concentration Risk</h4>
-      <p>The US absorbs 30% of Vietnamese exports ($153.2B). Vietnam runs a $115.6B trade deficit with China. It imports components to assemble for re-export. Tariffs from Washington or supply shocks from Beijing threaten the entire model.</p>
-    </div>
+    <p>External shocks are not waiting. In April 2025, the US imposed a <a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:var(--red);text-decoration:none;">46% reciprocal tariff</a> on Vietnamese goods. Negotiations reduced this to 20%. The threat exposed a core vulnerability: Vietnam's export model depends on one market absorbing 30% of output.</p>
   </div>
 
   <div class="reveal">
-    <div class="comparison-grid">
-      <div class="comparison-card">
-        <span class="stat-number"><a href="https://www.vietnam-briefing.com/news/us-vietnam-trade-relations-trump-impact-tariff-vietnamese-exports.html/" target="_blank" style="color:var(--red);text-decoration:none;">46% &rarr; 20%</a></span>
-        <h3>US Tariff Shock</h3>
-        <p>Initial tariff negotiated down. 40% on transshipped goods. Risk persists.</p>
+    <p>The skills gap is stark: Vietnam has approximately <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:var(--red);text-decoration:underline;">1,400 chip engineers</a>. The government's target: 50,000 by 2030. <a href="https://data.worldbank.org/indicator/GB.XPD.RSDV.GD.ZS?locations=VN" target="_blank" style="color:var(--slate);text-decoration:underline;">R&D spending is 0.4% of GDP</a>—Korea escaped the trap at 4.8%. <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:var(--slate);text-decoration:underline;">Only 10% hold a bachelor's degree</a>; only 5% of manufacturing workers are high-skilled.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="collapsible-sidebar" onclick="this.classList.toggle('open')">
+      <div class="collapsible-header">
+        <h4>What is the Middle-Income Trap?</h4>
+        <span class="collapsible-toggle">▼</span>
       </div>
-      <div class="comparison-card">
-        <span class="stat-number"><a href="https://oxfordbusinessgroup.com/reports/vietnam/2017-report/economy/remaining-flexible-the-central-bank-is-steadily-moving-to-a-currency-basket-peg" target="_blank" style="color:var(--red);text-decoration:none;">&plusmn;5%</a></span>
-        <h3>Exchange Rate Band</h3>
-        <p>Managed float at ~26,400 VND/USD. Gradual depreciation 1-3%/year since late 1990s.</p>
-      </div>
-      <div class="comparison-card warning">
-        <span class="stat-number"><a href="https://fulcrum.sg/exchange-rate-stability-in-vietnam-navigating-the-conflicting-policy-demands/" target="_blank" style="color:var(--warning);text-decoration:none;">$70-81B</a></span>
-        <h3>FX Reserves (2025)</h3>
-        <p>Down from $109B (2022). Only ~2.3 months import cover. Below IMF 3-month threshold.</p>
-      </div>
-      <div class="comparison-card">
-        <span class="stat-number">3.31%</span>
-        <h3>Inflation (2025)</h3>
-        <p>From <a href="https://worlddata.info/asia/vietnam/inflation-rates.php" target="_blank" style="color:var(--slate);text-decoration:none;">700%+ (1986)</a> to 18.6% (2011) to <a href="https://en.vietnamplus.vn/vietnams-2025-cpi-rises-331-within-national-assemblys-target-post335417.vnp" target="_blank" style="color:var(--slate);text-decoration:none;">3.31%</a> today. Hard-won stability.</p>
+      <div class="collapsible-content">
+        <p>Countries that grow rapidly to ~$10,000-15,000 GDP per capita, then stall. They no longer compete on low wages but haven't developed innovation capacity. Of ~142 countries reaching middle-income since 1960, only 34 escaped. The key factor: <strong>Total Factor Productivity (TFP)</strong>—output growth from innovation rather than just adding labor or capital. Vietnam's R&D is 0.4% of GDP; Korea escaped at 4.8%.</p>
       </div>
     </div>
   </div>
 
   <div class="reveal">
-    <h3>What Success Requires</h3>
-    <p><strong>Domestic R&D:</strong> Increase from <a href="https://data.worldbank.org/indicator/GB.XPD.RSDV.GD.ZS?locations=VN" target="_blank" style="color:var(--slate);text-decoration:underline;">0.4% to 2%+ of GDP</a>. Korea spends 4.8%. Taiwan spends 3.5%.</p>
-    <p><strong>Supplier Development:</strong> Break import dependency. Korean and Taiwanese firms spent decades building domestic component ecosystems.</p>
-    <p><strong>Skills Upgrade:</strong> Increase tertiary attainment (the share of adults with a university or equivalent degree) from 27% to 50%+. Vietnam has only <a href="https://en.sggp.org.vn/vietnam-facing-severe-thirst-for-talents-in-strategic-tech-sectors-post123546.html" target="_blank" style="color:var(--slate);text-decoration:underline;">~1,400 chip engineers</a> vs. 50,000 target by 2030.</p>
-    <p><strong>Diversification:</strong> Reduce US concentration from 30% to 20%. Develop ASEAN, Middle East, and African markets.</p>
+    <h3 style="margin-top: 2rem;">The Path Forward</h3>
+    <p>Vietnam transformed from one of the world's poorest economies to a $475 billion export powerhouse in a single generation. The screwdriver economy was a rational strategy for a poor country seeking industrialization. The question is whether Vietnam can build what comes next before time runs out.</p>
+    <p>Success requires moving up the value chain: <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:var(--slate);text-decoration:underline;">developing domestic suppliers</a> who compete with Korean and Taiwanese firms, increasing R&D from 0.4% to 2%+ of GDP, and <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:var(--slate);text-decoration:underline;">strengthening the linkages</a> between foreign investors and local companies. The Party has set an ambitious target of <a href="https://www.reuters.com/world/asia-pacific/vietnams-annual-growth-reaches-8-trade-surplus-with-us-hits-record-despite-2026-01-05/" target="_blank" style="color:var(--slate);text-decoration:underline;">high-income status by 2045</a>.</p>
+    <p>The odds are long—only 1 in 4 middle-income countries have made it. But Vietnam has defied the odds before.</p>
   </div>
 
-  <!-- Racing Bar Chart: Export Growth Comparison -->
-  <div class="reveal">
-    <div class="racing-bar-container" id="racingBarContainer">
-      <div class="chart-title">The Race: Export Growth 2000 → 2025</div>
-      <div class="chart-subtitle">Vietnam started smallest, finished largest. Values in USD billions. | Source: <a href="https://data.worldbank.org/country/viet-nam" target="_blank" style="color:#999;text-decoration:underline;">World Bank</a></div>
-      <div class="racing-bar-chart">
-        <div class="racing-bar-row">
-          <span class="racing-bar-label">Vietnam</span>
-          <div class="racing-bar-track">
-            <div class="racing-bar-start" style="left: 3%"></div>
-            <div class="racing-bar-fill vietnam" data-start="3" data-end="100" data-value="$475B">
-              <span class="racing-bar-value">$475B</span>
-            </div>
-          </div>
-          <span class="racing-bar-year">32× growth</span>
-        </div>
-        <div class="racing-bar-row">
-          <span class="racing-bar-label">Malaysia</span>
-          <div class="racing-bar-track">
-            <div class="racing-bar-start" style="left: 21%"></div>
-            <div class="racing-bar-fill other" data-start="21" data-end="67" data-value="$320B">
-              <span class="racing-bar-value">$320B</span>
-            </div>
-          </div>
-          <span class="racing-bar-year">3.3× growth</span>
-        </div>
-        <div class="racing-bar-row">
-          <span class="racing-bar-label">Thailand</span>
-          <div class="racing-bar-track">
-            <div class="racing-bar-start" style="left: 15%"></div>
-            <div class="racing-bar-fill other" data-start="15" data-end="61" data-value="$290B">
-              <span class="racing-bar-value">$290B</span>
-            </div>
-          </div>
-          <span class="racing-bar-year">4.2× growth</span>
-        </div>
-        <div class="racing-bar-row">
-          <span class="racing-bar-label">Indonesia</span>
-          <div class="racing-bar-track">
-            <div class="racing-bar-start" style="left: 13%"></div>
-            <div class="racing-bar-fill other" data-start="13" data-end="59" data-value="$280B">
-              <span class="racing-bar-value">$280B</span>
-            </div>
-          </div>
-          <span class="racing-bar-year">4.5× growth</span>
-        </div>
-        <div class="racing-bar-row">
-          <span class="racing-bar-label">Bangladesh</span>
-          <div class="racing-bar-track">
-            <div class="racing-bar-start" style="left: 1.3%"></div>
-            <div class="racing-bar-fill other" data-start="1.3" data-end="12.6" data-value="$60B">
-              <span class="racing-bar-value">$60B</span>
-            </div>
-          </div>
-          <span class="racing-bar-year">10× growth</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="chart-container">
-      <div class="chart-title">Middle-Income Trap: Vietnam's Scorecard</div>
-      <div class="chart-subtitle">Where Vietnam stands on the factors that determine escape | Source: <a href="https://www.worldbank.org/en/publication/wdr2024" target="_blank" style="color:#999;text-decoration:underline;">World Bank WDR 2024</a>, <a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/gni-per-capita" target="_blank" style="color:#999;text-decoration:underline;">MacroTrends</a></div>
-      <table class="data-table">
-        <tr>
-          <th>Factor</th>
-          <th>Vietnam</th>
-          <th>What It Means</th>
-        </tr>
-        <tr>
-          <td>Historical odds</td>
-          <td class="highlight"><a href="https://www.worldbank.org/en/news/press-release/2024/07/22/-middle-income-trap-hinders-progress-in-108-developing-countries" target="_blank" style="color:var(--dark);text-decoration:underline;">34 of ~142</a></td>
-          <td>Only 24% of middle-income countries since 1960 reached high-income. 108 remain stuck today.</td>
-        </tr>
-        <tr>
-          <td>Current income level</td>
-          <td class="highlight"><a href="https://www.macrotrends.net/global-metrics/countries/vnm/vietnam/gni-per-capita" target="_blank" style="color:var(--dark);text-decoration:underline;">~$4,490 GNI/capita</a></td>
-          <td>GNI (Gross National Income) per capita is the World Bank's standard for income classification. At the upper-middle threshold ($4,496), Vietnam entered the "trap zone" in 2024.</td>
-        </tr>
-        <tr>
-          <td>R&D investment</td>
-          <td class="warning"><a href="https://data.worldbank.org/indicator/GB.XPD.RSDV.GD.ZS?locations=VN" target="_blank" style="color:var(--warning);text-decoration:underline;">0.43% of GDP</a></td>
-          <td>Korea escaped at 4.8%, Taiwan at 3.5%. Vietnam invests 10x less than successful countries.</td>
-        </tr>
-        <tr>
-          <td>Logistics costs</td>
-          <td class="warning"><a href="https://vir.com.vn/double-digit-gdp-growth-within-reach-with-shift-to-higher-value-expansion-144084.html" target="_blank" style="color:var(--warning);text-decoration:underline;">16-17% of GDP</a></td>
-          <td>Developed economies spend 8-10%. High transport, warehousing, and port costs eat into manufacturing margins.</td>
-        </tr>
-        <tr>
-          <td>Fiscal capacity</td>
-          <td class="highlight" style="color:var(--accent-green)"><a href="https://www.ceicdata.com/en/indicator/vietnam/government-debt--of-nominal-gdp" target="_blank" style="color:var(--accent-green);text-decoration:underline;">31.8% debt/GDP</a></td>
-          <td>Low debt (down from 52.7% in 2016) means room to invest in education, infrastructure, R&D.</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="insight-box">
-      <h4>TFP and the Middle-Income Trap Explained</h4>
-      <p><strong>Total Factor Productivity (TFP)</strong> measures output growth that cannot be explained by adding more labor or capital. It is the "residual" economists attribute to innovation, better management, technology adoption, and efficient resource allocation. Early-stage growth is easy: move farmers to factories, invest in basic infrastructure, import foreign technology. Once a country exhausts these gains, continued growth requires TFP improvements, doing more with the same inputs. The <strong>middle-income trap</strong> describes countries that grow rapidly to ~$10,000-15,000 GDP per capita, then stall because they no longer compete on low wages but have not developed the innovation capacity to compete on productivity. Of ~142 countries that reached middle-income since 1960, only 34 escaped to high-income status. Vietnam, at ~$4,500 per capita, faces this challenge within the next decade.</p>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="pull-quote">
-      <p>"<a href="https://www.imf.org/external/pubs/ft/wp/2015/wp1502.pdf" target="_blank" style="color:var(--dark);text-decoration:underline;">The decline in the contribution of total factor productivity to growth is largely responsible for the slowdown in trend growth in many middle-income countries.</a>"</p>
-      <cite>IMF Working Paper on Productivity Growth</cite>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="pull-quote">
-      <p>"<a href="https://www.adb.org/publications/role-total-factor-productivity-growth-middle-income-countries" target="_blank" style="color:var(--dark);text-decoration:underline;">Total factor productivity growth is the main factor explaining the income group transition of countries, especially for middle-income countries.</a>"</p>
-      <cite>Asian Development Bank</cite>
-    </div>
-  </div>
-
-  <div class="reveal">
-    <div class="insight-box">
-      <h4>The Core Question</h4>
-      <p>Vietnam has 10-12 years before its demographic dividend ends. <a href="https://openknowledge.worldbank.org/bitstreams/0d31f96d-f94d-5130-9a9c-a47ea462190f/download" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">The World Bank notes Vietnam is "at a crossroads"</a>: maintaining high growth requires moving from FDI- and assembly-heavy exports toward deeper local capabilities. <a href="https://www.imf.org/-/media/Files/Publications/CR/2025/English/1vnmea2025002-source-pdf.ashx" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">The IMF identifies misallocation, skill mismatches, and regulatory barriers</a> as main obstacles to faster TFP growth. With <a href="https://data.worldbank.org/indicator/GB.XPD.RSDV.GD.ZS?locations=VN" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">0.4% R&D spending</a> and high foreign value-added, the odds are long.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONCLUSION -->
-<section class="section" data-section-index="6">
-  <div class="reveal">
-    <span class="chapter-label">Conclusion</span>
-    <h2>The Screwdriver's Dilemma</h2>
-  </div>
-  <div class="reveal reveal-delay-1">
-    <p class="lead">Vietnam's export growth is real. So are its structural weaknesses. The country transformed from one of the world's poorest to a $475 billion export economy in a single generation. The model that enabled this rise will likely not sustain it.</p>
-  </div>
-  <div class="reveal">
-    <p>The core tension is clear: Vietnam captured <em>volume</em> but not <em>value</em>. Foreign firms drive 77% of exports. Domestic value-added is falling, not rising. The trade surplus with the US masks a deep dependency on Chinese components. And the demographic window that enabled cheap labor is closing.</p>
-    <p>The next decade will determine whether Vietnam escapes the middle-income trap or joins the 108 countries still stuck in it. Success requires moving up the value chain. This means developing domestic suppliers who compete with Korean and Taiwanese firms. It means training 50,000 chip engineers when the country has 1,400. It means increasing R&D from 0.4% to 2%+ of GDP while facing tariff uncertainty from its largest market.</p>
-    <p>The screwdriver economy was a rational strategy for a poor country seeking industrialization. The open issue is whether Vietnam will build what comes next before time runs out.</p>
-  </div>
   <div class="reveal">
     <div class="insight-box" style="border-left-color: var(--gold);">
       <h4>Three Numbers to Remember</h4>
@@ -2494,7 +2235,7 @@
 </section>
 
 <!-- INTERACTIVE SIMULATOR -->
-<section class="section-full" data-section-index="7" style="background: linear-gradient(180deg, var(--dark) 0%, #2a2a2a 100%); padding: 4rem 0;" id="simulator-section">
+<section class="section-full" data-section-index="4" style="background: linear-gradient(180deg, var(--dark) 0%, #2a2a2a 100%); padding: 4rem 0;" id="simulator-section">
   <div class="reveal" style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
     <div style="text-align: center; margin-bottom: 2.5rem;">
       <span class="chapter-label" style="color: var(--gold);">Interactive Experience</span>
@@ -3978,12 +3719,12 @@
   let targetExportValue = 2.4;
 
   // Each section shows Vietnam's exports at different points in history
+  // Updated for 3-act structure
   const exportSections = [
-    { index: 1, start: 2.4, end: 14.5, era: '1990 → 2000', subtitle: 'Đổi Mới era: Opening to the world' },
-    { index: 2, start: 14.5, end: 150, era: '2000 → 2015', subtitle: 'FDI boom: Samsung & global supply chains' },
-    { index: 3, start: 150, end: 336, era: '2015 → 2023', subtitle: 'Trade war beneficiary: China+1 strategy' },
-    { index: 4, start: 336, end: 475, era: '2023 → 2025', subtitle: 'Present day: Record exports' },
-    { index: 5, start: 475, end: 475, era: '2025+', subtitle: 'Will growth continue?', pulsing: true }
+    { index: 1, start: 2.4, end: 150, era: '1986 → 2015', subtitle: 'Act I: The Boom' },
+    { index: 2, start: 150, end: 336, era: '2015 → 2024', subtitle: 'Act II: The Screwdriver Economy' },
+    { index: 3, start: 336, end: 475, era: '2024 → 2035', subtitle: 'Act III: The Window Closes' },
+    { index: 4, start: 475, end: 475, era: '2025+', subtitle: 'Will Vietnam escape the trap?', pulsing: true }
   ];
 
   function formatExportValue(val) {
