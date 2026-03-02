@@ -1506,6 +1506,8 @@
     .comparison-grid { gap: 1rem; }
   }
 </style>
+<!-- Canvas Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
@@ -6182,59 +6184,110 @@
     }
 
     // ========== PARTICLE EFFECTS ==========
-    function spawnParticles(type, count = 30) {
-      const container = document.getElementById('sim-particles');
-      if (!container) return;
+    // ========== CONFETTI EFFECTS (using canvas-confetti) ==========
+    function fireConfetti(options = {}) {
+      // Get simulator bounds to position confetti within it
+      const simulator = document.getElementById('simulator');
+      if (!simulator || typeof confetti !== 'function') return;
 
-      const colors = ['#d4af37', '#f0d78c', '#c9a227', '#ffd700', '#ffec8b', '#ff6b6b', '#4ecdc4'];
+      const rect = simulator.getBoundingClientRect();
+      const defaults = {
+        origin: {
+          x: (rect.left + rect.width / 2) / window.innerWidth,
+          y: (rect.top + rect.height / 2) / window.innerHeight
+        },
+        zIndex: 100000
+      };
 
-      for (let i = 0; i < count; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'sim-particle';
-
-        if (type === 'confetti') {
-          particle.classList.add('confetti');
-          particle.style.left = Math.random() * 100 + '%';
-          particle.style.top = '-10px';
-          particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-          particle.style.width = (5 + Math.random() * 10) + 'px';
-          particle.style.height = (5 + Math.random() * 10) + 'px';
-          particle.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-          particle.style.animationDuration = (2 + Math.random() * 2) + 's';
-          particle.style.animationDelay = (Math.random() * 0.5) + 's';
-        } else if (type === 'stars') {
-          particle.classList.add('star');
-          particle.textContent = ['⭐', '✨', '🌟', '💫'][Math.floor(Math.random() * 4)];
-          particle.style.left = (20 + Math.random() * 60) + '%';
-          particle.style.top = (40 + Math.random() * 40) + '%';
-          particle.style.animationDelay = (Math.random() * 0.3) + 's';
-        }
-
-        container.appendChild(particle);
-
-        // Clean up after animation
-        setTimeout(() => particle.remove(), 4000);
-      }
+      confetti({ ...defaults, ...options });
     }
 
     function celebrateMilestone(type) {
       const simulator = document.getElementById('simulator');
+      const rect = simulator?.getBoundingClientRect();
 
       if (type === 'match') {
-        // Matched Vietnam's path - green stars
-        spawnParticles('stars', 15);
+        // Matched Vietnam's path - green/gold burst
+        fireConfetti({
+          particleCount: 50,
+          spread: 60,
+          colors: ['#6fcf97', '#d4af37', '#ffd700', '#4ecdc4'],
+          origin: {
+            x: rect ? (rect.left + rect.width / 2) / window.innerWidth : 0.5,
+            y: rect ? (rect.top + rect.height * 0.4) / window.innerHeight : 0.4
+          }
+        });
         if (simulator) simulator.classList.add('milestone-flash');
         setTimeout(() => simulator?.classList.remove('milestone-flash'), 600);
+
       } else if (type === 'gdp_milestone') {
-        // Hit a GDP milestone
-        spawnParticles('confetti', 40);
+        // Hit a GDP milestone - golden shower
+        const originX = rect ? (rect.left + rect.width / 2) / window.innerWidth : 0.5;
+        const originY = rect ? (rect.top + rect.height * 0.3) / window.innerHeight : 0.3;
+
+        fireConfetti({
+          particleCount: 80,
+          spread: 100,
+          colors: ['#d4af37', '#f0d78c', '#ffd700', '#ffec8b'],
+          origin: { x: originX, y: originY }
+        });
         if (simulator) simulator.classList.add('milestone-flash');
         setTimeout(() => simulator?.classList.remove('milestone-flash'), 600);
+
       } else if (type === 'win') {
-        // Won the game!
-        spawnParticles('confetti', 80);
-        setTimeout(() => spawnParticles('stars', 20), 500);
-        setTimeout(() => spawnParticles('confetti', 60), 1000);
+        // Won the game! Epic celebration
+        const duration = 4000;
+        const animationEnd = Date.now() + duration;
+        const colors = ['#d4af37', '#ffd700', '#ff6b6b', '#4ecdc4', '#6fcf97', '#f0d78c'];
+
+        (function frame() {
+          // Launch from left
+          confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: 0.7 },
+            colors: colors,
+            zIndex: 100000
+          });
+          // Launch from right
+          confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: 0.7 },
+            colors: colors,
+            zIndex: 100000
+          });
+
+          if (Date.now() < animationEnd) {
+            requestAnimationFrame(frame);
+          }
+        }());
+
+        // Big center burst
+        setTimeout(() => {
+          confetti({
+            particleCount: 150,
+            spread: 180,
+            origin: { x: 0.5, y: 0.5 },
+            colors: colors,
+            zIndex: 100000
+          });
+        }, 500);
+
+        // Star shapes burst
+        setTimeout(() => {
+          confetti({
+            particleCount: 100,
+            spread: 160,
+            origin: { x: 0.5, y: 0.4 },
+            colors: ['#ffd700', '#ffec8b'],
+            shapes: ['star'],
+            scalar: 1.5,
+            zIndex: 100000
+          });
+        }, 1500);
       }
     }
 
