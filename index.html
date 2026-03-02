@@ -3638,9 +3638,21 @@
   height: 100vh !important;
   max-width: none !important;
   border-radius: 0 !important;
-  z-index: 99999 !important;
+  z-index: 999999 !important;
   margin: 0 !important;
   overflow-y: auto;
+  background: #1e1e1e !important;
+  isolation: isolate;
+}
+
+/* Hide everything else when in presentation mode */
+body.presentation-active > *:not(script):not(style) {
+  visibility: hidden !important;
+}
+
+body.presentation-active .simulator-container.presentation-mode,
+body.presentation-active .simulator-container.presentation-mode * {
+  visibility: visible !important;
 }
 
 .simulator-container.presentation-mode .sim-screen {
@@ -6163,9 +6175,11 @@
           if (simulator.classList.contains('presentation-mode')) {
             toggle.textContent = '✕ Exit Fullscreen';
             document.body.style.overflow = 'hidden';
+            document.body.classList.add('presentation-active');
           } else {
             toggle.textContent = '⛶ Fullscreen';
             document.body.style.overflow = '';
+            document.body.classList.remove('presentation-active');
           }
         });
 
@@ -6175,6 +6189,7 @@
             simulator.classList.remove('presentation-mode');
             toggle.textContent = '⛶ Fullscreen';
             document.body.style.overflow = '';
+            document.body.classList.remove('presentation-active');
           }
         });
       }
