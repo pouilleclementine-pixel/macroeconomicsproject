@@ -2269,7 +2269,7 @@
       <div class="sim-particles-container" id="sim-particles"></div>
 
       <!-- Pixel Art Mascot -->
-      <canvas class="sim-mascot-canvas" id="sim-mascot" width="64" height="64"></canvas>
+      <canvas class="sim-mascot-canvas" id="sim-mascot" width="96" height="96"></canvas>
 
       <!-- Start Screen -->
       <div id="sim-start" class="sim-screen active">
@@ -3811,26 +3811,21 @@ body.presentation-active .simulator-container.presentation-mode * {
 }
 
 /* ========== PIXEL ART MASCOT ========== */
-.sim-mascot {
+.sim-mascot-canvas {
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  width: 64px;
-  height: 64px;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 96px;
+  height: 96px;
   image-rendering: pixelated;
+  image-rendering: crisp-edges;
   z-index: 10;
-  opacity: 0.9;
+  opacity: 0.95;
   transition: transform 0.3s;
 }
 
-.sim-mascot:hover {
-  transform: scale(1.2);
-}
-
-.sim-mascot-canvas {
-  width: 64px;
-  height: 64px;
-  image-rendering: pixelated;
+.sim-mascot-canvas:hover {
+  transform: scale(1.15);
 }
 
 /* ========== ANIMATED SCORECARD ========== */
@@ -5853,8 +5848,15 @@ body.presentation-active .simulator-container.presentation-mode * {
       elements.historyReveal.classList.add('active');
       elements.choicesContainer.style.display = 'none';
 
-      // Celebrate if matched Vietnam's path
-      if (matchedHistory) {
+      // Celebrate if avoided a policy error (Vietnam made a mistake but you didn't)
+      const isVietnamMistake = history.verdict === 'mistake';
+      const avoidedMistake = isVietnamMistake && !matchedHistory;
+
+      if (avoidedMistake) {
+        // You avoided Vietnam's policy error - big celebration!
+        celebrateMilestone('avoided_error');
+      } else if (matchedHistory && history.verdict === 'success') {
+        // You matched Vietnam on a successful decision
         celebrateMilestone('match');
       }
 
@@ -6218,12 +6220,38 @@ body.presentation-active .simulator-container.presentation-mode * {
       const simulator = document.getElementById('simulator');
       const rect = simulator?.getBoundingClientRect();
 
-      if (type === 'match') {
-        // Matched Vietnam's path - green/gold burst
+      if (type === 'avoided_error') {
+        // You avoided Vietnam's policy mistake - big celebration!
+        const originX = rect ? (rect.left + rect.width / 2) / window.innerWidth : 0.5;
+        const originY = rect ? (rect.top + rect.height * 0.4) / window.innerHeight : 0.4;
+
+        // Burst of green (success) colors
         fireConfetti({
-          particleCount: 50,
-          spread: 60,
-          colors: ['#6fcf97', '#d4af37', '#ffd700', '#4ecdc4'],
+          particleCount: 100,
+          spread: 80,
+          colors: ['#6fcf97', '#2ecc71', '#27ae60', '#58d68d', '#ffd700'],
+          origin: { x: originX, y: originY }
+        });
+
+        // Second burst
+        setTimeout(() => {
+          fireConfetti({
+            particleCount: 60,
+            spread: 100,
+            colors: ['#6fcf97', '#2ecc71', '#ffd700', '#f0d78c'],
+            origin: { x: originX, y: originY - 0.1 }
+          });
+        }, 200);
+
+        if (simulator) simulator.classList.add('milestone-flash');
+        setTimeout(() => simulator?.classList.remove('milestone-flash'), 600);
+
+      } else if (type === 'match') {
+        // Matched Vietnam's successful path - smaller celebration
+        fireConfetti({
+          particleCount: 40,
+          spread: 50,
+          colors: ['#6fcf97', '#d4af37', '#ffd700'],
           origin: {
             x: rect ? (rect.left + rect.width / 2) / window.innerWidth : 0.5,
             y: rect ? (rect.top + rect.height * 0.4) / window.innerHeight : 0.4
@@ -6326,7 +6354,7 @@ body.presentation-active .simulator-container.presentation-mode * {
       }
     }
 
-    // ========== PIXEL ART MASCOT (Tiger with Vietnamese flag) ==========
+    // ========== PIXEL ART MASCOT (Person waving Vietnamese flag) ==========
     function initPixelMascot() {
       const canvas = document.getElementById('sim-mascot');
       if (!canvas) return;
@@ -6335,103 +6363,101 @@ body.presentation-active .simulator-container.presentation-mode * {
       ctx.imageSmoothingEnabled = false;
 
       let frame = 0;
-      const frameCount = 4;
 
-      function drawTiger(f) {
-        ctx.clearRect(0, 0, 64, 64);
+      function drawPerson(f) {
+        ctx.clearRect(0, 0, 96, 96);
 
-        // Tiger body (orange)
-        ctx.fillStyle = '#e67e22';
-        ctx.fillRect(16, 28, 24, 20);
+        const wave = Math.sin(f * Math.PI / 2);
+        const armWave = wave * 4;
 
-        // Tiger stripes
+        // Non Lá (conical hat)
+        ctx.fillStyle = '#d4a574';
+        ctx.fillRect(32, 8, 32, 4);
+        ctx.fillRect(36, 4, 24, 4);
+        ctx.fillRect(40, 0, 16, 4);
+        ctx.fillRect(46, 0, 4, 2); // Hat tip
+
+        // Face
+        ctx.fillStyle = '#f4d03f';
+        ctx.fillRect(40, 12, 16, 16);
+
+        // Hair
         ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(18, 30, 3, 16);
-        ctx.fillRect(24, 30, 3, 16);
-        ctx.fillRect(30, 30, 3, 16);
-        ctx.fillRect(36, 30, 2, 16);
-
-        // Tiger head
-        ctx.fillStyle = '#e67e22';
-        ctx.fillRect(20, 18, 16, 14);
-
-        // Tiger ears
-        ctx.fillRect(18, 14, 6, 6);
-        ctx.fillRect(32, 14, 6, 6);
-        ctx.fillStyle = '#ffb8b8';
-        ctx.fillRect(20, 16, 2, 2);
-        ctx.fillRect(34, 16, 2, 2);
-
-        // Tiger face stripes
-        ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(22, 20, 2, 4);
-        ctx.fillRect(32, 20, 2, 4);
+        ctx.fillRect(40, 12, 16, 4);
+        ctx.fillRect(38, 14, 4, 8);
+        ctx.fillRect(54, 14, 4, 8);
 
         // Eyes
-        ctx.fillStyle = '#2ecc71';
-        ctx.fillRect(24, 22, 3, 3);
-        ctx.fillRect(30, 22, 3, 3);
         ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(25, 23, 1, 1);
-        ctx.fillRect(31, 23, 1, 1);
+        ctx.fillRect(43, 18, 3, 3);
+        ctx.fillRect(50, 18, 3, 3);
+        // Eye shine
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(44, 19, 1, 1);
+        ctx.fillRect(51, 19, 1, 1);
 
-        // Nose
-        ctx.fillStyle = '#ff9ff3';
-        ctx.fillRect(27, 26, 3, 2);
+        // Smile
+        ctx.fillStyle = '#c0392b';
+        ctx.fillRect(45, 24, 6, 2);
 
-        // Mouth
-        ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(27, 28, 1, 2);
-        ctx.fillRect(29, 28, 1, 2);
+        // Áo dài (traditional dress) - red
+        ctx.fillStyle = '#da251d';
+        ctx.fillRect(38, 28, 20, 32);
+        // Dress details
+        ctx.fillStyle = '#b71c1c';
+        ctx.fillRect(38, 28, 2, 32);
+        ctx.fillRect(56, 28, 2, 32);
+
+        // Gold trim on dress
+        ctx.fillStyle = '#ffcd00';
+        ctx.fillRect(38, 28, 20, 2);
+        ctx.fillRect(46, 30, 4, 28);
+
+        // Left arm (holding flag pole)
+        ctx.fillStyle = '#f4d03f';
+        ctx.fillRect(28, 32, 10, 6);
+        ctx.fillRect(26, 36, 6, 4);
+
+        // Right arm (waving) - animated
+        ctx.fillStyle = '#f4d03f';
+        ctx.fillRect(58, 32 + armWave, 10, 6);
+        ctx.fillRect(66, 28 + armWave, 6, 6);
 
         // Legs
-        ctx.fillStyle = '#e67e22';
-        ctx.fillRect(18, 46, 6, 10);
-        ctx.fillRect(32, 46, 6, 10);
+        ctx.fillStyle = '#2c3e50';
+        ctx.fillRect(42, 60, 6, 20);
+        ctx.fillRect(50, 60, 6, 20);
 
-        // Paws
-        ctx.fillStyle = '#ffeaa7';
-        ctx.fillRect(18, 54, 6, 4);
-        ctx.fillRect(32, 54, 6, 4);
+        // Feet
+        ctx.fillStyle = '#8b4513';
+        ctx.fillRect(40, 78, 10, 4);
+        ctx.fillRect(48, 78, 10, 4);
 
-        // Tail
-        ctx.fillStyle = '#e67e22';
-        const tailWave = Math.sin(f * Math.PI / 2) * 2;
-        ctx.fillRect(38, 32 + tailWave, 10, 4);
-        ctx.fillRect(46, 30 + tailWave, 6, 4);
-
-        // Tail stripes
-        ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(40, 33 + tailWave, 2, 2);
-        ctx.fillRect(44, 33 + tailWave, 2, 2);
-        ctx.fillRect(48, 31 + tailWave, 2, 2);
+        // Flag pole (held by left hand)
+        ctx.fillStyle = '#8b4513';
+        ctx.fillRect(18, 4, 3, 56);
 
         // Vietnamese flag (waving)
-        const flagWave = Math.sin(f * Math.PI / 2) * 3;
-
-        // Flag pole
-        ctx.fillStyle = '#8b4513';
-        ctx.fillRect(8, 10, 2, 40);
+        const flagWave = wave * 3;
 
         // Flag background (red)
         ctx.fillStyle = '#da251d';
-        ctx.fillRect(10, 10 + flagWave * 0.3, 20, 14);
+        const flagY = 6 + flagWave;
+        ctx.fillRect(21, flagY, 28, 20);
 
         // Yellow star on flag
         ctx.fillStyle = '#ffcd00';
-        // Star center
-        ctx.fillRect(17, 14 + flagWave * 0.3, 6, 6);
-        // Star points
-        ctx.fillRect(19, 12 + flagWave * 0.3, 2, 2);
-        ctx.fillRect(15, 16 + flagWave * 0.3, 2, 2);
-        ctx.fillRect(23, 16 + flagWave * 0.3, 2, 2);
-        ctx.fillRect(16, 20 + flagWave * 0.3, 2, 2);
-        ctx.fillRect(22, 20 + flagWave * 0.3, 2, 2);
+        // Star - 5 pointed approximation
+        ctx.fillRect(32, flagY + 6, 6, 8);
+        ctx.fillRect(29, flagY + 8, 12, 4);
+        ctx.fillRect(31, flagY + 4, 8, 2);
+        ctx.fillRect(30, flagY + 14, 4, 2);
+        ctx.fillRect(36, flagY + 14, 4, 2);
       }
 
       function animate() {
-        frame = (frame + 1) % (frameCount * 15); // Slow down animation
-        drawTiger(Math.floor(frame / 15));
+        frame = (frame + 1) % 60;
+        drawPerson(Math.floor(frame / 15));
         requestAnimationFrame(animate);
       }
 
