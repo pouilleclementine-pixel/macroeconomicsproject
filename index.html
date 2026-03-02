@@ -3817,19 +3817,15 @@ body.presentation-active .simulator-container.presentation-mode * {
 /* ========== PIXEL ART MASCOT ========== */
 .sim-mascot-canvas {
   position: absolute;
-  bottom: 1.5rem;
-  right: -140px;
-  width: 128px;
-  height: 128px;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 80px;
+  height: 80px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  z-index: 10;
-  opacity: 0.95;
-  transition: transform 0.3s;
-}
-
-.sim-mascot-canvas:hover {
-  transform: scale(1.15);
+  z-index: 100;
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 /* ========== ANIMATED SCORECARD ========== */
