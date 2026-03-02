@@ -2432,13 +2432,13 @@
               <text x="220" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">2015</text>
               <text x="320" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">2030</text>
               <text x="375" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">2045</text>
-              <!-- Real Vietnam path (static) - using sqrt-like scale for better visibility -->
-              <!-- Scale: y = 143 - (sqrt(gdp/13000) * 128) approximately -->
+              <!-- Real Vietnam path (static) - using sqrt scale: y = 143 - (sqrt(gdp/13000) * 128) -->
+              <!-- x = 20 + ((year - 1986) / 59) * 370 -->
               <polyline id="sim-real-path" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="6,4"
-                points="20,127 45,124 70,121 95,117 120,110 145,100 170,90 195,82 220,73 245,63 270,55 295,50 320,38 350,28 390,20"/>
+                points="20,127 39,125 58,122 76,118 95,114 114,112 133,109 152,104 171,98 189,93 208,87 233,79 258,66 296,52 359,36 390,28"/>
               <!-- Current position marker (2024 @ ~$4,700) -->
-              <circle cx="280" cy="52" r="5" fill="rgba(255,255,255,0.7)" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
-              <text x="280" y="44" fill="rgba(255,255,255,0.6)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="middle" font-weight="500">2024</text>
+              <circle cx="258" cy="66" r="5" fill="rgba(255,255,255,0.7)" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
+              <text x="258" y="58" fill="rgba(255,255,255,0.6)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="middle" font-weight="500">2024</text>
               <!-- Player path (dynamic) -->
               <path id="sim-player-area" fill="url(#playerGradient)" d=""/>
               <polyline id="sim-player-path" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="20,127"/>
