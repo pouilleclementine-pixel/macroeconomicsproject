@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Screwdriver Economy: Vietnam's $475 Billion Export Model</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔩</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇻🇳</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -2349,19 +2349,19 @@
           </div>
 
           <div class="sim-secondary-metrics">
-            <div class="sim-sec-metric">
+            <div class="sim-sec-metric" title="Current simulation year">
               <span class="sim-sec-label">Year</span>
               <span class="sim-sec-value" id="sim-year">1986</span>
             </div>
-            <div class="sim-sec-metric">
-              <span class="sim-sec-label">Stability</span>
+            <div class="sim-sec-metric sim-has-tooltip" data-tooltip="Political/social stability index. Drops with rapid reforms, crises, or social unrest. If it reaches 0%, the simulation ends in collapse.">
+              <span class="sim-sec-label">Stability <span class="sim-info-icon">?</span></span>
               <span class="sim-sec-value" id="sim-stability">60%</span>
             </div>
-            <div class="sim-sec-metric">
-              <span class="sim-sec-label">Inequality</span>
+            <div class="sim-sec-metric sim-has-tooltip" data-tooltip="Gini coefficient measuring income inequality. Vietnam's actual Gini is ~0.35-0.37. Higher values mean more inequality (range: 0.2 to 0.6).">
+              <span class="sim-sec-label">Inequality <span class="sim-info-icon">?</span></span>
               <span class="sim-sec-value" id="sim-inequality">0.35</span>
             </div>
-            <div class="sim-sec-metric">
+            <div class="sim-sec-metric" title="Current turn out of 15 total policy decisions">
               <span class="sim-sec-label">Turn</span>
               <span class="sim-sec-value"><span id="sim-turn">1</span>/15</span>
             </div>
@@ -2394,36 +2394,45 @@
             </div>
           </div>
           <div class="sim-chart" id="sim-chart">
-            <svg viewBox="0 0 400 150" preserveAspectRatio="none">
+            <svg viewBox="0 0 440 170" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <linearGradient id="playerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" style="stop-color:var(--gold);stop-opacity:0.3" />
                   <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0" />
                 </linearGradient>
               </defs>
+              <!-- Y-axis labels (inside SVG for proper alignment) -->
+              <text x="415" y="18" fill="rgba(250,247,242,0.5)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="end">$13k</text>
+              <text x="415" y="50" fill="rgba(250,247,242,0.5)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="end">$8k</text>
+              <text x="415" y="82" fill="rgba(250,247,242,0.5)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="end">$4k</text>
+              <text x="415" y="114" fill="rgba(250,247,242,0.5)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="end">$1k</text>
+              <text x="415" y="146" fill="rgba(250,247,242,0.5)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="end">$0</text>
               <!-- Grid lines -->
-              <line x1="0" y1="37.5" x2="400" y2="37.5" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-              <line x1="0" y1="112.5" x2="400" y2="112.5" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-              <!-- Target line at $13k -->
-              <line x1="0" y1="37.5" x2="400" y2="37.5" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-              <!-- Real Vietnam path (static) - based on actual GDP per capita data -->
-              <!-- Years: 1986($200), 1989($250), 1992($280), 1995($320), 1998($420), 2001($550), 2004($900), 2007($1150), 2010($1400), 2013($1800), 2016($2200), 2020($2800), 2024($4700), projected to 2045 -->
-              <polyline id="sim-real-path" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="5,3"
-                points="0,148 20,147.5 41,147.2 61,146.8 81,145.8 102,144.5 122,141 142,138.5 163,136 183,132 203,128 237,122 258,103 285,98 312,82 352,45 400,37"/>
+              <line x1="20" y1="15" x2="390" y2="15" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <line x1="20" y1="47" x2="390" y2="47" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <line x1="20" y1="79" x2="390" y2="79" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <line x1="20" y1="111" x2="390" y2="111" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <line x1="20" y1="143" x2="390" y2="143" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <!-- Target line at $13k (high-income threshold) -->
+              <line x1="20" y1="15" x2="390" y2="15" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+              <text x="25" y="28" fill="var(--gold)" font-size="7" font-family="JetBrains Mono, monospace" opacity="0.7">HIGH-INCOME THRESHOLD</text>
+              <!-- X-axis year labels -->
+              <text x="20" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">1986</text>
+              <text x="120" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">2000</text>
+              <text x="220" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">2015</text>
+              <text x="320" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">2030</text>
+              <text x="375" y="160" fill="rgba(250,247,242,0.4)" font-size="8" font-family="JetBrains Mono, monospace">2045</text>
+              <!-- Real Vietnam path (static) - using sqrt-like scale for better visibility -->
+              <!-- Scale: y = 143 - (sqrt(gdp/13000) * 128) approximately -->
+              <polyline id="sim-real-path" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="6,4"
+                points="20,127 45,124 70,121 95,117 120,110 145,100 170,90 195,82 220,73 245,63 270,55 295,50 320,38 350,28 390,20"/>
               <!-- Current position marker (2024 @ ~$4,700) -->
-              <circle cx="258" cy="103" r="4" fill="rgba(255,255,255,0.6)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
-              <text x="258" y="96" fill="rgba(255,255,255,0.5)" font-size="8" text-anchor="middle">2024</text>
+              <circle cx="280" cy="52" r="5" fill="rgba(255,255,255,0.7)" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
+              <text x="280" y="44" fill="rgba(255,255,255,0.6)" font-size="9" font-family="JetBrains Mono, monospace" text-anchor="middle" font-weight="500">2024</text>
               <!-- Player path (dynamic) -->
               <path id="sim-player-area" fill="url(#playerGradient)" d=""/>
-              <polyline id="sim-player-path" fill="none" stroke="var(--gold)" stroke-width="2.5" points="0,145"/>
+              <polyline id="sim-player-path" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="20,127"/>
             </svg>
-            <div class="sim-chart-y-labels">
-              <span>$13k</span>
-              <span>$10k</span>
-              <span>$5k</span>
-              <span>$0</span>
-            </div>
           </div>
         </div>
 
@@ -2797,6 +2806,55 @@
 
 .sim-sec-metric {
   text-align: center;
+  position: relative;
+}
+
+.sim-sec-metric.sim-has-tooltip {
+  cursor: help;
+}
+
+.sim-sec-metric.sim-has-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2a2a2a;
+  color: var(--cream);
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-family: 'Source Serif 4', serif;
+  line-height: 1.4;
+  width: 200px;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 8px;
+}
+
+.sim-sec-metric.sim-has-tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sim-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  font-size: 0.5rem;
+  color: rgba(250,247,242,0.6);
+  margin-left: 3px;
+  vertical-align: middle;
 }
 
 .sim-sec-label {
@@ -3311,36 +3369,15 @@
 
 .sim-chart {
   position: relative;
-  height: 160px;
-  background: rgba(0,0,0,0.1);
-  border-radius: 4px;
-  padding: 0.5rem 0;
+  height: 180px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  padding: 0.25rem;
 }
 
 .sim-chart svg {
   width: 100%;
   height: 100%;
-}
-
-.sim-chart-y-labels {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
-  bottom: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  color: rgba(250,247,242,0.6);
-  pointer-events: none;
-  text-align: right;
-}
-
-.sim-chart-y-labels span {
-  background: rgba(0,0,0,0.4);
-  padding: 0.1rem 0.3rem;
-  border-radius: 2px;
 }
 
 /* History Reveal Panel */
@@ -5188,10 +5225,19 @@
     function updateChart() {
       if (!elements.playerPath) return;
 
+      // Convert GDP to Y coordinate using sqrt scale for better visibility at low values
+      // Chart area: x from 20 to 390 (370 width), y from 15 ($13k) to 143 ($0)
+      function gdpToY(gdp) {
+        // Use sqrt scale: better shows growth at lower values
+        const maxGdp = 13000;
+        const ratio = Math.sqrt(Math.min(gdp, maxGdp) / maxGdp);
+        return 143 - (ratio * 128); // 128 = chart height (143 - 15)
+      }
+
       // Convert GDP history to SVG points
       const points = state.gdpHistory.map((d, i) => {
-        const x = ((d.year - 1986) / 59) * 400;
-        const y = 150 - (Math.min(d.gdp, 15000) / 15000) * 150;
+        const x = 20 + ((d.year - 1986) / 59) * 370;
+        const y = gdpToY(d.gdp);
         return `${x},${y}`;
       }).join(' ');
 
@@ -5201,10 +5247,10 @@
       if (elements.playerArea && state.gdpHistory.length > 1) {
         const firstPoint = state.gdpHistory[0];
         const lastPoint = state.gdpHistory[state.gdpHistory.length - 1];
-        const startX = ((firstPoint.year - 1986) / 59) * 400;
-        const endX = ((lastPoint.year - 1986) / 59) * 400;
+        const startX = 20 + ((firstPoint.year - 1986) / 59) * 370;
+        const endX = 20 + ((lastPoint.year - 1986) / 59) * 370;
 
-        const areaPath = `M ${startX},150 L ${points} L ${endX},150 Z`;
+        const areaPath = `M ${startX},143 L ${points} L ${endX},143 Z`;
         elements.playerArea.setAttribute('d', areaPath);
       }
     }
