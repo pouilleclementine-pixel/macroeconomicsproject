@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Screwdriver Economy: Vietnam's $475 Billion Export Model</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔩</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -3256,11 +3257,12 @@
 
 /* GDP Chart */
 .sim-chart-container {
-  background: rgba(0,0,0,0.2);
-  border-radius: 6px;
-  padding: 1rem 1.5rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 100%);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem 1rem;
   margin: 0 1.5rem 1rem;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
 .sim-chart-header {
@@ -3309,7 +3311,10 @@
 
 .sim-chart {
   position: relative;
-  height: 150px;
+  height: 160px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 0.5rem 0;
 }
 
 .sim-chart svg {
@@ -3319,17 +3324,23 @@
 
 .sim-chart-y-labels {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: 0.5rem;
+  right: 0.75rem;
+  bottom: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0 0.5rem;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  color: rgba(250,247,242,0.8);
+  font-size: 0.6rem;
+  color: rgba(250,247,242,0.6);
   pointer-events: none;
+  text-align: right;
+}
+
+.sim-chart-y-labels span {
+  background: rgba(0,0,0,0.4);
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
 }
 
 /* History Reveal Panel */
