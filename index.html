@@ -3264,6 +3264,10 @@
   color: #eb8585;
 }
 
+.sim-outcome-vietnam {
+  color: var(--gold);
+}
+
 /* Progress Timeline */
 .sim-timeline-bar {
   padding: 0 1.5rem;
@@ -6077,6 +6081,11 @@ body.presentation-active .simulator-container.presentation-mode * {
     function endGame() {
       showScreen('end');
 
+      // Check if player followed Vietnam's path closely
+      const vietnamMatches = state.decisionHistory.filter(d => d.matched).length;
+      const totalDecisions = state.decisionHistory.length;
+      const followedVietnam = vietnamMatches >= totalDecisions - 1; // Allowing for the "still unfolding" decision
+
       const escaped = state.gdpPerCapita >= 13000 && state.trapRisk < 80;
       const trapped = state.trapRisk >= 80 || (state.gdpPerCapita < 13000 && state.gdpPerCapita > 4000);
       const collapsed = state.stability <= 0;
@@ -6091,6 +6100,10 @@ body.presentation-active .simulator-container.presentation-mode * {
         outcome = "High-Income Nation!";
         icon = "&#x1F31F;";
         desc = "Vietnam escaped the middle-income trap and achieved high-income status. You beat the 1-in-4 odds.";
+      } else if (followedVietnam) {
+        outcome = "Vietnam's Actual Path";
+        icon = "&#x1F1FB;&#x1F1F3;";
+        desc = "You followed Vietnam's real policy trajectory. The outcome remains uncertain—whether Vietnam escapes the middle-income trap by 2045 is still being written.";
       } else if (trapped) {
         outcome = "Stuck in the Trap";
         icon = "&#x26D4;";
@@ -6102,7 +6115,8 @@ body.presentation-active .simulator-container.presentation-mode * {
       }
 
       elements.endIcon.innerHTML = icon;
-      elements.endTitle.innerHTML = `<span class="${escaped ? 'sim-outcome-win' : 'sim-outcome-lose'}">${outcome}</span>`;
+      const outcomeClass = escaped ? 'sim-outcome-win' : (followedVietnam ? 'sim-outcome-vietnam' : 'sim-outcome-lose');
+      elements.endTitle.innerHTML = `<span class="${outcomeClass}">${outcome}</span>`;
       elements.endDesc.textContent = desc;
 
       elements.finalStats.innerHTML = `
@@ -6126,16 +6140,20 @@ body.presentation-active .simulator-container.presentation-mode * {
 
       // Analysis based on choices
       let analysis = "";
-      if (state.fdiLinkage >= 40) {
-        analysis = "Your focus on domestic linkages helped avoid the dual economy problem that plagues Vietnam today. ";
+      if (followedVietnam) {
+        analysis = "You experienced Vietnam's actual policy journey—pragmatic gradualism mixing market reforms with state control. The 'screwdriver economy' challenge and middle-income trap risk are real concerns Vietnam faces today. The question of whether Vietnam joins the rare 1-in-4 who escape remains open.";
       } else {
-        analysis = "The weak linkages between FDI and domestic firms mirror Vietnam's real 'screwdriver economy' challenge. ";
-      }
+        if (state.fdiLinkage >= 40) {
+          analysis = "Your focus on domestic linkages helped avoid the dual economy problem that plagues Vietnam today. ";
+        } else {
+          analysis = "The weak linkages between FDI and domestic firms mirror Vietnam's real 'screwdriver economy' challenge. ";
+        }
 
-      if (state.trapRisk >= 60) {
-        analysis += "High trap risk reflects over-reliance on assembly and insufficient investment in innovation and skills.";
-      } else {
-        analysis += "Managing trap risk through education, R&D, and institutional reform was key to your success.";
+        if (state.trapRisk >= 60) {
+          analysis += "High trap risk reflects over-reliance on assembly and insufficient investment in innovation and skills.";
+        } else {
+          analysis += "Managing trap risk through education, R&D, and institutional reform was key to your success.";
+        }
       }
 
       elements.endAnalysis.innerHTML = `
