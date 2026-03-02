@@ -5793,7 +5793,9 @@ body.presentation-active .simulator-container.presentation-mode * {
 
       // Calculate GDP growth for this turn
       // If player matched Vietnam's choice, use real GDP to stay on track
-      calculateGrowth(decision.turn, matchedVietnam ? decision.history.realGdp : null);
+      // For pending decisions (realChoice: -1), use realGdp as the projected target
+      const useTargetGdp = matchedVietnam || decision.history.realChoice < 0;
+      calculateGrowth(decision.turn, useTargetGdp ? decision.history.realGdp : null);
 
       // Update chart and timeline
       updateUI();
