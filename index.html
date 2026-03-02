@@ -3642,11 +3642,10 @@
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: 100% !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
   border-radius: 0 !important;
   z-index: 999999 !important;
   margin: 0 !important;
@@ -3655,10 +3654,14 @@
   overflow-x: hidden;
   background: #1e1e1e !important;
   isolation: isolate;
-  box-sizing: border-box !important;
+  transform: none !important;
 }
 
 /* Hide everything else when in presentation mode */
+body.presentation-active {
+  overflow: hidden !important;
+}
+
 body.presentation-active > *:not(script):not(style) {
   visibility: hidden !important;
 }
@@ -3670,6 +3673,14 @@ body.presentation-active .simulator-container.presentation-mode * {
 
 .simulator-container.presentation-mode .sim-screen {
   padding: 3rem 4rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.simulator-container.presentation-mode .sim-screen.active {
+  display: flex;
 }
 
 .simulator-container.presentation-mode .sim-start-content h3 {
