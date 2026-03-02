@@ -6415,85 +6415,85 @@ body.presentation-active .simulator-container.presentation-mode * {
         const armWave = wave * 5;
         const flagWave = wave * 4;
 
-        // Flag pole (behind person, on the left)
-        ctx.fillStyle = '#8b4513';
-        ctx.fillRect(8, 8, 4, 80);
-
-        // Vietnamese flag (waving, on left side - not covering face)
-        ctx.fillStyle = '#da251d';
-        const flagY = 10 + flagWave;
-        ctx.fillRect(12, flagY, 36, 26);
-
-        // Yellow star on flag
-        ctx.fillStyle = '#ffcd00';
-        ctx.fillRect(26, flagY + 8, 8, 10);
-        ctx.fillRect(22, flagY + 10, 16, 6);
-        ctx.fillRect(24, flagY + 6, 12, 3);
-        ctx.fillRect(23, flagY + 18, 5, 3);
-        ctx.fillRect(32, flagY + 18, 5, 3);
-
-        // Non Lá (conical hat) - larger
+        // Non Lá (conical hat)
         ctx.fillStyle = '#d4a574';
-        ctx.fillRect(52, 12, 44, 6);
-        ctx.fillRect(58, 6, 32, 6);
-        ctx.fillRect(66, 0, 16, 6);
-        ctx.fillRect(72, 0, 4, 3); // Hat tip
+        ctx.fillRect(24, 12, 44, 6);
+        ctx.fillRect(30, 6, 32, 6);
+        ctx.fillRect(38, 0, 16, 6);
+        ctx.fillRect(44, 0, 4, 3); // Hat tip
 
-        // Face - larger and more to the right
+        // Face
         ctx.fillStyle = '#f4d03f';
-        ctx.fillRect(60, 18, 28, 24);
+        ctx.fillRect(32, 18, 28, 24);
 
         // Hair
         ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(60, 18, 28, 6);
-        ctx.fillRect(56, 22, 6, 12);
-        ctx.fillRect(86, 22, 6, 12);
+        ctx.fillRect(32, 18, 28, 6);
+        ctx.fillRect(28, 22, 6, 12);
+        ctx.fillRect(58, 22, 6, 12);
 
         // Eyes
         ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(66, 28, 5, 5);
-        ctx.fillRect(78, 28, 5, 5);
+        ctx.fillRect(38, 28, 5, 5);
+        ctx.fillRect(50, 28, 5, 5);
         // Eye shine
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(68, 30, 2, 2);
-        ctx.fillRect(80, 30, 2, 2);
+        ctx.fillRect(40, 30, 2, 2);
+        ctx.fillRect(52, 30, 2, 2);
 
         // Smile
         ctx.fillStyle = '#c0392b';
-        ctx.fillRect(70, 36, 8, 3);
+        ctx.fillRect(42, 36, 8, 3);
 
-        // Áo dài (traditional dress) - red, larger
+        // Áo dài (traditional dress) - red
         ctx.fillStyle = '#da251d';
-        ctx.fillRect(54, 42, 40, 48);
+        ctx.fillRect(26, 42, 40, 48);
         // Dress details (darker sides)
         ctx.fillStyle = '#b71c1c';
-        ctx.fillRect(54, 42, 4, 48);
-        ctx.fillRect(90, 42, 4, 48);
+        ctx.fillRect(26, 42, 4, 48);
+        ctx.fillRect(62, 42, 4, 48);
 
         // Gold trim on dress
         ctx.fillStyle = '#ffcd00';
-        ctx.fillRect(54, 42, 40, 4);
-        ctx.fillRect(70, 46, 8, 42);
+        ctx.fillRect(26, 42, 40, 4);
+        ctx.fillRect(42, 46, 8, 42);
 
-        // Left arm (holding flag pole)
+        // Left arm (resting)
         ctx.fillStyle = '#f4d03f';
-        ctx.fillRect(38, 48, 16, 8);
-        ctx.fillRect(32, 54, 10, 8);
+        ctx.fillRect(12, 48, 14, 8);
+        ctx.fillRect(6, 54, 10, 8);
 
-        // Right arm (waving) - animated
+        // Right arm (holding flag) - animated
         ctx.fillStyle = '#f4d03f';
-        ctx.fillRect(94, 48 + armWave, 14, 8);
-        ctx.fillRect(106, 42 + armWave, 8, 10);
+        ctx.fillRect(66, 48 + armWave, 16, 8);
+        ctx.fillRect(80, 42 + armWave, 10, 8);
+
+        // Flag pole (held by right hand) - animated with arm
+        ctx.fillStyle = '#8b4513';
+        ctx.fillRect(86, 8, 4, 42 + armWave);
+
+        // Vietnamese flag (waving on right side)
+        ctx.fillStyle = '#da251d';
+        const flagY = 10 + flagWave;
+        ctx.fillRect(90, flagY, 36, 26);
+
+        // Yellow star on flag
+        ctx.fillStyle = '#ffcd00';
+        ctx.fillRect(104, flagY + 8, 8, 10);
+        ctx.fillRect(100, flagY + 10, 16, 6);
+        ctx.fillRect(102, flagY + 6, 12, 3);
+        ctx.fillRect(101, flagY + 18, 5, 3);
+        ctx.fillRect(110, flagY + 18, 5, 3);
 
         // Legs
         ctx.fillStyle = '#2c3e50';
-        ctx.fillRect(62, 90, 10, 28);
-        ctx.fillRect(78, 90, 10, 28);
+        ctx.fillRect(34, 90, 10, 28);
+        ctx.fillRect(50, 90, 10, 28);
 
         // Feet
         ctx.fillStyle = '#8b4513';
-        ctx.fillRect(58, 116, 16, 6);
-        ctx.fillRect(74, 116, 16, 6);
+        ctx.fillRect(30, 116, 16, 6);
+        ctx.fillRect(46, 116, 16, 6);
       }
 
       function animate() {
