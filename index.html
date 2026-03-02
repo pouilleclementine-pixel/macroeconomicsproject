@@ -3236,6 +3236,7 @@
 .sim-scorecard-match {
   font-size: 0.7rem;
   margin-top: 0.15rem;
+  color: rgba(250,247,242,0.6);
 }
 
 .sim-scorecard-match.same {
@@ -3248,6 +3249,11 @@
 
 .sim-scorecard-match.better {
   color: #3498db;
+}
+
+.sim-scorecard-match.pending {
+  color: rgba(250,247,242,0.6);
+  font-style: italic;
 }
 
 .sim-outcome-win {
@@ -3638,15 +3644,18 @@
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
   border-radius: 0 !important;
   z-index: 999999 !important;
   margin: 0 !important;
+  padding: 0 !important;
   overflow-y: auto;
+  overflow-x: hidden;
   background: #1e1e1e !important;
   isolation: isolate;
+  box-sizing: border-box !important;
 }
 
 /* Hide everything else when in presentation mode */
@@ -4771,7 +4780,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam passed the 1987 Foreign Investment Law -exceptionally liberal for a communist state, allowing 100% foreign ownership and guaranteeing against nationalization. This attracted the first wave of Taiwanese and Hong Kong capital for textiles and footwear. However, tax holidays and land preferences inadvertently disadvantaged the nascent domestic private sector, planting seeds of the 'dual economy' problem.",
           realChoice: 0,
-          realGdp: 280,
+          realGdp: 350,
           source: "ERIA FDI Study",
           verdict: "mixed",
           verdictText: "Attracted massive FDI (success) but created an 'enclave economy' with weak local linkages -today FDI firms still account for 74% of exports with minimal technology transfer."
@@ -4804,7 +4813,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam pursued aggressive stabilization: tightening fiscal/monetary policy, unifying exchange rates, and phasing out SOE subsidies. Inflation fell from 774% (1986) to single digits by the early 1990s. This painful medicine created the macro stability that enabled FDI to flow.",
           realChoice: 0,
-          realGdp: 320,
+          realGdp: 500,
           source: "World Bank Short History",
           verdict: "success",
           verdictText: "IMF praises the bold reforms for achieving stability without the 'transformational recession' that hit Eastern Europe."
@@ -4837,7 +4846,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam pursued full normalization, accepting US conditions on POW/MIA cooperation. The embargo lifted in 1994, diplomatic relations established in 1995, and the Bilateral Trade Agreement (BTA) signed in 2001. This opened access to the world's largest consumer market and triggered a massive export boom.",
           realChoice: 0,
-          realGdp: 420,
+          realGdp: 650,
           source: "US Embassy Vietnam",
           verdict: "success",
           verdictText: "Trade with the US grew from $1.5B (2001) to $150B+ by 2024. Economists consider this a major diplomatic and economic win."
@@ -4870,7 +4879,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam invested heavily (~3.6% of GDP) in coastal roads and ports, prioritizing export corridors connecting Hanoi/HCMC to industrial zones. Studies suggest this delivered large GDP gains but an alternative inland-focused allocation could have generated 48-72% higher welfare, with less climate vulnerability.",
           realChoice: 1,
-          realGdp: 550,
+          realGdp: 750,
           source: "Yale Economics / VoxDev",
           verdict: "mixed",
           verdictText: "Coastal focus boosted exports but Yale economists found inland investment could have yielded 48-72% higher welfare gains with better climate resilience."
@@ -4904,7 +4913,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam pursued full WTO accession in 2007, accepting conditions to lower tariffs, open banking/telecom, and reduce SOE subsidies. Reformers used international commitments as leverage against conservative factions. FDI surged 70% in 2007, hitting $64B registered in 2008.",
           realChoice: 0,
-          realGdp: 900,
+          realGdp: 1200,
           source: "WTO Trade Policy Review",
           verdict: "success",
           verdictText: "WTO accession exceeded model predictions. Productivity gains in manufacturing reached 3.7% annually. Strong consensus among economists."
@@ -4942,7 +4951,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam backed Vinashin with sovereign credit ($750M bond) and allowed diversification. It was a disaster: corruption, mismanagement, and a $4.5B default in 2010 paralyzed the banking system. This is Vietnam's cautionary tale about state capitalism without accountability.",
           realChoice: 1,
-          realGdp: 1150,
+          realGdp: 1600,
           source: "World Bank Vietnam Reports",
           verdict: "mistake",
           verdictText: "IMF and Moody's flag this as a major policy error. The $4.5B default damaged sovereign credit ratings and required years of banking sector cleanup."
@@ -4980,7 +4989,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam let it ride. Credit grew >30% per year. Combined with the Vinashin debacle and a 2009 stimulus, inflation hit 23% (2008) and 18.6% (2011). Real estate crashed, NPLs reached ~15% (unofficially), and years were spent cleaning up bank balance sheets via VAMC.",
           realChoice: 1,
-          realGdp: 1400,
+          realGdp: 2000,
           source: "IMF Article IV Reports",
           verdict: "mistake",
           verdictText: "World Bank/IMF cite overly expansionary policy fueling 35% credit growth and 20%+ inflation. Consensus among experts: this was overheating that cost years of cleanup."
@@ -5018,7 +5027,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam maintained its basic education focus. While K-12 outcomes rival OECD countries, only ~26% of the workforce has formal training/degrees. The vocational system remains fragmented and disconnected from industry needs -a key bottleneck for moving up value chains.",
           realChoice: 1,
-          realGdp: 1800,
+          realGdp: 2500,
           source: "OECD Economic Survey 2025",
           verdict: "mixed",
           verdictText: "Basic education success (PISA scores rival rich countries), but delayed tertiary investment created a skills bottleneck -now a binding constraint for high-tech industries."
@@ -5057,7 +5066,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam took a mixed approach: extracted a $500M settlement from Formosa and enacted some new regulations, but avoided a broader crackdown on polluting FDI. The 'I Choose Fish' protests marked a turning point in environmental awareness but fundamental enforcement gaps remain.",
           realChoice: 1,
-          realGdp: 2200,
+          realGdp: 3200,
           source: "Various news sources, 2016",
           verdict: "mistake",
           verdictText: "Government response criticized as inadequate. Transparency lacking, activists arrested. Economists cite weak enforcement as emblematic of 'growth at all costs' mentality."
@@ -5091,7 +5100,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam signed both CPTPP (2018) and EVFTA (2020), accepting labor/environment chapters and SOE disciplines in exchange for deep market access. These 'external anchors' helped reformers push through domestic changes that would otherwise face internal resistance.",
           realChoice: 0,
-          realGdp: 2800,
+          realGdp: 4700,
           source: "WTO/CPTPP Documentation",
           verdict: "success",
           verdictText: "Studies show significant trade boosts. EVFTA especially positive. Strong consensus among economists that deep FTAs locked in beneficial reforms."
@@ -5129,7 +5138,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam issued Resolution 68 in 2025, targeting 2 million enterprises and 20 'National Champions' by 2030. The strategy tilts toward large conglomerates (Vingroup, FPT, Hoa Phat), risking oligarchy formation similar to Thailand. SME credit programs have historically failed due to rigid collateral requirements.",
           realChoice: 1,
-          realGdp: 3800,
+          realGdp: 5500,
           source: "Resolution 68, Lowy Institute",
           verdict: "mixed",
           verdictText: "Brookings critiques see risk of crony capitalism. World Bank notes governance issues. Ongoing debate -could succeed like Korea's chaebols or fail like Thailand's oligarchs."
@@ -5167,7 +5176,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam is attempting both paths: PM Pham Minh Chinh announced targets for 50,000-100,000 semiconductor workers by 2030, while also courting Samsung/Intel training centers. The challenge is real: Intel has been in Vietnam since 2006 but local content remains ~5% for chips.",
           realChoice: 1,
-          realGdp: 5200,
+          realGdp: 7000,
           source: "Ministry of Industry and Trade",
           verdict: "pending",
           verdictText: "Still unfolding. The gap between 1,400 current chip engineers and 50,000 target is daunting. Success depends on execution over the next decade."
@@ -5205,7 +5214,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         history: {
           real: "Vietnam signed the $15.5B JETP deal but implementation is slow. Power shortages hit manufacturing in 2023-24. The country remains coal-dependent (~50% of power) while facing EU Carbon Border Adjustment Mechanism (CBAM) taxes on exports. A classic transition dilemma.",
           realChoice: 1,
-          realGdp: 6800,
+          realGdp: 8500,
           source: "JETP Documentation, IEA",
           verdict: "pending",
           verdictText: "Still unfolding. JETP implementation lagging while power shortages hurt manufacturing. The energy transition dilemma remains unresolved."
@@ -6169,8 +6178,8 @@ body.presentation-active .simulator-container.presentation-mode * {
         let matchText = '';
         let matchClass = '';
         if (history.realChoice < 0) {
-          matchText = 'Still unfolding';
-          matchClass = '';
+          matchText = 'Still unfolding...';
+          matchClass = 'pending';
         } else if (matchedVietnam) {
           matchText = 'Same as Vietnam';
           matchClass = 'same';
