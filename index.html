@@ -2739,11 +2739,12 @@
   content: '';
   position: absolute;
   bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-bottom: 8px solid rgba(212,175,55,0.5);
+  /* Arrow position set dynamically via CSS variable */
+  left: var(--arrow-left, 50%);
+  transform: translateX(-50%);
 }
 
 .sim-tooltip-popup strong {
@@ -5133,13 +5134,18 @@
             const popupWidth = 260;
 
             // Center horizontally on the trigger
-            let leftPos = triggerRect.left + triggerRect.width/2 - popupWidth/2;
+            const triggerCenterX = triggerRect.left + triggerRect.width / 2;
+            let leftPos = triggerCenterX - popupWidth / 2;
 
             // Keep within viewport horizontally
             if (leftPos < 10) leftPos = 10;
             if (leftPos + popupWidth > window.innerWidth - 10) {
               leftPos = window.innerWidth - popupWidth - 10;
             }
+
+            // Calculate arrow position relative to popup
+            const arrowLeft = triggerCenterX - leftPos;
+            popup.style.setProperty('--arrow-left', arrowLeft + 'px');
 
             // Position below the trigger element with some spacing
             const topPos = triggerRect.bottom + 12;
@@ -5238,7 +5244,11 @@
       elements.timelineProgress.style.width = Math.min(100, progress) + '%';
     }
 
-    function updateChart() {
+    // Store previous chart state for animation
+    let chartAnimationFrame = null;
+    let previousPoints = null;
+
+    function updateChart(animate = true) {
       if (!elements.playerPath) return;
 
       // Convert GDP to Y coordinate using sqrt scale for better visibility at low values
@@ -5250,24 +5260,78 @@
         return 143 - (ratio * 128); // 128 = chart height (143 - 15)
       }
 
-      // Convert GDP history to SVG points
-      const points = state.gdpHistory.map((d, i) => {
+      // Convert GDP history to target points
+      const targetPointsArray = state.gdpHistory.map((d, i) => {
         const x = 20 + ((d.year - 1986) / 59) * 370;
         const y = gdpToY(d.gdp);
-        return `${x},${y}`;
-      }).join(' ');
+        return { x, y };
+      });
 
-      elements.playerPath.setAttribute('points', points);
+      // If we have a new point and animation is enabled, animate to it
+      if (animate && previousPoints && targetPointsArray.length > previousPoints.length) {
+        // Cancel any existing animation
+        if (chartAnimationFrame) {
+          cancelAnimationFrame(chartAnimationFrame);
+        }
 
-      // Create area fill
-      if (elements.playerArea && state.gdpHistory.length > 1) {
-        const firstPoint = state.gdpHistory[0];
-        const lastPoint = state.gdpHistory[state.gdpHistory.length - 1];
-        const startX = 20 + ((firstPoint.year - 1986) / 59) * 370;
-        const endX = 20 + ((lastPoint.year - 1986) / 59) * 370;
+        const newPointIndex = targetPointsArray.length - 1;
+        const newPoint = targetPointsArray[newPointIndex];
+        const prevPoint = previousPoints[previousPoints.length - 1];
 
-        const areaPath = `M ${startX},143 L ${points} L ${endX},143 Z`;
-        elements.playerArea.setAttribute('d', areaPath);
+        // Animate from previous last point Y to new point Y
+        const startY = prevPoint.y;
+        const endY = newPoint.y;
+        const startTime = performance.now();
+        const duration = 600; // ms
+
+        function animateStep(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Ease-out cubic for smooth deceleration
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          // Interpolate the Y position
+          const currentY = startY + (endY - startY) * eased;
+
+          // Build points string with animated last point
+          const animatedPoints = [...previousPoints];
+          animatedPoints.push({ x: newPoint.x, y: currentY });
+
+          const pointsStr = animatedPoints.map(p => `${p.x},${p.y}`).join(' ');
+          elements.playerPath.setAttribute('points', pointsStr);
+
+          // Update area fill
+          if (elements.playerArea && animatedPoints.length > 1) {
+            const firstPoint = animatedPoints[0];
+            const lastPoint = animatedPoints[animatedPoints.length - 1];
+            const areaPath = `M ${firstPoint.x},143 L ${pointsStr} L ${lastPoint.x},143 Z`;
+            elements.playerArea.setAttribute('d', areaPath);
+          }
+
+          if (progress < 1) {
+            chartAnimationFrame = requestAnimationFrame(animateStep);
+          } else {
+            // Animation complete, store final state
+            previousPoints = targetPointsArray;
+          }
+        }
+
+        requestAnimationFrame(animateStep);
+      } else {
+        // No animation, just set points directly
+        const pointsStr = targetPointsArray.map(p => `${p.x},${p.y}`).join(' ');
+        elements.playerPath.setAttribute('points', pointsStr);
+
+        // Create area fill
+        if (elements.playerArea && targetPointsArray.length > 1) {
+          const firstPoint = targetPointsArray[0];
+          const lastPoint = targetPointsArray[targetPointsArray.length - 1];
+          const areaPath = `M ${firstPoint.x},143 L ${pointsStr} L ${lastPoint.x},143 Z`;
+          elements.playerArea.setAttribute('d', areaPath);
+        }
+
+        previousPoints = targetPointsArray;
       }
     }
 
@@ -5457,7 +5521,10 @@
 
       if (matchedHistory) {
         // Player chose what Vietnam chose - show what actually happened
-        historyHtml = verdictBadge + `<strong style="color: #6fcf97;">You chose the same path as Vietnam.</strong> ` + history.real;
+        const sourceNote = history.source
+          ? `<p style="margin: 0.8rem 0 0 0; font-size: 0.7rem; color: rgba(250,247,242,0.5); font-style: italic;">Source: ${history.source}</p>`
+          : '';
+        historyHtml = verdictBadge + `<strong style="color: #6fcf97;">You chose the same path as Vietnam.</strong> ` + history.real + sourceNote;
       } else if (history.realChoice >= 0) {
         // Player chose differently - show counterfactual for their choice, then what Vietnam did
         historyHtml = `<strong style="color: var(--gold);">You chose a different path.</strong>`;
@@ -5532,6 +5599,12 @@
     function continueAfterHistory() {
       elements.historyReveal.classList.remove('active');
       elements.choicesContainer.style.display = 'grid';
+
+      // Scroll to simulator top
+      const simulator = document.getElementById('simulator');
+      if (simulator) {
+        simulator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
 
       // Check for random events after history reveal
       const triggeredEvent = events.find(e => e.trigger(state) && !state.choices.includes('event_' + e.id));
@@ -5623,6 +5696,13 @@
 
     function closeEvent() {
       elements.eventOverlay.classList.remove('active');
+
+      // Scroll to simulator top
+      const simulator = document.getElementById('simulator');
+      if (simulator) {
+        simulator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
       // If we came from a choice, show history reveal
       if (currentDecision && currentDecision.history) {
         showHistoryReveal(currentDecision, currentChoiceIndex);
