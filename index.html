@@ -2009,25 +2009,18 @@
   <div class="reveal">
     <div class="insight-box" style="border-left-color: var(--warning);">
       <h4>The Assembly Trap Explained</h4>
-      <p>Vietnam's export success is driven largely by assembling imported inputs. <a href="https://www.rmit.edu.vn/news/all-news/2025/nov/vietnam-electronics-fdi-growth-without-spillovers" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Electronics FDI firms produce about 98% of Vietnam's electronics exports</a> (which totaled US$126.5 billion in 2024). <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Foreign-owned companies now account for ~73% of all exports</a>. Domestic enterprises often lack linkages, so Vietnam captures only a fraction of the value of exported goods. <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Services exports are still only ~12% of total exports</a> (and ~7% of manufacturing exports), much lower than in developed economies. This raises concerns of an "assembly trap" where growth relies on assembly jobs with limited skill gains or technology transfer.</p>
+      <p>Vietnam's export success is driven largely by assembling imported inputs. <a href="https://www.rmit.edu.vn/news/all-news/2025/nov/vietnam-electronics-fdi-growth-without-spillovers" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Electronics FDI firms produce about 98% of Vietnam's electronics exports</a> (which totaled US$126.5 billion in 2024). <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Foreign-owned companies now account for ~73% of all exports</a>. Domestic enterprises often lack <strong>linkages</strong> - meaning Vietnamese suppliers rarely sell components to foreign factories, Vietnamese workers rarely learn advanced skills from foreign managers, and foreign R&D rarely transfers to local firms. The factories operate as isolated enclaves. <a href="https://www.worldbank.org/en/country/vietnam/publication/viet-nam-2045-trading-up-in-a-changing-world" target="_blank" style="color:rgba(250,247,242,0.85);text-decoration:underline;">Services exports are still only ~12% of total exports</a> (and ~7% of manufacturing exports), much lower than in developed economies. This raises concerns of an "assembly trap" where growth relies on assembly jobs with limited skill gains or technology transfer.</p>
     </div>
   </div>
 
   <div class="reveal">
     <div class="pull-quote">
       <p>"<a href="https://documents.worldbank.org/en/publication/documents-reports/documentdetail/352041468338949354/export-liberalization-job-creation-and-the-skill-premium-evidence-from-the-u-s-vietnam-bilateral-trade-agreement" target="_blank" style="color:var(--dark);text-decoration:underline;">The boom in exports following the BTA was particularly beneficial to wages of unskilled workers and was a key driver of poverty reduction because it was concentrated in labor-intensive manufacturing.</a>"</p>
-      <cite>World Bank research on BTA impact</cite>
+      <cite>World Bank research on the US-Vietnam Bilateral Trade Agreement (BTA, signed 2001)</cite>
     </div>
   </div>
 </section>
 
-<!-- INTERSTITIAL 2: The Deadline -->
-<section class="interstitial" id="interstitial2">
-  <div class="interstitial-content">
-    <p class="interstitial-stat">Vietnam's demographic dividend ends around <em><a href="https://documents1.worldbank.org/curated/en/201841468616790980/pdf/107004-WP-PUBLIC.pdf" target="_blank" style="color:var(--gold);text-decoration:none;">2035</a></em>.</p>
-    <p class="interstitial-context">Only 34 of ~142 middle-income countries have ever made it to high-income status.</p>
-  </div>
-</section>
 
 <!-- Vietnam Industrial Map -->
 <section class="section-wide">
@@ -4508,7 +4501,8 @@
             marker.style.transform = 'scale(1.4)';
             marker.style.filter = 'drop-shadow(0 0 6px rgba(218,37,29,0.6))';
           }
-          showTooltip(correspondingPin, item);
+          // Show tooltip near the actual pin on the map, not the legend item
+          showTooltip(correspondingPin, correspondingPin);
         }
       });
 
