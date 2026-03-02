@@ -2269,7 +2269,7 @@
       <div class="sim-particles-container" id="sim-particles"></div>
 
       <!-- Pixel Art Mascot -->
-      <canvas class="sim-mascot-canvas" id="sim-mascot" width="96" height="96"></canvas>
+      <canvas class="sim-mascot-canvas" id="sim-mascot" width="128" height="128"></canvas>
 
       <!-- Start Screen -->
       <div id="sim-start" class="sim-screen active">
@@ -3819,8 +3819,8 @@ body.presentation-active .simulator-container.presentation-mode * {
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   z-index: 10;
@@ -4686,6 +4686,25 @@ body.presentation-active .simulator-container.presentation-mode * {
     // Key decisions for short mode (the most pivotal moments)
     const shortModeDecisions = [1, 4, 6, 7, 8, 15]; // De-collectivization, US Normalization, WTO, Vinashin, Credit Boom, 2045
 
+    // Turn number to year mapping (each turn corresponds to a point in history)
+    const turnToYear = {
+      1: 1989,   // De-collectivization result
+      2: 1992,   // FDI law result
+      3: 1995,   // Macro stabilization result
+      4: 1998,   // US normalization result
+      5: 2001,   // Infrastructure result
+      6: 2007,   // WTO result
+      7: 2010,   // Vinashin result
+      8: 2013,   // Credit boom result
+      9: 2016,   // Human capital result
+      10: 2020,  // Formosa result
+      11: 2024,  // FTAs result
+      12: 2028,  // Resolution 68 result
+      13: 2032,  // Semiconductor result
+      14: 2038,  // Energy result
+      15: 2045   // 2045 result
+    };
+
     // Real Vietnam GDP per capita data (approximate, for comparison)
     const realVietnamData = [
       { year: 1986, gdp: 200 },
@@ -4854,21 +4873,13 @@ body.presentation-active .simulator-container.presentation-mode * {
         desc: "Where should Vietnam invest its limited infrastructure budget?",
         history: {
           real: "Vietnam invested heavily (~3.6% of GDP) in coastal roads and ports, prioritizing export corridors connecting Hanoi/HCMC to industrial zones. Studies suggest this delivered large GDP gains but an alternative inland-focused allocation could have generated 48-72% higher welfare, with less climate vulnerability.",
-          realChoice: 0,
+          realChoice: 1,
           realGdp: 550,
           source: "Yale Economics / VoxDev",
           verdict: "mixed",
           verdictText: "Coastal focus boosted exports but Yale economists found inland investment could have yielded 48-72% higher welfare gains with better climate resilience."
         },
         choices: [
-          {
-            id: "coastal_infra",
-            title: "Coastal Export Corridors",
-            desc: "Prioritize ports, roads to industrial zones, and connections to Hanoi/HCMC. Maximum export efficiency.",
-            effects: { gdpGrowth: 1.8, inequality: 0.04, trapRisk: 3, fdiLinkage: -3 },
-            tags: ["+1.8% Growth", "+Inequality", "Regional Imbalance"],
-            setFlags: { infra_focus: "coastal" }
-          },
           {
             id: "balanced_infra",
             title: "Balanced Regional Development",
@@ -4878,6 +4889,14 @@ body.presentation-active .simulator-container.presentation-mode * {
             setFlags: { infra_focus: "balanced" },
             altHistory: "Yale/VoxDev study found that inland-focused infrastructure could have generated 48-72% higher welfare gains (~$580-620 GDP-equivalent welfare vs. $550 achieved). This translates to roughly 1-1.5 percentage points higher long-run growth, with better climate resilience. However, short-term export competitiveness might have suffered.",
             altSource: "Balboni, C. et al. (2021) 'Transportation, Gentrification, and Urban Mobility', VoxDev/Yale; ADB Infrastructure Reports"
+          },
+          {
+            id: "coastal_infra",
+            title: "Coastal Export Corridors",
+            desc: "Prioritize ports, roads to industrial zones, and connections to Hanoi/HCMC. Maximum export efficiency.",
+            effects: { gdpGrowth: 1.8, inequality: 0.04, trapRisk: 3, fdiLinkage: -3 },
+            tags: ["+1.8% Growth", "+Inequality", "Regional Imbalance"],
+            setFlags: { infra_focus: "coastal" }
           }
         ]
       },
@@ -4923,10 +4942,10 @@ body.presentation-active .simulator-container.presentation-mode * {
       {
         turn: 7,
         title: "The SOE Question: Vinashin",
-        desc: "State shipbuilder Vinashin wants to expand into finance and real estate with government backing. The chaebol model beckons.",
+        desc: "State shipbuilder Vinashin wants to expand into finance and real estate with government backing. South Korea's chaebols (massive conglomerates like Samsung and Hyundai) built industrial empires this way - can Vietnam replicate it?",
         history: {
           real: "Vietnam backed Vinashin with sovereign credit ($750M bond) and allowed diversification. It was a disaster: corruption, mismanagement, and a $4.5B default in 2010 paralyzed the banking system. This is Vietnam's cautionary tale about state capitalism without accountability.",
-          realChoice: 0,
+          realChoice: 1,
           realGdp: 1150,
           source: "World Bank Vietnam Reports",
           verdict: "mistake",
@@ -4939,14 +4958,6 @@ body.presentation-active .simulator-container.presentation-mode * {
         },
         choices: [
           {
-            id: "back_soe",
-            title: "Back the National Champion",
-            desc: "Provide sovereign credit and let Vinashin diversify. Build a Korean-style conglomerate.",
-            effects: { gdpGrowth: 1.5, trapRisk: 12, stability: -8, fdiLinkage: -5 },
-            tags: ["+1.5% Growth", "++Trap Risk", "-Stability", "Crisis Risk"],
-            setFlags: { soe_strategy: "champion" }
-          },
-          {
             id: "hard_budget",
             title: "Hard Budget Constraints",
             desc: "Force SOEs to compete without soft loans. Allow failures. Politically painful.",
@@ -4955,6 +4966,14 @@ body.presentation-active .simulator-container.presentation-mode * {
             setFlags: { soe_strategy: "market" },
             altHistory: "This is what reformers advocated but lost. Singapore and Taiwan enforced hard budget constraints on state firms. Studies suggest Vietnam could have avoided the $4.5B Vinashin debacle, banking crisis, and inflation spike. By avoiding these, GDP per capita could have been ~$1,300-1,400 by 2010 vs. $1,150 achieved -and without years of painful cleanup.",
             altSource: "World Bank (2012) 'Vietnam Development Report: Market Economy for a Middle-Income Vietnam'; Kornai, J. 'Economics of Shortage'"
+          },
+          {
+            id: "back_soe",
+            title: "Back the National Champion",
+            desc: "Provide sovereign credit and let Vinashin diversify. Build a Korean-style conglomerate.",
+            effects: { gdpGrowth: 1.5, trapRisk: 12, stability: -8, fdiLinkage: -5 },
+            tags: ["+1.5% Growth", "++Trap Risk", "-Stability", "Crisis Risk"],
+            setFlags: { soe_strategy: "champion" }
           }
         ]
       },
@@ -4964,7 +4983,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         desc: "FDI is flooding in post-WTO. Banks are lending aggressively. Real estate prices are surging. What do you do?",
         history: {
           real: "Vietnam let it ride. Credit grew >30% per year. Combined with the Vinashin debacle and a 2009 stimulus, inflation hit 23% (2008) and 18.6% (2011). Real estate crashed, NPLs reached ~15% (unofficially), and years were spent cleaning up bank balance sheets via VAMC.",
-          realChoice: 0,
+          realChoice: 1,
           realGdp: 1400,
           source: "IMF Article IV Reports",
           verdict: "mistake",
@@ -4977,14 +4996,6 @@ body.presentation-active .simulator-container.presentation-mode * {
         },
         choices: [
           {
-            id: "let_ride",
-            title: "Let It Ride",
-            desc: "High growth is good. Don't interfere with the market momentum. Maximize the boom.",
-            effects: { gdpGrowth: 2.0, trapRisk: 10, stability: -10, inequality: 0.03 },
-            tags: ["+2% Growth", "++Trap Risk", "--Stability", "Bubble Risk"],
-            setFlags: { credit_policy: "loose" }
-          },
-          {
             id: "tighten",
             title: "Macroprudential Tightening",
             desc: "Raise reserve requirements, limit real estate lending, sterilize capital flows.",
@@ -4993,6 +5004,14 @@ body.presentation-active .simulator-container.presentation-mode * {
             setFlags: { credit_policy: "tight" },
             altHistory: "China implemented strict credit controls in similar overheating situations. The IMF notes that macroprudential tightening could have prevented the 23% inflation spike and real estate crash. Peak growth would have been lower (~6-7% vs 8.5%) but the crash avoided. By 2012, GDP per capita could have been ~$1,500-1,600 vs $1,400 achieved, with healthier banks.",
             altSource: "IMF (2012) 'Vietnam: Article IV Consultation'; Leung & Unteroberdoerster (2008) 'Hong Kong's Financial Market Interactions with the US and Mainland China', IMF"
+          },
+          {
+            id: "let_ride",
+            title: "Let It Ride",
+            desc: "High growth is good. Don't interfere with the market momentum. Maximize the boom.",
+            effects: { gdpGrowth: 2.0, trapRisk: 10, stability: -10, inequality: 0.03 },
+            tags: ["+2% Growth", "++Trap Risk", "--Stability", "Bubble Risk"],
+            setFlags: { credit_policy: "loose" }
           }
         ]
       },
@@ -5113,7 +5132,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         desc: "The Party recognizes the private sector as the 'most important driving force.' How to implement?",
         history: {
           real: "Vietnam issued Resolution 68 in 2025, targeting 2 million enterprises and 20 'National Champions' by 2030. The strategy tilts toward large conglomerates (Vingroup, FPT, Hoa Phat), risking oligarchy formation similar to Thailand. SME credit programs have historically failed due to rigid collateral requirements.",
-          realChoice: 0,
+          realChoice: 1,
           realGdp: 3800,
           source: "Resolution 68, Lowy Institute",
           verdict: "mixed",
@@ -5126,14 +5145,6 @@ body.presentation-active .simulator-container.presentation-mode * {
         },
         choices: [
           {
-            id: "champions",
-            title: "National Champions Strategy",
-            desc: "Channel resources to large conglomerates like Vingroup and FPT. Build global players.",
-            effects: { gdpGrowth: 1.2, trapRisk: 8, fdiLinkage: -5, inequality: 0.04 },
-            tags: ["+1.2% Growth", "+Trap Risk", "Oligarchy Risk"],
-            setFlags: { private_sector: "champions" }
-          },
-          {
             id: "sme_focus",
             title: "SME Development Focus",
             desc: "Credit guarantees, regulatory simplification for small firms. Broader but slower.",
@@ -5142,6 +5153,14 @@ body.presentation-active .simulator-container.presentation-mode * {
             setFlags: { private_sector: "sme" },
             altHistory: "Taiwan's industrial miracle was built on SME networks, not chaebols. Studies show dense SME ecosystems create stronger FDI linkages -potentially increasing the 'local content' of exports from ~25% to 40-50% over 10-15 years. Growth may be 0.5% slower annually but with higher domestic value capture and lower inequality.",
             altSource: "Amsden, A. (2001) 'The Rise of The Rest'; Wade, R. (1990) 'Governing the Market: Economic Theory and the Role of Government in East Asian Industrialization'"
+          },
+          {
+            id: "champions",
+            title: "National Champions Strategy",
+            desc: "Channel resources to large conglomerates like Vingroup and FPT. Build global players.",
+            effects: { gdpGrowth: 1.2, trapRisk: 8, fdiLinkage: -5, inequality: 0.04 },
+            tags: ["+1.2% Growth", "+Trap Risk", "Oligarchy Risk"],
+            setFlags: { private_sector: "champions" }
           }
         ]
       },
@@ -5758,7 +5777,7 @@ body.presentation-active .simulator-container.presentation-mode * {
 
       // Calculate GDP growth for this turn
       // If player matched Vietnam's choice, use real GDP to stay on track
-      calculateGrowth(matchedVietnam ? decision.history.realGdp : null);
+      calculateGrowth(decision.turn, matchedVietnam ? decision.history.realGdp : null);
 
       // Update chart and timeline
       updateUI();
@@ -5894,15 +5913,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         celebrateMilestone('match');
       }
 
-      // Check for GDP milestones
-      const milestones = [500, 1000, 2000, 4000, 8000, 13000];
-      const prevGdp = state.gdpHistory.length > 1 ? state.gdpHistory[state.gdpHistory.length - 2].gdp : 0;
-      for (const milestone of milestones) {
-        if (prevGdp < milestone && state.gdpPerCapita >= milestone) {
-          setTimeout(() => celebrateMilestone('gdp_milestone'), 300);
-          break;
-        }
-      }
+      // GDP milestones - no confetti, just the line pulse is enough
 
       // Pulse the GDP line
       pulseGdpLine();
@@ -5936,10 +5947,11 @@ body.presentation-active .simulator-container.presentation-mode * {
       if (effects.inequality) state.inequality = Math.max(0.2, Math.min(0.6, state.inequality + effects.inequality));
     }
 
-    function calculateGrowth(targetGdp = null) {
-      // Era-based year progression
-      const yearsPerTurn = state.era === 1 ? 3 : (state.era === 2 ? 3 : 4);
-      state.year += yearsPerTurn;
+    function calculateGrowth(actualTurn, targetGdp = null) {
+      // Use turn-to-year mapping for accurate year display
+      const prevYear = state.year;
+      state.year = turnToYear[actualTurn] || state.year + 3;
+      const yearsPassed = state.year - prevYear;
 
       // If player matched Vietnam's choice, use the real GDP value
       // This ensures the "Vietnam path" actually follows Vietnam's trajectory
@@ -5947,9 +5959,9 @@ body.presentation-active .simulator-container.presentation-mode * {
         state.gdpPerCapita = targetGdp;
         // Back-calculate the effective growth rate for display
         const prevGdp = state.gdpHistory[state.gdpHistory.length - 1].gdp;
-        if (prevGdp > 0) {
-          const impliedGrowth = ((targetGdp / prevGdp) - 1) * 100 / yearsPerTurn;
-          state.gdpGrowth = Math.max(0, impliedGrowth * yearsPerTurn); // Annualized approximation
+        if (prevGdp > 0 && yearsPassed > 0) {
+          const impliedGrowth = ((targetGdp / prevGdp) - 1) * 100 / yearsPassed;
+          state.gdpGrowth = Math.max(0, impliedGrowth * yearsPassed); // Annualized approximation
         }
       } else {
         // Base growth calculation for divergent paths
@@ -6134,16 +6146,13 @@ body.presentation-active .simulator-container.presentation-mode * {
       let totalMistakes = 0;
       let rows = '';
 
-      decisions.forEach((decision, index) => {
-        if (index >= state.choices.length) return; // Haven't reached this decision
+      // Use decisionHistory which tracks the actual decisions played (works for both modes)
+      state.decisionHistory.forEach((historyEntry, index) => {
+        const decision = decisions.find(d => d.turn === historyEntry.turn);
+        if (!decision) return;
 
-        const playerChoiceTitle = state.choices[index];
         const history = decision.history;
-        const realChoiceIndex = history.realChoice;
-        const realChoiceTitle = realChoiceIndex >= 0 ? decision.choices[realChoiceIndex].title : null;
-        const playerChoiceIndex = decision.choices.findIndex(c => c.title === playerChoiceTitle);
-
-        const matchedVietnam = playerChoiceTitle === realChoiceTitle;
+        const matchedVietnam = historyEntry.matched;
         const verdict = history.verdict;
 
         // Track statistics
@@ -6163,7 +6172,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         // Match status
         let matchText = '';
         let matchClass = '';
-        if (realChoiceIndex < 0) {
+        if (history.realChoice < 0) {
           matchText = 'Still unfolding';
           matchClass = '';
         } else if (matchedVietnam) {
@@ -6179,17 +6188,18 @@ body.presentation-active .simulator-container.presentation-mode * {
 
         rows += `
           <div class="sim-scorecard-row">
-            <span class="sim-scorecard-turn">T${index + 1}</span>
+            <span class="sim-scorecard-turn">T${historyEntry.turn}</span>
             <span class="sim-scorecard-verdict">${verdictIcon}</span>
             <div class="sim-scorecard-content">
-              <div class="sim-scorecard-title">${decision.title}</div>
+              <div class="sim-scorecard-title">${historyEntry.title}</div>
               <div class="sim-scorecard-match ${matchClass}">${matchText}</div>
             </div>
           </div>
         `;
       });
 
-      const summaryText = `${sameAsVietnam}/${state.choices.length} same • ${avoidedMistakes}/${totalMistakes} mistakes avoided`;
+      const totalDecisions = state.decisionHistory.length;
+      const summaryText = `${sameAsVietnam}/${totalDecisions} same • ${avoidedMistakes}/${totalMistakes} mistakes avoided`;
 
       scorecard.innerHTML = `
         <h4>
@@ -6399,94 +6409,91 @@ body.presentation-active .simulator-container.presentation-mode * {
       let frame = 0;
 
       function drawPerson(f) {
-        ctx.clearRect(0, 0, 96, 96);
+        ctx.clearRect(0, 0, 128, 128);
 
         const wave = Math.sin(f * Math.PI / 2);
-        const armWave = wave * 4;
+        const armWave = wave * 5;
+        const flagWave = wave * 4;
 
-        // Non Lá (conical hat)
-        ctx.fillStyle = '#d4a574';
-        ctx.fillRect(32, 8, 32, 4);
-        ctx.fillRect(36, 4, 24, 4);
-        ctx.fillRect(40, 0, 16, 4);
-        ctx.fillRect(46, 0, 4, 2); // Hat tip
-
-        // Face
-        ctx.fillStyle = '#f4d03f';
-        ctx.fillRect(40, 12, 16, 16);
-
-        // Hair
-        ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(40, 12, 16, 4);
-        ctx.fillRect(38, 14, 4, 8);
-        ctx.fillRect(54, 14, 4, 8);
-
-        // Eyes
-        ctx.fillStyle = '#1a1a1a';
-        ctx.fillRect(43, 18, 3, 3);
-        ctx.fillRect(50, 18, 3, 3);
-        // Eye shine
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(44, 19, 1, 1);
-        ctx.fillRect(51, 19, 1, 1);
-
-        // Smile
-        ctx.fillStyle = '#c0392b';
-        ctx.fillRect(45, 24, 6, 2);
-
-        // Áo dài (traditional dress) - red
-        ctx.fillStyle = '#da251d';
-        ctx.fillRect(38, 28, 20, 32);
-        // Dress details
-        ctx.fillStyle = '#b71c1c';
-        ctx.fillRect(38, 28, 2, 32);
-        ctx.fillRect(56, 28, 2, 32);
-
-        // Gold trim on dress
-        ctx.fillStyle = '#ffcd00';
-        ctx.fillRect(38, 28, 20, 2);
-        ctx.fillRect(46, 30, 4, 28);
-
-        // Left arm (holding flag pole)
-        ctx.fillStyle = '#f4d03f';
-        ctx.fillRect(28, 32, 10, 6);
-        ctx.fillRect(26, 36, 6, 4);
-
-        // Right arm (waving) - animated
-        ctx.fillStyle = '#f4d03f';
-        ctx.fillRect(58, 32 + armWave, 10, 6);
-        ctx.fillRect(66, 28 + armWave, 6, 6);
-
-        // Legs
-        ctx.fillStyle = '#2c3e50';
-        ctx.fillRect(42, 60, 6, 20);
-        ctx.fillRect(50, 60, 6, 20);
-
-        // Feet
+        // Flag pole (behind person, on the left)
         ctx.fillStyle = '#8b4513';
-        ctx.fillRect(40, 78, 10, 4);
-        ctx.fillRect(48, 78, 10, 4);
+        ctx.fillRect(8, 8, 4, 80);
 
-        // Flag pole (held by left hand)
-        ctx.fillStyle = '#8b4513';
-        ctx.fillRect(18, 4, 3, 56);
-
-        // Vietnamese flag (waving)
-        const flagWave = wave * 3;
-
-        // Flag background (red)
+        // Vietnamese flag (waving, on left side - not covering face)
         ctx.fillStyle = '#da251d';
-        const flagY = 6 + flagWave;
-        ctx.fillRect(21, flagY, 28, 20);
+        const flagY = 10 + flagWave;
+        ctx.fillRect(12, flagY, 36, 26);
 
         // Yellow star on flag
         ctx.fillStyle = '#ffcd00';
-        // Star - 5 pointed approximation
-        ctx.fillRect(32, flagY + 6, 6, 8);
-        ctx.fillRect(29, flagY + 8, 12, 4);
-        ctx.fillRect(31, flagY + 4, 8, 2);
-        ctx.fillRect(30, flagY + 14, 4, 2);
-        ctx.fillRect(36, flagY + 14, 4, 2);
+        ctx.fillRect(26, flagY + 8, 8, 10);
+        ctx.fillRect(22, flagY + 10, 16, 6);
+        ctx.fillRect(24, flagY + 6, 12, 3);
+        ctx.fillRect(23, flagY + 18, 5, 3);
+        ctx.fillRect(32, flagY + 18, 5, 3);
+
+        // Non Lá (conical hat) - larger
+        ctx.fillStyle = '#d4a574';
+        ctx.fillRect(52, 12, 44, 6);
+        ctx.fillRect(58, 6, 32, 6);
+        ctx.fillRect(66, 0, 16, 6);
+        ctx.fillRect(72, 0, 4, 3); // Hat tip
+
+        // Face - larger and more to the right
+        ctx.fillStyle = '#f4d03f';
+        ctx.fillRect(60, 18, 28, 24);
+
+        // Hair
+        ctx.fillStyle = '#1a1a1a';
+        ctx.fillRect(60, 18, 28, 6);
+        ctx.fillRect(56, 22, 6, 12);
+        ctx.fillRect(86, 22, 6, 12);
+
+        // Eyes
+        ctx.fillStyle = '#1a1a1a';
+        ctx.fillRect(66, 28, 5, 5);
+        ctx.fillRect(78, 28, 5, 5);
+        // Eye shine
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(68, 30, 2, 2);
+        ctx.fillRect(80, 30, 2, 2);
+
+        // Smile
+        ctx.fillStyle = '#c0392b';
+        ctx.fillRect(70, 36, 8, 3);
+
+        // Áo dài (traditional dress) - red, larger
+        ctx.fillStyle = '#da251d';
+        ctx.fillRect(54, 42, 40, 48);
+        // Dress details (darker sides)
+        ctx.fillStyle = '#b71c1c';
+        ctx.fillRect(54, 42, 4, 48);
+        ctx.fillRect(90, 42, 4, 48);
+
+        // Gold trim on dress
+        ctx.fillStyle = '#ffcd00';
+        ctx.fillRect(54, 42, 40, 4);
+        ctx.fillRect(70, 46, 8, 42);
+
+        // Left arm (holding flag pole)
+        ctx.fillStyle = '#f4d03f';
+        ctx.fillRect(38, 48, 16, 8);
+        ctx.fillRect(32, 54, 10, 8);
+
+        // Right arm (waving) - animated
+        ctx.fillStyle = '#f4d03f';
+        ctx.fillRect(94, 48 + armWave, 14, 8);
+        ctx.fillRect(106, 42 + armWave, 8, 10);
+
+        // Legs
+        ctx.fillStyle = '#2c3e50';
+        ctx.fillRect(62, 90, 10, 28);
+        ctx.fillRect(78, 90, 10, 28);
+
+        // Feet
+        ctx.fillStyle = '#8b4513';
+        ctx.fillRect(58, 116, 16, 6);
+        ctx.fillRect(74, 116, 16, 6);
       }
 
       function animate() {
