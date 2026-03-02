@@ -2292,7 +2292,11 @@
               <span>Avoid Vietnam's policy mistakes</span>
             </div>
           </div>
-          <button id="sim-start-btn" class="sim-btn sim-btn-primary">Begin Simulation</button>
+          <div class="sim-mode-selection">
+            <button id="sim-start-btn" class="sim-btn sim-btn-primary">Quick Game (6 Decisions)</button>
+            <button id="sim-start-full-btn" class="sim-btn sim-btn-secondary" style="margin-top: 0.75rem;">Full Simulation (15 Decisions)</button>
+          </div>
+          <p style="font-size: 0.8rem; color: rgba(250,247,242,0.5); margin-top: 1rem;">Quick game covers the pivotal moments. Full simulation includes all policy decisions.</p>
         </div>
       </div>
 
@@ -2367,9 +2371,9 @@
               <span class="sim-sec-label">Inequality <span class="sim-info-icon">?</span></span>
               <span class="sim-sec-value" id="sim-inequality">0.35</span>
             </div>
-            <div class="sim-sec-metric" title="Current turn out of 15 total policy decisions">
+            <div class="sim-sec-metric" title="Current turn out of total policy decisions">
               <span class="sim-sec-label">Turn</span>
-              <span class="sim-sec-value"><span id="sim-turn">1</span>/15</span>
+              <span class="sim-sec-value"><span id="sim-turn">1</span>/<span id="sim-max-turns">15</span></span>
             </div>
           </div>
         </div>
@@ -4675,8 +4679,12 @@ body.presentation-active .simulator-container.presentation-mode * {
       choices: [],
       gdpHistory: [{ year: 1986, gdp: 200 }],
       flags: {}, // For branching consequences
-      decisionHistory: [] // Track {turn, title, yourChoice, vietnamChoice, matched}
+      decisionHistory: [], // Track {turn, title, yourChoice, vietnamChoice, matched}
+      shortMode: false // Quick game with 6 key decisions
     };
+
+    // Key decisions for short mode (the most pivotal moments)
+    const shortModeDecisions = [1, 4, 6, 7, 8, 15]; // De-collectivization, US Normalization, WTO, Vinashin, Credit Boom, 2045
 
     // Real Vietnam GDP per capita data (approximate, for comparison)
     const realVietnamData = [
@@ -5360,7 +5368,11 @@ body.presentation-active .simulator-container.presentation-mode * {
     };
 
     function init() {
-      elements.startBtn.addEventListener('click', startGame);
+      elements.startBtn.addEventListener('click', () => startGame(true)); // Short mode
+      const fullBtn = document.getElementById('sim-start-full-btn');
+      if (fullBtn) {
+        fullBtn.addEventListener('click', () => startGame(false)); // Full mode
+      }
       elements.restartBtn.addEventListener('click', restartGame);
       elements.eventClose.addEventListener('click', closeEvent);
       if (elements.historyContinue) {
@@ -5415,25 +5427,25 @@ body.presentation-active .simulator-container.presentation-mode * {
       });
     }
 
-    function startGame() {
-      resetState();
+    function startGame(shortMode = true) {
+      resetState(shortMode);
       showScreen('game');
       updateUI();
-      updateChart();
+      updateChart(false);
       updateTimeline();
       showDecision();
     }
 
     function restartGame() {
-      resetState();
+      resetState(state.shortMode);
       showScreen('game');
       updateUI();
-      updateChart();
+      updateChart(false);
       updateTimeline();
       showDecision();
     }
 
-    function resetState() {
+    function resetState(shortMode = true) {
       state.year = 1986;
       state.turn = 1;
       state.era = 1;
@@ -5446,7 +5458,9 @@ body.presentation-active .simulator-container.presentation-mode * {
       state.choices = [];
       state.gdpHistory = [{ year: 1986, gdp: 200 }];
       state.flags = {};
-      state.decisionHistory = []; // Track {turn, title, yourChoice, vietnamChoice, matched}
+      state.decisionHistory = [];
+      state.shortMode = shortMode;
+      state.maxTurns = shortMode ? 6 : 15;
     }
 
     function showScreen(screen) {
@@ -5478,8 +5492,18 @@ body.presentation-active .simulator-container.presentation-mode * {
       elements.inequality.textContent = state.inequality.toFixed(2);
       elements.turn.textContent = state.turn;
 
-      // Update era banner
-      const era = eras.find(e => state.turn >= e.turns[0] && state.turn <= e.turns[1]);
+      // Update max turns display
+      const maxTurnsEl = document.getElementById('sim-max-turns');
+      if (maxTurnsEl) {
+        maxTurnsEl.textContent = state.maxTurns;
+      }
+
+      // Update era banner based on actual decision turn
+      let actualTurn = state.turn;
+      if (state.shortMode && state.turn <= shortModeDecisions.length) {
+        actualTurn = shortModeDecisions[state.turn - 1];
+      }
+      const era = eras.find(e => actualTurn >= e.turns[0] && actualTurn <= e.turns[1]);
       if (era) {
         state.era = era.id;
         elements.eraBanner.innerHTML = `
@@ -5596,7 +5620,17 @@ body.presentation-active .simulator-container.presentation-mode * {
     }
 
     function showDecision() {
-      const decision = decisions.find(d => d.turn === state.turn);
+      // In short mode, map turn numbers to the key decisions
+      let actualTurn = state.turn;
+      if (state.shortMode) {
+        if (state.turn > shortModeDecisions.length) {
+          endGame();
+          return;
+        }
+        actualTurn = shortModeDecisions[state.turn - 1];
+      }
+
+      const decision = decisions.find(d => d.turn === actualTurn);
       if (!decision) {
         endGame();
         return;
