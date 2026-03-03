@@ -5828,7 +5828,7 @@ body.presentation-active .simulator-container.presentation-mode * {
       const realChoice = history.realChoice >= 0 ? decision.choices[history.realChoice].title : "Still unfolding...";
       const matchedHistory = history.realChoice === choiceIndex;
 
-      // Build verdict badge
+      // Build verdict badge for Vietnam's actual choice
       let verdictBadge = '';
       if (history.verdict && history.verdictText) {
         const verdictStyles = {
@@ -5839,7 +5839,7 @@ body.presentation-active .simulator-container.presentation-mode * {
         };
         const v = verdictStyles[history.verdict] || verdictStyles.pending;
         verdictBadge = `<div style="margin-bottom: 1rem; padding: 0.6rem 0.8rem; background: rgba(${history.verdict === 'mistake' ? '231,76,60' : history.verdict === 'success' ? '111,207,151' : history.verdict === 'mixed' ? '240,173,78' : '250,247,242'},0.1); border-left: 3px solid ${v.color}; border-radius: 4px;">
-          <span style="font-size: 0.75rem; font-weight: 700; color: ${v.color}; letter-spacing: 0.05em;">${v.icon} ECONOMIST VERDICT: ${v.label}</span>
+          <span style="font-size: 0.75rem; font-weight: 700; color: ${v.color}; letter-spacing: 0.05em;">${v.icon} VIETNAM'S OUTCOME: ${v.label}</span>
           <p style="margin: 0.3rem 0 0 0; font-size: 0.85rem; color: rgba(250,247,242,0.8);">${history.verdictText}</p>
         </div>`;
       }
@@ -5869,10 +5869,10 @@ body.presentation-active .simulator-container.presentation-mode * {
           </div>`;
         }
 
-        historyHtml += verdictBadge + `<div style="margin-top: 0.8rem;">
+        historyHtml += `<div style="margin-top: 0.8rem;">
           <span style="color: rgba(250,247,242,0.6); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">What Vietnam actually did:</span>
           <p style="margin: 0.4rem 0 0 0;">${history.real}</p>
-        </div>`;
+        </div>` + verdictBadge;
       } else {
         // Future decision (realChoice = -1), history is still unwritten
         historyHtml = verdictBadge + `<strong style="color: rgba(250,247,242,0.7);">This decision is still playing out.</strong> ` + history.real;
