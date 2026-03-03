@@ -5855,16 +5855,31 @@ body.presentation-active .simulator-container.presentation-mode * {
         historyHtml = verdictBadge + `<strong style="color: #6fcf97;">You chose the same path as Vietnam.</strong> ` + history.real + sourceNote;
       } else if (history.realChoice >= 0) {
         // Player chose differently - show counterfactual assessment for their choice
-        historyHtml = `<strong style="color: var(--gold);">You chose a different path.</strong>`;
+        // Determine counterfactual verdict: if Vietnam made a mistake, player likely did better; if Vietnam succeeded, player likely missed out
+        let playerVerdict = 'mixed';
+        let playerVerdictText = '';
+        if (history.verdict === 'mistake') {
+          playerVerdict = 'success';
+          playerVerdictText = 'Economists suggest this alternative could have avoided the problems Vietnam faced.';
+        } else if (history.verdict === 'success') {
+          playerVerdict = 'mixed';
+          playerVerdictText = 'Vietnam\'s actual choice is widely considered successful—this path may have yielded different trade-offs.';
+        } else if (history.verdict === 'mixed') {
+          playerVerdict = 'mixed';
+          playerVerdictText = 'Both paths had potential trade-offs. Economists see merit in alternative approaches.';
+        }
+        const pv = verdictStyles[playerVerdict];
+
+        // Build player's counterfactual verdict badge
+        const playerVerdictBadge = `<div style="margin-bottom: 1rem; padding: 0.6rem 0.8rem; background: rgba(${playerVerdict === 'success' ? '111,207,151' : '240,173,78'},0.1); border-left: 3px solid ${pv.color}; border-radius: 4px;">
+          <span style="font-size: 0.75rem; font-weight: 700; color: ${pv.color}; letter-spacing: 0.05em;">${pv.icon} COUNTERFACTUAL: ${pv.counterfactualLabel}</span>
+          <p style="margin: 0.3rem 0 0 0; font-size: 0.85rem; color: rgba(250,247,242,0.8);">${playerVerdictText}</p>
+        </div>`;
+
+        historyHtml = playerVerdictBadge + `<strong style="color: var(--gold);">You chose a different path.</strong>`;
 
         // Show counterfactual for the player's choice if available
         if (yourChoice.altHistory) {
-          // Determine counterfactual verdict for player's choice (inverse of Vietnam's if it was a mistake, same if success)
-          let playerVerdict = 'mixed';
-          if (history.verdict === 'mistake') playerVerdict = 'success'; // Player avoided a mistake
-          else if (history.verdict === 'success') playerVerdict = 'mixed'; // Player missed a good choice
-          const pv = verdictStyles[playerVerdict];
-
           const sourceHtml = yourChoice.altSource
             ? `<p style="margin: 0.5rem 0 0 0; font-size: 0.7rem; color: rgba(250,247,242,0.5); font-style: italic;">Source: ${yourChoice.altSource}</p>`
             : '';
