@@ -4779,9 +4779,9 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "gradual_agri",
             title: "Gradual Reform with Safety Nets",
-            desc: "Slowly transition while maintaining cooperative social services. Less disruption but slower gains.",
+            desc: "Transition slowly while maintaining cooperative healthcare and education systems.",
             effects: { gdpGrowth: 1.0, stability: 5, trapRisk: 0, inequality: 0.01 },
-            tags: ["+1% Growth", "+Stability", "Slower Impact"],
+            tags: ["+1% Growth", "+Stability"],
             setFlags: { agrarian_reform: "gradual" },
             altHistory: "A gradual approach resembles what China attempted in the early 1980s before fully committing to household responsibility. Economists estimate Vietnam would have seen slower but steadier growth (~$200-220 GDP per capita by 1991 vs. the $250 achieved), preserving rural healthcare and education systems. However, the food crisis might have persisted 2-3 years longer, risking political instability.",
             altSource: "Lin, J.Y. (1992) 'Rural Reforms and Agricultural Growth in China', American Economic Review; Fforde & de Vylder (1996) 'From Plan to Market'"
@@ -4878,7 +4878,7 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "cautious_us",
             title: "Cautious Engagement",
-            desc: "Limited diplomatic progress while maintaining sovereignty concerns. Slower economic benefits.",
+            desc: "Maintain sovereignty and limit Western influence. Preserve ideological consistency with allies.",
             effects: { gdpGrowth: 0.5, fdiLinkage: 0, stability: 5, trapRisk: 2 },
             tags: ["+0.5% Growth", "+Stability"],
             setFlags: { us_relations: "cautious" },
@@ -4950,7 +4950,7 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "limited_wto",
             title: "Negotiate Extended Transitions",
-            desc: "Seek longer phase-in periods for sensitive sectors. Protect domestic firms longer.",
+            desc: "Seek longer phase-in periods for sensitive sectors. Shield domestic firms from foreign competition.",
             effects: { gdpGrowth: 1.2, fdiLinkage: 3, trapRisk: 5, stability: 5 },
             tags: ["+1.2% Growth", "+Linkage", "+Trap Risk"],
             setFlags: { wto: "limited" },
@@ -4980,7 +4980,7 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "hard_budget",
             title: "Hard Budget Constraints",
-            desc: "Force SOEs to compete without soft loans. Allow failures. Politically painful.",
+            desc: "Force SOEs to compete without soft loans. Let unprofitable enterprises fail or restructure.",
             effects: { gdpGrowth: -0.5, trapRisk: -10, stability: -5, fdiLinkage: 5 },
             tags: ["-0.5% Growth", "--Trap Risk", "+Linkage"],
             setFlags: { soe_strategy: "market" },
@@ -4990,9 +4990,9 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "back_soe",
             title: "Back the National Champion",
-            desc: "Provide sovereign credit and let Vinashin diversify. Build a Korean-style conglomerate.",
+            desc: "Provide sovereign credit and let Vinashin diversify into new industries. Build a Korean-style conglomerate.",
             effects: { gdpGrowth: 1.5, trapRisk: 12, stability: -8, fdiLinkage: -5 },
-            tags: ["+1.5% Growth", "++Trap Risk", "-Stability", "Crisis Risk"],
+            tags: ["+1.5% Growth", "++Trap Risk", "-Stability"],
             setFlags: { soe_strategy: "champion" }
           }
         ]
@@ -5018,9 +5018,9 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "tighten",
             title: "Macroprudential Tightening",
-            desc: "Raise reserve requirements, limit real estate lending, sterilize capital flows.",
+            desc: "Raise reserve requirements, limit real estate lending, cool down the economy.",
             effects: { gdpGrowth: 0.0, trapRisk: -5, stability: 8, inequality: -0.01 },
-            tags: ["0% Growth Impact", "-Trap Risk", "+Stability"],
+            tags: ["0% Growth", "-Trap Risk", "+Stability"],
             setFlags: { credit_policy: "tight" },
             altHistory: "China implemented strict credit controls in similar overheating situations. The IMF notes that macroprudential tightening could have prevented the 23% inflation spike and real estate crash. Peak growth would have been lower (~6-7% vs 8.5%) but the crash avoided. By 2012, GDP per capita could have been ~$1,500-1,600 vs $1,400 achieved, with healthier banks.",
             altSource: "IMF (2012) 'Vietnam: Article IV Consultation'; Leung & Unteroberdoerster (2008) 'Hong Kong's Financial Market Interactions with the US and Mainland China', IMF"
@@ -5028,9 +5028,9 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "let_ride",
             title: "Let It Ride",
-            desc: "High growth is good. Don't interfere with the market momentum. Maximize the boom.",
+            desc: "Don't interfere with market momentum. Let banks and investors drive capital allocation.",
             effects: { gdpGrowth: 2.0, trapRisk: 10, stability: -10, inequality: 0.03 },
-            tags: ["+2% Growth", "++Trap Risk", "--Stability", "Bubble Risk"],
+            tags: ["+2% Growth", "++Trap Risk", "--Stability"],
             setFlags: { credit_policy: "loose" }
           }
         ]
@@ -5281,9 +5281,9 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "innovation",
             title: "Innovation Economy Pivot",
-            desc: "R&D at 2%+ of GDP, startup ecosystem, university autonomy. Accept slower near-term growth.",
+            desc: "Boost R&D to 2%+ of GDP, build startup ecosystem, grant university autonomy.",
             effects: { gdpGrowth: -0.3, trapRisk: -20, fdiLinkage: 15, inequality: 0.02 },
-            tags: ["Investment Phase", "----Trap Risk", "Innovation Path"],
+            tags: ["-0.3% Growth", "----Trap Risk", "+Linkage"],
             setFlags: { endgame: "innovation" },
             altHistory: "This is the path South Korea took in the 1990s-2000s, accepting slower growth to build innovation capacity. Korea's R&D jumped from 1% to 4%+ of GDP, enabling the leap from $8,000 to $35,000+ GDP per capita. It's the only proven path to high-income status for manufacturing-based economies.",
             altSource: "World Bank (2024) 'Vietnam 2045: Trading Up in a Changing World'; Agenor & Canuto (2015) 'Middle-Income Growth Traps', World Bank Research Observer"
@@ -5291,9 +5291,9 @@ body.presentation-active .simulator-container.presentation-mode * {
           {
             id: "manufacturing",
             title: "Double Down on Manufacturing",
-            desc: "Maximize the remaining labor advantage. Extract every dollar from the current model.",
+            desc: "Maximize the remaining labor cost advantage. Attract more FDI to industrial zones.",
             effects: { gdpGrowth: 1.5, trapRisk: 15, fdiLinkage: -8, inequality: 0.03 },
-            tags: ["+1.5% Growth", "+++Trap Risk", "Assembly Trap"],
+            tags: ["+1.5% Growth", "+++Trap Risk", "-Linkage"],
             setFlags: { endgame: "manufacturing" },
             altHistory: "This is Thailand's current trajectory -stuck at ~$7,000-8,000 GDP per capita for two decades. Productivity growth just 2.6% (2016-23). As wages rise and demographics shift, the country becomes uncompetitive in assembly but lacks skills for innovation. The classic middle-income trap that 75% of countries never escape.",
             altSource: "Gill, I. & Kharas, H. (2015) 'The Middle-Income Trap Turns Ten', World Bank Policy Research Working Paper; Felipe et al. (2012) 'Tracking the Middle-Income Trap', ADB"
