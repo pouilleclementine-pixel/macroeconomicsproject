@@ -5828,42 +5828,48 @@ body.presentation-active .simulator-container.presentation-mode * {
       const realChoice = history.realChoice >= 0 ? decision.choices[history.realChoice].title : "Still unfolding...";
       const matchedHistory = history.realChoice === choiceIndex;
 
-      // Build verdict badge for Vietnam's actual choice
-      let verdictBadge = '';
-      if (history.verdict && history.verdictText) {
-        const verdictStyles = {
-          success: { icon: '✅', color: '#6fcf97', label: 'SUCCESS' },
-          mixed: { icon: '⚠️', color: '#f0ad4e', label: 'MIXED RESULTS' },
-          mistake: { icon: '❌', color: '#e74c3c', label: 'POLICY ERROR' },
-          pending: { icon: '⏳', color: 'rgba(250,247,242,0.6)', label: 'STILL UNFOLDING' }
-        };
-        const v = verdictStyles[history.verdict] || verdictStyles.pending;
-        verdictBadge = `<div style="margin-bottom: 1rem; padding: 0.6rem 0.8rem; background: rgba(${history.verdict === 'mistake' ? '231,76,60' : history.verdict === 'success' ? '111,207,151' : history.verdict === 'mixed' ? '240,173,78' : '250,247,242'},0.1); border-left: 3px solid ${v.color}; border-radius: 4px;">
-          <span style="font-size: 0.75rem; font-weight: 700; color: ${v.color}; letter-spacing: 0.05em;">${v.icon} VIETNAM'S OUTCOME: ${v.label}</span>
-          <p style="margin: 0.3rem 0 0 0; font-size: 0.85rem; color: rgba(250,247,242,0.8);">${history.verdictText}</p>
-        </div>`;
-      }
+      // Verdict styles
+      const verdictStyles = {
+        success: { icon: '✅', color: '#6fcf97', label: 'SUCCESS', counterfactualLabel: 'LIKELY SUCCESSFUL' },
+        mixed: { icon: '⚠️', color: '#f0ad4e', label: 'MIXED RESULTS', counterfactualLabel: 'MIXED OUTLOOK' },
+        mistake: { icon: '❌', color: '#e74c3c', label: 'POLICY ERROR', counterfactualLabel: 'LIKELY PROBLEMATIC' },
+        pending: { icon: '⏳', color: 'rgba(250,247,242,0.6)', label: 'STILL UNFOLDING', counterfactualLabel: 'STILL UNFOLDING' }
+      };
 
       // Build history text
       let historyHtml = '';
 
       if (matchedHistory) {
-        // Player chose what Vietnam chose - show what actually happened
+        // Player chose what Vietnam chose - show definitive verdict
+        let verdictBadge = '';
+        if (history.verdict && history.verdictText) {
+          const v = verdictStyles[history.verdict] || verdictStyles.pending;
+          verdictBadge = `<div style="margin-bottom: 1rem; padding: 0.6rem 0.8rem; background: rgba(${history.verdict === 'mistake' ? '231,76,60' : history.verdict === 'success' ? '111,207,151' : history.verdict === 'mixed' ? '240,173,78' : '250,247,242'},0.1); border-left: 3px solid ${v.color}; border-radius: 4px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: ${v.color}; letter-spacing: 0.05em;">${v.icon} ECONOMIST VERDICT: ${v.label}</span>
+            <p style="margin: 0.3rem 0 0 0; font-size: 0.85rem; color: rgba(250,247,242,0.8);">${history.verdictText}</p>
+          </div>`;
+        }
         const sourceNote = history.source
           ? `<p style="margin: 0.8rem 0 0 0; font-size: 0.7rem; color: rgba(250,247,242,0.5); font-style: italic;">Source: ${history.source}</p>`
           : '';
         historyHtml = verdictBadge + `<strong style="color: #6fcf97;">You chose the same path as Vietnam.</strong> ` + history.real + sourceNote;
       } else if (history.realChoice >= 0) {
-        // Player chose differently - show counterfactual for their choice, then what Vietnam did
+        // Player chose differently - show counterfactual assessment for their choice
         historyHtml = `<strong style="color: var(--gold);">You chose a different path.</strong>`;
 
         // Show counterfactual for the player's choice if available
         if (yourChoice.altHistory) {
+          // Determine counterfactual verdict for player's choice (inverse of Vietnam's if it was a mistake, same if success)
+          let playerVerdict = 'mixed';
+          if (history.verdict === 'mistake') playerVerdict = 'success'; // Player avoided a mistake
+          else if (history.verdict === 'success') playerVerdict = 'mixed'; // Player missed a good choice
+          const pv = verdictStyles[playerVerdict];
+
           const sourceHtml = yourChoice.altSource
             ? `<p style="margin: 0.5rem 0 0 0; font-size: 0.7rem; color: rgba(250,247,242,0.5); font-style: italic;">Source: ${yourChoice.altSource}</p>`
             : '';
           historyHtml += `<div style="margin: 0.8rem 0; padding: 0.8rem; background: rgba(212,175,55,0.1); border-left: 2px solid var(--gold); border-radius: 4px;">
-            <span style="color: var(--gold); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">What might have happened:</span>
+            <span style="color: var(--gold); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">What economists think would have happened:</span>
             <p style="margin: 0.4rem 0 0 0; color: rgba(250,247,242,0.85);">${yourChoice.altHistory}</p>
             ${sourceHtml}
           </div>`;
@@ -5872,9 +5878,17 @@ body.presentation-active .simulator-container.presentation-mode * {
         historyHtml += `<div style="margin-top: 0.8rem;">
           <span style="color: rgba(250,247,242,0.6); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">What Vietnam actually did:</span>
           <p style="margin: 0.4rem 0 0 0;">${history.real}</p>
-        </div>` + verdictBadge;
+        </div>`;
       } else {
         // Future decision (realChoice = -1), history is still unwritten
+        let verdictBadge = '';
+        if (history.verdict && history.verdictText) {
+          const v = verdictStyles[history.verdict] || verdictStyles.pending;
+          verdictBadge = `<div style="margin-bottom: 1rem; padding: 0.6rem 0.8rem; background: rgba(250,247,242,0.1); border-left: 3px solid ${v.color}; border-radius: 4px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: ${v.color}; letter-spacing: 0.05em;">${v.icon} ${v.label}</span>
+            <p style="margin: 0.3rem 0 0 0; font-size: 0.85rem; color: rgba(250,247,242,0.8);">${history.verdictText}</p>
+          </div>`;
+        }
         historyHtml = verdictBadge + `<strong style="color: rgba(250,247,242,0.7);">This decision is still playing out.</strong> ` + history.real;
       }
 
